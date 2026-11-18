@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dienstplan Web</title>
+<style>
+  /* Layout: eine schmale Lesespalte, oben die Startkarte, darunter kurze Abschnitte */
+  :root {
+    --bg: #f6f4f8; --karte: #ffffff; --text: #1c1b1f; --grau: #5f5b66; --linie: #dcd7e2;
+    --blau: #1f3a93; --blau-text: #ffffff; --warn-bg: #fff3e0; --warn-text: #7a3d00;
+    --schrift: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #141218; --karte: #1e1b24; --text: #ece8f1; --grau: #aaa4b3; --linie: #38333f;
+      --blau: #9db3ff; --blau-text: #10173a; --warn-bg: #3a2a14; --warn-text: #ffd7a1; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #141218; --karte: #1e1b24; --text: #ece8f1; --grau: #aaa4b3; --linie: #38333f;
+    --blau: #9db3ff; --blau-text: #10173a; --warn-bg: #3a2a14; --warn-text: #ffd7a1; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--text); font: 17px/1.5 var(--schrift); }
+  main { max-width: 680px; margin: 0 auto; padding: 28px 18px 56px; display: flex; flex-direction: column; gap: 22px; }
+  h1 { font-size: 30px; line-height: 1.15; margin: 0; text-wrap: balance; }
+  h2 { font-size: 19px; margin: 0 0 8px; text-wrap: balance; }
+  p { margin: 0 0 10px; }
+  p:last-child { margin-bottom: 0; }
+  .lead { color: var(--grau); font-size: 18px; }
+  .start { background: var(--karte); border: 1px solid var(--linie); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+  a.knopf { display: inline-block; align-self: flex-start; background: var(--blau); color: var(--blau-text); text-decoration: none; font-weight: 600; padding: 13px 24px; border-radius: 26px; }
+  a.knopf:focus-visible { outline: 3px solid var(--text); outline-offset: 3px; }
+  section { background: var(--karte); border: 1px solid var(--linie); border-radius: 16px; padding: 18px 20px; }
+  ul, ol { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 6px; }
+  .klein { font-size: 14px; color: var(--grau); }
+  .hinweis { background: var(--warn-bg); color: var(--warn-text); border-radius: 12px; padding: 12px 14px; font-size: 15px; }
+  dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 6px 14px; }
+  dt { font-weight: 600; } dd { margin: 0; }
+  @media (max-width: 420px) { dl { grid-template-columns: 1fr; gap: 0 } dd { margin-bottom: 8px; } }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Dienstplan Web</h1>
+    <p class="lead">Der Wochenplan für die Filiale im Browser: planen, prüfen, Urlaub verwalten. Es sind dieselben Regeln wie in der Android-App.</p>
+  </header>
+
+  <div class="start">
+    <a class="knopf" href="app.html">Dienstplan öffnen</a>
+    <p class="klein">Beim ersten Öffnen ist die App leer. Du richtest zuerst deine Filiale ein, Personen trägst du selbst ein.</p>
+  </div>
+
+  <section>
+    <h2>Was die App prüft</h2>
+    <p>Jeder Plan wird gegen diese Regeln geprüft. Gesetzliche Verstöße sind gesperrt, antragspflichtige Fälle brauchen den Haken „beantragt“.</p>
+    <ul>
+      <li>Arbeitszeitgesetz (ArbZG) und Jugendarbeitsschutzgesetz (JArbSchG)</li>
+      <li>Berufsbildungsgesetz (BBiG) für Auszubildende</li>
+      <li>Manteltarifvertrag des Bundeslands</li>
+      <li>Betriebsvereinbarung BR-Bezirk 7</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>So startest du</h2>
+    <ol>
+      <li>„Dienstplan öffnen“ antippen.</li>
+      <li>Filiale über die Filial-Nr. und das Bundesland einrichten.</li>
+      <li>Unter „Personal“ die Beschäftigten eintragen.</li>
+      <li>Unter „Woche“ den Plan schreiben. Die Prüfung läuft beim Eintragen mit.</li>
+      <li>Unter „Mehr → Sicherung“ regelmäßig eine Datei anlegen.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Datenschutz</h2>
+    <dl>
+      <dt>Wo die Daten liegen</dt><dd>Nur im Browser auf deinem Gerät. Es gibt kein Konto und keinen Server, die Seite sendet nichts weg.</dd>
+      <dt>Wer sie sieht</dt><dd>Nur du. Andere Nutzer der Seite sehen deine Namen und Pläne nicht, bei ihnen startet die App leer.</dd>
+      <dt>Wofür sie gelten</dt><dd>Nur für die dienstliche Dienstplanung. Weitergabe an Außenstehende ist nicht erlaubt.</dd>
+      <dt>Wie lange</dt><dd>Gesetzliche Aufbewahrungsfristen beachtest du selbst. Die App warnt, wenn du einen Plan vor Fristende löschst.</dd>
+    </dl>
+  </section>
+
+  <section>
+    <h2>Grenzen dieser Web-Version</h2>
+    <div class="hinweis">
+      <p>Der Browser kann gespeicherte Daten löschen, etwa bei wenig Speicher oder im privaten Modus. Lege deshalb regelmäßig eine Sicherung an. Drucken als PDF geht nur in der Android-App.</p>
+    </div>
+  </section>
+
+  <p class="klein">Dienstplan Web ist eine private Planungshilfe und ersetzt keine Rechtsberatung.</p>
+</main>
+</body>
+</html>
