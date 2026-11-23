@@ -52506,105 +52506,128 @@ if (typeof String.prototype.endsWith === 'undefined') {
     var t = this.e26(daten, woche, ma);
     var soll = ma.g1p() ? 0.0 : ma.t25();
     var block = this.v2c(daten, woche, ma);
-    var tmp;
-    if (block && !ma.g1p()) {
-      // Inline function 'kotlin.comparisons.maxOf' call
-      // Inline function 'kotlin.collections.sumOf' call
-      var sum = 0;
-      var tmp0_iterator = t.g();
-      while (tmp0_iterator.h()) {
-        var element = tmp0_iterator.i();
-        var tmp_0 = sum;
-        // Inline function 'de.micha.dienstplan.core.Rechnung.woche.<anonymous>' call
-        sum = tmp_0 + element.q21_1;
-      }
-      var a = sum;
-      tmp = Math.max(a, soll);
-    } else {
-      // Inline function 'kotlin.collections.sumOf' call
-      var sum_0 = 0;
-      var tmp0_iterator_0 = t.g();
-      while (tmp0_iterator_0.h()) {
-        var element_0 = tmp0_iterator_0.i();
-        var tmp_1 = sum_0;
-        // Inline function 'de.micha.dienstplan.core.Rechnung.woche.<anonymous>' call
-        sum_0 = tmp_1 + element_0.q21_1;
-      }
-      tmp = sum_0;
-    }
-    var g = tmp;
     // Inline function 'kotlin.collections.sumOf' call
-    var sum_1 = 0;
+    // Inline function 'kotlin.collections.filter' call
+    // Inline function 'kotlin.collections.filterTo' call
+    var destination = ArrayList_init_$Create$();
+    var tmp0_iterator = t.g();
+    while (tmp0_iterator.h()) {
+      var element = tmp0_iterator.i();
+      // Inline function 'de.micha.dienstplan.core.Rechnung.woche.<anonymous>' call
+      if (element.c21_1.r(Code_K_getInstance()) && element.b21_1.l()) {
+        destination.e(element);
+      }
+    }
+    var sum = 0;
+    var tmp0_iterator_0 = destination.g();
+    while (tmp0_iterator_0.h()) {
+      var element_0 = tmp0_iterator_0.i();
+      var tmp = sum;
+      // Inline function 'de.micha.dienstplan.core.Rechnung.woche.<anonymous>' call
+      sum = tmp + element_0.q21_1;
+    }
+    var gKrank = sum;
+    // Inline function 'kotlin.collections.sumOf' call
+    var sum_0 = 0;
     var tmp0_iterator_1 = t.g();
     while (tmp0_iterator_1.h()) {
       var element_1 = tmp0_iterator_1.i();
-      var tmp_2 = sum_1;
+      var tmp_0 = sum_0;
       // Inline function 'de.micha.dienstplan.core.Rechnung.woche.<anonymous>' call
-      sum_1 = tmp_2 + element_1.r21_1;
+      sum_0 = tmp_0 + element_1.q21_1;
     }
-    var tmp_3 = sum_1;
+    var gArbeit = sum_0 - gKrank;
+    var tmp_1;
+    if (gKrank > 0 && !ma.g1p() && soll > 0) {
+      // Inline function 'kotlin.comparisons.maxOf' call
+      // Inline function 'kotlin.comparisons.minOf' call
+      var a = gArbeit + gKrank;
+      var b = Math.min(a, soll);
+      tmp_1 = Math.max(gArbeit, b);
+    } else {
+      tmp_1 = gArbeit + gKrank;
+    }
+    var roh = tmp_1;
+    var tmp_2;
+    if (block && !ma.g1p()) {
+      // Inline function 'kotlin.comparisons.maxOf' call
+      tmp_2 = Math.max(roh, soll);
+    } else {
+      tmp_2 = roh;
+    }
+    var g = tmp_2;
     // Inline function 'kotlin.collections.sumOf' call
-    var sum_2 = 0;
+    var sum_1 = 0;
     var tmp0_iterator_2 = t.g();
     while (tmp0_iterator_2.h()) {
       var element_2 = tmp0_iterator_2.i();
-      var tmp_4 = sum_2;
+      var tmp_3 = sum_1;
       // Inline function 'de.micha.dienstplan.core.Rechnung.woche.<anonymous>' call
-      sum_2 = tmp_4 + element_2.s21_1;
+      sum_1 = tmp_3 + element_2.r21_1;
     }
-    var tmp_5 = sum_2;
+    var tmp_4 = sum_1;
     // Inline function 'kotlin.collections.sumOf' call
-    var sum_3 = 0;
+    var sum_2 = 0;
     var tmp0_iterator_3 = t.g();
     while (tmp0_iterator_3.h()) {
       var element_3 = tmp0_iterator_3.i();
-      var tmp_6 = sum_3;
+      var tmp_5 = sum_2;
       // Inline function 'de.micha.dienstplan.core.Rechnung.woche.<anonymous>' call
-      sum_3 = tmp_6 + element_3.o21_1;
+      sum_2 = tmp_5 + element_3.s21_1;
     }
-    var tmp_7 = sum_3;
-    var tmp_8;
-    if (ma.g1p()) {
-      tmp_8 = 0.0;
-    } else if (block) {
-      // Inline function 'kotlin.comparisons.maxOf' call
-      var b = g - soll;
-      tmp_8 = Math.max(0.0, b);
-    } else {
-      tmp_8 = g - soll;
-    }
-    var tmp_9 = tmp_8;
+    var tmp_6 = sum_2;
     // Inline function 'kotlin.collections.sumOf' call
-    var sum_4 = 0;
+    var sum_3 = 0;
     var tmp0_iterator_4 = t.g();
     while (tmp0_iterator_4.h()) {
       var element_4 = tmp0_iterator_4.i();
-      var tmp_10 = sum_4;
+      var tmp_7 = sum_3;
       // Inline function 'de.micha.dienstplan.core.Rechnung.woche.<anonymous>' call
-      sum_4 = tmp_10 + element_4.t21_1;
+      sum_3 = tmp_7 + element_4.o21_1;
     }
-    var tmp_11 = sum_4;
+    var tmp_8 = sum_3;
+    var tmp_9;
+    if (ma.g1p()) {
+      tmp_9 = 0.0;
+    } else if (block) {
+      // Inline function 'kotlin.comparisons.maxOf' call
+      var b_0 = g - soll;
+      tmp_9 = Math.max(0.0, b_0);
+    } else {
+      tmp_9 = g - soll;
+    }
+    var tmp_10 = tmp_9;
     // Inline function 'kotlin.collections.sumOf' call
-    var sum_5 = 0;
+    var sum_4 = 0;
     var tmp0_iterator_5 = t.g();
     while (tmp0_iterator_5.h()) {
       var element_5 = tmp0_iterator_5.i();
-      var tmp_12 = sum_5;
+      var tmp_11 = sum_4;
       // Inline function 'de.micha.dienstplan.core.Rechnung.woche.<anonymous>' call
-      sum_5 = tmp_12 + element_5.u21_1;
+      sum_4 = tmp_11 + element_5.t21_1;
     }
-    var tmp_13 = sum_5;
+    var tmp_12 = sum_4;
     // Inline function 'kotlin.collections.sumOf' call
-    var sum_6 = 0;
+    var sum_5 = 0;
     var tmp0_iterator_6 = t.g();
     while (tmp0_iterator_6.h()) {
       var element_6 = tmp0_iterator_6.i();
-      var tmp_14 = sum_6;
+      var tmp_13 = sum_5;
       // Inline function 'de.micha.dienstplan.core.Rechnung.woche.<anonymous>' call
-      sum_6 = tmp_14 + element_6.v21_1;
+      sum_5 = tmp_13 + element_6.u21_1;
     }
-    var tmp$ret$17 = sum_6;
-    return new WochenSumme(g, tmp_3, tmp_5, tmp_7, soll, tmp_9, tmp_11, tmp_13, tmp$ret$17);
+    var tmp_14 = sum_5;
+    // Inline function 'kotlin.collections.sumOf' call
+    var sum_6 = 0;
+    var tmp0_iterator_7 = t.g();
+    while (tmp0_iterator_7.h()) {
+      var element_7 = tmp0_iterator_7.i();
+      var tmp_15 = sum_6;
+      // Inline function 'de.micha.dienstplan.core.Rechnung.woche.<anonymous>' call
+      sum_6 = tmp_15 + element_7.v21_1;
+    }
+    var tmp$ret$22 = sum_6;
+    return new WochenSumme(g, tmp_4, tmp_6, tmp_8, soll, tmp_10, tmp_12, tmp_14, tmp$ret$22);
   };
   protoOf(Rechnung).c23 = function (daten, woche, blatt) {
     var von = woche.i1g();
