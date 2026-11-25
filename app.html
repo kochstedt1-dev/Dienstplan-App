@@ -803,12 +803,6 @@ if (typeof Math.clz32 === 'undefined') {
     };
   }(Math.log, Math.LN2);
 }
-if (typeof String.prototype.startsWith === 'undefined') {
-  Object.defineProperty(String.prototype, 'startsWith', {value: function (searchString, position) {
-    position = position || 0;
-    return this.lastIndexOf(searchString, position) === position;
-  }});
-}
 if (typeof String.prototype.endsWith === 'undefined') {
   Object.defineProperty(String.prototype, 'endsWith', {value: function (searchString, position) {
     var subjectString = this.toString();
@@ -818,6 +812,12 @@ if (typeof String.prototype.endsWith === 'undefined') {
     position -= searchString.length;
     var lastIndex = subjectString.indexOf(searchString, position);
     return lastIndex !== -1 && lastIndex === position;
+  }});
+}
+if (typeof String.prototype.startsWith === 'undefined') {
+  Object.defineProperty(String.prototype, 'startsWith', {value: function (searchString, position) {
+    position = position || 0;
+    return this.lastIndexOf(searchString, position) === position;
   }});
 }
 //endregion
@@ -1288,10 +1288,10 @@ if (typeof String.prototype.endsWith === 'undefined') {
   initMetadataForClass(Key_0, 'Key', Key_0);
   initMetadataForClass(DescriptorSchemaCache, 'DescriptorSchemaCache', DescriptorSchemaCache);
   initMetadataForClass(DiscriminatorHolder, 'DiscriminatorHolder');
-  initMetadataForClass(StreamingJsonDecoder, 'StreamingJsonDecoder', VOID, AbstractDecoder, [CompositeDecoder, Decoder, AbstractDecoder]);
+  initMetadataForClass(StreamingJsonDecoder, 'StreamingJsonDecoder', VOID, AbstractDecoder, [Decoder, CompositeDecoder, AbstractDecoder]);
   initMetadataForClass(JsonDecoderForUnsignedTypes, 'JsonDecoderForUnsignedTypes', VOID, AbstractDecoder);
-  initMetadataForClass(StreamingJsonEncoder, 'StreamingJsonEncoder', VOID, AbstractEncoder, [Encoder, CompositeEncoder, AbstractEncoder]);
-  initMetadataForClass(AbstractJsonTreeDecoder, 'AbstractJsonTreeDecoder', VOID, NamedValueDecoder, [NamedValueDecoder, CompositeDecoder, Decoder]);
+  initMetadataForClass(StreamingJsonEncoder, 'StreamingJsonEncoder', VOID, AbstractEncoder, [CompositeEncoder, Encoder, AbstractEncoder]);
+  initMetadataForClass(AbstractJsonTreeDecoder, 'AbstractJsonTreeDecoder', VOID, NamedValueDecoder, [NamedValueDecoder, Decoder, CompositeDecoder]);
   initMetadataForClass(JsonTreeDecoder, 'JsonTreeDecoder', VOID, AbstractJsonTreeDecoder);
   initMetadataForClass(JsonTreeListDecoder, 'JsonTreeListDecoder', VOID, AbstractJsonTreeDecoder);
   initMetadataForClass(JsonPrimitiveDecoder, 'JsonPrimitiveDecoder', VOID, AbstractJsonTreeDecoder);
@@ -60041,14 +60041,75 @@ if (typeof String.prototype.endsWith === 'undefined') {
   function samstagZeichen($this, c, z, rechts, oben) {
     if (z.l())
       return 0.0;
-    var abstand = 2.4;
-    var breite = z.j() * abstand;
+    var abstand = 2.9;
+    var tmp;
+    var tmp_0;
+    var tmp$ret$0;
+    $l$block_0: {
+      // Inline function 'kotlin.collections.any' call
+      var tmp_1;
+      if (isInterface(z, Collection)) {
+        tmp_1 = z.l();
+      } else {
+        tmp_1 = false;
+      }
+      if (tmp_1) {
+        tmp$ret$0 = false;
+        break $l$block_0;
+      }
+      var tmp0_iterator = z.g();
+      while (tmp0_iterator.h()) {
+        var element = tmp0_iterator.i();
+        // Inline function 'de.micha.dienstplan.PlanZeichnung.samstagZeichen.<anonymous>' call
+        if (element.equals(Zeichen_STRICH_getInstance())) {
+          tmp$ret$0 = true;
+          break $l$block_0;
+        }
+      }
+      tmp$ret$0 = false;
+    }
+    if (tmp$ret$0) {
+      var tmp$ret$2;
+      $l$block_2: {
+        // Inline function 'kotlin.collections.any' call
+        var tmp_2;
+        if (isInterface(z, Collection)) {
+          tmp_2 = z.l();
+        } else {
+          tmp_2 = false;
+        }
+        if (tmp_2) {
+          tmp$ret$2 = false;
+          break $l$block_2;
+        }
+        var tmp0_iterator_0 = z.g();
+        while (tmp0_iterator_0.h()) {
+          var element_0 = tmp0_iterator_0.i();
+          // Inline function 'de.micha.dienstplan.PlanZeichnung.samstagZeichen.<anonymous>' call
+          if (element_0.equals(Zeichen_PUNKT_getInstance())) {
+            tmp$ret$2 = true;
+            break $l$block_2;
+          }
+        }
+        tmp$ret$2 = false;
+      }
+      tmp_0 = tmp$ret$2;
+    } else {
+      tmp_0 = false;
+    }
+    if (tmp_0) {
+      tmp = 1.3;
+    } else {
+      tmp = 0.0;
+    }
+    var luecke = tmp;
+    var breite = z.j() * abstand + luecke;
     // Inline function 'kotlin.apply' call
     var this_0 = new Paint();
     // Inline function 'kotlin.contracts.contract' call
     // Inline function 'de.micha.dienstplan.PlanZeichnung.samstagZeichen.<anonymous>' call
     this_0.g1d_1 = PlanZeichnung_getInstance().p1x_1;
-    this_0.i1d_1 = 0.7;
+    this_0.i1d_1 = 0.85;
     this_0.e1d_1 = true;
     var strich = this_0;
     // Inline function 'kotlin.apply' call
@@ -60060,15 +60121,19 @@ if (typeof String.prototype.endsWith === 'undefined') {
     this_1.e1d_1 = true;
     var punkt = this_1;
     var x = rechts - breite + abstand / 2;
+    var vorher = null;
     var _iterator__ex2g4s = z.g();
     while (_iterator__ex2g4s.h()) {
       var e = _iterator__ex2g4s.i();
+      if (equals(vorher, Zeichen_STRICH_getInstance()) && e.equals(Zeichen_PUNKT_getInstance()))
+        x = x + luecke;
       if (e.equals(Zeichen_STRICH_getInstance())) {
-        c.a1e(x, oben, x, oben + 4.4, strich);
+        c.a1e(x, oben, x, oben + 5.0, strich);
       } else {
-        c.c1e(new RectF(x - 0.85, oben + 2.6 - 0.85, x + 0.85, oben + 2.6 + 0.85), punkt);
+        c.c1e(new RectF(x - 1.05, oben + 2.9 - 1.05, x + 1.05, oben + 2.9 + 1.05), punkt);
       }
       x = x + abstand;
+      vorher = e;
     }
     return breite + 1.0;
   }
