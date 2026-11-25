@@ -803,6 +803,12 @@ if (typeof Math.clz32 === 'undefined') {
     };
   }(Math.log, Math.LN2);
 }
+if (typeof String.prototype.startsWith === 'undefined') {
+  Object.defineProperty(String.prototype, 'startsWith', {value: function (searchString, position) {
+    position = position || 0;
+    return this.lastIndexOf(searchString, position) === position;
+  }});
+}
 if (typeof String.prototype.endsWith === 'undefined') {
   Object.defineProperty(String.prototype, 'endsWith', {value: function (searchString, position) {
     var subjectString = this.toString();
@@ -812,12 +818,6 @@ if (typeof String.prototype.endsWith === 'undefined') {
     position -= searchString.length;
     var lastIndex = subjectString.indexOf(searchString, position);
     return lastIndex !== -1 && lastIndex === position;
-  }});
-}
-if (typeof String.prototype.startsWith === 'undefined') {
-  Object.defineProperty(String.prototype, 'startsWith', {value: function (searchString, position) {
-    position = position || 0;
-    return this.lastIndexOf(searchString, position) === position;
   }});
 }
 //endregion
@@ -871,13 +871,13 @@ if (typeof String.prototype.startsWith === 'undefined') {
   initMetadataForClass(AbstractMutableCollection, 'AbstractMutableCollection', VOID, AbstractCollection, [AbstractCollection, Collection]);
   initMetadataForClass(IteratorImpl, 'IteratorImpl');
   initMetadataForClass(ListIteratorImpl, 'ListIteratorImpl', VOID, IteratorImpl);
-  initMetadataForClass(AbstractMutableList, 'AbstractMutableList', VOID, AbstractMutableCollection, [AbstractMutableCollection, Collection, KtList]);
+  initMetadataForClass(AbstractMutableList, 'AbstractMutableList', VOID, AbstractMutableCollection, [AbstractMutableCollection, KtList, Collection]);
   initMetadataForClass(AbstractMap, 'AbstractMap', VOID, VOID, [KtMap]);
   initMetadataForClass(AbstractMutableMap, 'AbstractMutableMap', VOID, AbstractMap, [AbstractMap, KtMutableMap]);
   initMetadataForClass(AbstractMutableSet, 'AbstractMutableSet', VOID, AbstractMutableCollection, [AbstractMutableCollection, KtSet, Collection]);
   initMetadataForCompanion(Companion_2);
   initMetadataForInterface(RandomAccess, 'RandomAccess');
-  initMetadataForClass(ArrayList, 'ArrayList', ArrayList_init_$Create$, AbstractMutableList, [AbstractMutableList, Collection, KtList, RandomAccess]);
+  initMetadataForClass(ArrayList, 'ArrayList', ArrayList_init_$Create$, AbstractMutableList, [AbstractMutableList, KtList, Collection, RandomAccess]);
   initMetadataForClass(HashMap, 'HashMap', HashMap_init_$Create$, AbstractMutableMap, [AbstractMutableMap, KtMutableMap]);
   initMetadataForClass(HashMapKeys, 'HashMapKeys', VOID, AbstractMutableSet, [KtSet, Collection, AbstractMutableSet]);
   initMetadataForClass(HashMapValues, 'HashMapValues', VOID, AbstractMutableCollection, [Collection, AbstractMutableCollection]);
@@ -1290,7 +1290,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
   initMetadataForClass(DiscriminatorHolder, 'DiscriminatorHolder');
   initMetadataForClass(StreamingJsonDecoder, 'StreamingJsonDecoder', VOID, AbstractDecoder, [CompositeDecoder, Decoder, AbstractDecoder]);
   initMetadataForClass(JsonDecoderForUnsignedTypes, 'JsonDecoderForUnsignedTypes', VOID, AbstractDecoder);
-  initMetadataForClass(StreamingJsonEncoder, 'StreamingJsonEncoder', VOID, AbstractEncoder, [CompositeEncoder, Encoder, AbstractEncoder]);
+  initMetadataForClass(StreamingJsonEncoder, 'StreamingJsonEncoder', VOID, AbstractEncoder, [Encoder, CompositeEncoder, AbstractEncoder]);
   initMetadataForClass(AbstractJsonTreeDecoder, 'AbstractJsonTreeDecoder', VOID, NamedValueDecoder, [NamedValueDecoder, CompositeDecoder, Decoder]);
   initMetadataForClass(JsonTreeDecoder, 'JsonTreeDecoder', VOID, AbstractJsonTreeDecoder);
   initMetadataForClass(JsonTreeListDecoder, 'JsonTreeListDecoder', VOID, AbstractJsonTreeDecoder);
@@ -1528,6 +1528,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
   initMetadataForClass(Code, 'Code', VOID, Enum);
   initMetadataForClass(Segment, 'Segment');
   initMetadataForClass(Zeile, 'Zeile', Zeile);
+  initMetadataForClass(sam$kotlin_Comparator$0_33, 'sam$kotlin_Comparator$0', VOID, VOID, [Comparator, FunctionAdapter]);
   initMetadataForObject(Zeit, 'Zeit');
   initMetadataForClass(Treffer_0, 'Treffer');
   initMetadataForClass(Zelle, 'Zelle', VOID, Treffer_0);
@@ -43111,58 +43112,99 @@ if (typeof String.prototype.startsWith === 'undefined') {
               var _array__4zh2yp_0 = sm.q29_1;
               _array__4zh2yp_0[tag] = _array__4zh2yp_0[tag] + g;
             }
-            var tmp$ret$7;
+            // Inline function 'kotlin.collections.mapNotNull' call
+            // Inline function 'kotlin.collections.mapNotNullTo' call
+            var this_2 = Zeit_getInstance().b1z(w.z1x(ma.a1o_1, tag).a1y_1, w.z1x(ma.a1o_1, tag).b1y_1);
+            var destination = ArrayList_init_$Create$();
+            // Inline function 'kotlin.collections.forEach' call
+            var tmp0_iterator_0 = this_2.g();
+            while (tmp0_iterator_0.h()) {
+              var element_1 = tmp0_iterator_0.i();
+              // Inline function 'kotlin.collections.mapNotNullTo.<anonymous>' call
+              // Inline function 'de.micha.dienstplan.core.Lernen.profile.<anonymous>' call
+              var tmp0_safe_receiver = element_1.c1z_1;
+              if (tmp0_safe_receiver == null)
+                null;
+              else {
+                // Inline function 'kotlin.let' call
+                // Inline function 'kotlin.contracts.contract' call
+                destination.e(tmp0_safe_receiver);
+              }
+            }
+            var roh = destination;
+            var tmp$ret$11;
             $l$block_1: {
               // Inline function 'kotlin.collections.firstOrNull' call
-              var tmp0_iterator_0 = t.d21_1.g();
-              while (tmp0_iterator_0.h()) {
-                var element_1 = tmp0_iterator_0.i();
-                // Inline function 'de.micha.dienstplan.core.Lernen.profile.<anonymous>' call
-                if (element_1.i1z_1.equals(Art_ARBEIT_getInstance())) {
-                  tmp$ret$7 = element_1;
-                  break $l$block_1;
-                }
-              }
-              tmp$ret$7 = null;
-            }
-            var tmp1_safe_receiver = tmp$ret$7;
-            if (tmp1_safe_receiver == null)
-              null;
-            else {
-              // Inline function 'kotlin.let' call
-              // Inline function 'kotlin.contracts.contract' call
-              var k = to(tmp1_safe_receiver.g1z_1, tmp1_safe_receiver.h1z_1);
-              var this_2 = sm.t29_1.k(tag);
-              var tmp0_elvis_lhs = sm.t29_1.k(tag).b2(k);
-              var value_0 = (tmp0_elvis_lhs == null ? 0.0 : tmp0_elvis_lhs) + g;
-              this_2.f2(k, value_0);
-            }
-            var tmp$ret$10;
-            $l$block_2: {
-              // Inline function 'kotlin.collections.firstOrNull' call
-              var tmp0_iterator_1 = t.d21_1.g();
+              var tmp0_iterator_1 = roh.g();
               while (tmp0_iterator_1.h()) {
                 var element_2 = tmp0_iterator_1.i();
                 // Inline function 'de.micha.dienstplan.core.Lernen.profile.<anonymous>' call
-                if (element_2.i1z_1.equals(Art_PUTZ_getInstance())) {
-                  tmp$ret$10 = element_2;
-                  break $l$block_2;
+                if (element_2.i1z_1.equals(Art_ARBEIT_getInstance())) {
+                  tmp$ret$11 = element_2;
+                  break $l$block_1;
                 }
               }
-              tmp$ret$10 = null;
+              tmp$ret$11 = null;
             }
-            var tmp2_safe_receiver = tmp$ret$10;
+            var tmp1_elvis_lhs = tmp$ret$11;
+            var tmp_2;
+            if (tmp1_elvis_lhs == null) {
+              var tmp$ret$13;
+              $l$block_2: {
+                // Inline function 'kotlin.collections.firstOrNull' call
+                var tmp0_iterator_2 = t.d21_1.g();
+                while (tmp0_iterator_2.h()) {
+                  var element_3 = tmp0_iterator_2.i();
+                  // Inline function 'de.micha.dienstplan.core.Lernen.profile.<anonymous>' call
+                  if (element_3.i1z_1.equals(Art_ARBEIT_getInstance())) {
+                    tmp$ret$13 = element_3;
+                    break $l$block_2;
+                  }
+                }
+                tmp$ret$13 = null;
+              }
+              tmp_2 = tmp$ret$13;
+            } else {
+              tmp_2 = tmp1_elvis_lhs;
+            }
+            var tmp2_safe_receiver = tmp_2;
             if (tmp2_safe_receiver == null)
               null;
             else {
               // Inline function 'kotlin.let' call
               // Inline function 'kotlin.contracts.contract' call
-              var k_0 = to(tmp2_safe_receiver.g1z_1, tmp2_safe_receiver.h1z_1);
+              var k = to(tmp2_safe_receiver.g1z_1, tmp2_safe_receiver.h1z_1);
+              var this_3 = sm.t29_1.k(tag);
+              var tmp0_elvis_lhs = sm.t29_1.k(tag).b2(k);
+              var value_0 = (tmp0_elvis_lhs == null ? 0.0 : tmp0_elvis_lhs) + g;
+              this_3.f2(k, value_0);
+            }
+            var tmp$ret$16;
+            $l$block_3: {
+              // Inline function 'kotlin.collections.firstOrNull' call
+              var tmp0_iterator_3 = t.d21_1.g();
+              while (tmp0_iterator_3.h()) {
+                var element_4 = tmp0_iterator_3.i();
+                // Inline function 'de.micha.dienstplan.core.Lernen.profile.<anonymous>' call
+                if (element_4.i1z_1.equals(Art_PUTZ_getInstance())) {
+                  tmp$ret$16 = element_4;
+                  break $l$block_3;
+                }
+              }
+              tmp$ret$16 = null;
+            }
+            var tmp3_safe_receiver = tmp$ret$16;
+            if (tmp3_safe_receiver == null)
+              null;
+            else {
+              // Inline function 'kotlin.let' call
+              // Inline function 'kotlin.contracts.contract' call
+              var k_0 = to(tmp3_safe_receiver.g1z_1, tmp3_safe_receiver.h1z_1);
               // Inline function 'kotlin.collections.set' call
-              var this_3 = sm.u29_1.k(tag);
+              var this_4 = sm.u29_1.k(tag);
               var tmp0_elvis_lhs_0 = sm.u29_1.k(tag).b2(k_0);
               var value_1 = (tmp0_elvis_lhs_0 == null ? 0.0 : tmp0_elvis_lhs_0) + g;
-              this_3.f2(k_0, value_1);
+              this_4.f2(k_0, value_1);
               var _array__4zh2yp_1 = sm.s29_1;
               _array__4zh2yp_1[tag] = _array__4zh2yp_1[tag] + g;
             }
@@ -43172,20 +43214,20 @@ if (typeof String.prototype.startsWith === 'undefined') {
     }
     // Inline function 'kotlin.collections.mapValues' call
     // Inline function 'kotlin.collections.mapValuesTo' call
-    var destination = LinkedHashMap_init_$Create$_0(mapCapacity(s.j()));
+    var destination_0 = LinkedHashMap_init_$Create$_0(mapCapacity(s.j()));
     // Inline function 'kotlin.collections.associateByTo' call
-    var tmp0_iterator_2 = s.e2().g();
-    while (tmp0_iterator_2.h()) {
-      var element_3 = tmp0_iterator_2.i();
+    var tmp0_iterator_4 = s.e2().g();
+    while (tmp0_iterator_4.h()) {
+      var element_5 = tmp0_iterator_4.i();
       // Inline function 'kotlin.collections.mapValuesTo.<anonymous>' call
-      var tmp_2 = element_3.x1();
+      var tmp_3 = element_5.x1();
       // Inline function 'de.micha.dienstplan.core.Lernen.profile.<anonymous>' call
       // Inline function 'kotlin.collections.component2' call
-      var v = element_3.y1();
-      var tmp$ret$14 = new Profil(v.v29_1.j(), v.q29_1, v.r29_1, v.t29_1, v.u29_1, v.s29_1);
-      destination.f2(tmp_2, tmp$ret$14);
+      var v = element_5.y1();
+      var tmp$ret$20 = new Profil(v.v29_1.j(), v.q29_1, v.r29_1, v.t29_1, v.u29_1, v.s29_1);
+      destination_0.f2(tmp_3, tmp$ret$20);
     }
-    return destination;
+    return destination_0;
   };
   protoOf(Lernen).b1x = function (daten, vor) {
     return lernWochen(this, daten, vor).j();
@@ -50597,6 +50639,10 @@ if (typeof String.prototype.startsWith === 'undefined') {
           if (tmp) {
             pruefe$add$default(woche, v, Stufe_ROT_getInstance(), n + ' ' + tg + ': Sp\xE4ttag mit ' + Zeit_getInstance().m1n(item.i21_1) + ' Std. (h\xF6chstens 9)', 'MTV \xA7 6', ma, i);
           }
+          var haupt = setOf_0([Art_ARBEIT_getInstance(), Art_IV_getInstance(), Art_FG_getInstance()]);
+          // Inline function 'kotlin.collections.filter' call
+          var tmp_0 = Rechnung_getInstance();
+          // Inline function 'kotlin.collections.map' call
           // Inline function 'kotlin.collections.filter' call
           // Inline function 'kotlin.collections.filterTo' call
           var this_0 = item.d21_1;
@@ -50605,43 +50651,90 @@ if (typeof String.prototype.startsWith === 'undefined') {
           while (tmp0_iterator_0.h()) {
             var element = tmp0_iterator_0.i();
             // Inline function 'de.micha.dienstplan.core.Pruefung.pruefe.<anonymous>.<anonymous>' call
-            if (element.i1z_1.equals(Art_ARBEIT_getInstance()) || element.i1z_1.equals(Art_IV_getInstance()) || element.i1z_1.equals(Art_FG_getInstance())) {
+            if (haupt.r(element.i1z_1) || element.i1z_1.equals(Art_PUTZ_getInstance())) {
               destination.e(element);
             }
           }
-          var einsaetze = destination;
-          var tmp_0;
-          if (ma.b1w()) {
-            tmp_0 = 2.0;
-          } else {
-            tmp_0 = ma.d1o_1.j2_1 === 9 ? 0.0 : ma.d1o_1.p1q_1;
+          // Inline function 'kotlin.collections.mapTo' call
+          var destination_0 = ArrayList_init_$Create$_0(collectionSizeOrDefault(destination, 10));
+          var tmp0_iterator_1 = destination.g();
+          while (tmp0_iterator_1.h()) {
+            var item_0 = tmp0_iterator_1.i();
+            // Inline function 'de.micha.dienstplan.core.Pruefung.pruefe.<anonymous>.<anonymous>' call
+            var tmp$ret$5 = to(item_0.g1z_1, item_0.h1z_1);
+            destination_0.e(tmp$ret$5);
           }
-          var minDauer = tmp_0;
-          var tmp$ret$5;
-          $l$block_1: {
-            // Inline function 'kotlin.collections.any' call
-            var tmp_1;
-            if (isInterface(einsaetze, Collection)) {
-              tmp_1 = einsaetze.l();
-            } else {
-              tmp_1 = false;
-            }
-            if (tmp_1) {
-              tmp$ret$5 = false;
-              break $l$block_1;
-            }
-            var tmp0_iterator_1 = einsaetze.g();
-            while (tmp0_iterator_1.h()) {
-              var element_0 = tmp0_iterator_1.i();
-              // Inline function 'de.micha.dienstplan.core.Pruefung.pruefe.<anonymous>.<anonymous>' call
-              if (element_0.x2c() / 60.0 < minDauer) {
-                tmp$ret$5 = true;
+          // Inline function 'kotlin.collections.filterTo' call
+          var this_1 = tmp_0.x2c(destination_0);
+          var destination_1 = ArrayList_init_$Create$();
+          var tmp0_iterator_2 = this_1.g();
+          while (tmp0_iterator_2.h()) {
+            var element_0 = tmp0_iterator_2.i();
+            // Inline function 'de.micha.dienstplan.core.Pruefung.pruefe.<anonymous>.<anonymous>' call
+            var a = element_0.od();
+            var b_0 = element_0.pd();
+            var tmp$ret$8;
+            $l$block_1: {
+              // Inline function 'kotlin.collections.any' call
+              var this_2 = item.d21_1;
+              var tmp_1;
+              if (isInterface(this_2, Collection)) {
+                tmp_1 = this_2.l();
+              } else {
+                tmp_1 = false;
+              }
+              if (tmp_1) {
+                tmp$ret$8 = false;
                 break $l$block_1;
               }
+              var tmp0_iterator_3 = this_2.g();
+              while (tmp0_iterator_3.h()) {
+                var element_1 = tmp0_iterator_3.i();
+                // Inline function 'de.micha.dienstplan.core.Pruefung.pruefe.<anonymous>.<anonymous>.<anonymous>' call
+                if (haupt.r(element_1.i1z_1) && element_1.g1z_1 < b_0 && element_1.h1z_1 > a) {
+                  tmp$ret$8 = true;
+                  break $l$block_1;
+                }
+              }
+              tmp$ret$8 = false;
             }
-            tmp$ret$5 = false;
+            if (tmp$ret$8) {
+              destination_1.e(element_0);
+            }
           }
-          if (tmp$ret$5) {
+          var einsaetze = destination_1;
+          var tmp_2;
+          if (ma.b1w()) {
+            tmp_2 = 2.0;
+          } else {
+            tmp_2 = ma.d1o_1.j2_1 === 9 ? 0.0 : ma.d1o_1.p1q_1;
+          }
+          var minDauer = tmp_2;
+          var tmp$ret$13;
+          $l$block_3: {
+            // Inline function 'kotlin.collections.any' call
+            var tmp_3;
+            if (isInterface(einsaetze, Collection)) {
+              tmp_3 = einsaetze.l();
+            } else {
+              tmp_3 = false;
+            }
+            if (tmp_3) {
+              tmp$ret$13 = false;
+              break $l$block_3;
+            }
+            var tmp0_iterator_4 = einsaetze.g();
+            while (tmp0_iterator_4.h()) {
+              var element_2 = tmp0_iterator_4.i();
+              // Inline function 'de.micha.dienstplan.core.Pruefung.pruefe.<anonymous>.<anonymous>' call
+              if ((element_2.vd_1 - element_2.ud_1 | 0) / 60.0 < minDauer) {
+                tmp$ret$13 = true;
+                break $l$block_3;
+              }
+            }
+            tmp$ret$13 = false;
+          }
+          if (tmp$ret$13) {
             pruefe$add(woche, v, Stufe_ORANGE_getInstance(), n + ' ' + tg + ': Einsatz k\xFCrzer als ' + Zeit_getInstance().m1n(minDauer) + ' Std.', 'BV Ziff. 3.2', ma, i, 'MIN|' + ma.a1o_1 + '|' + i, 'auf Wunsch / befristete T\xE4tigkeit');
           }
           if (einsaetze.j() > 1) {
@@ -50656,15 +50749,15 @@ if (typeof String.prototype.startsWith === 'undefined') {
             if (item.i21_1 > 8.0) {
               pruefe$add$default(woche, v, Stufe_ROT_getInstance(), n + ' ' + tg + ': Minderj\xE4hrige h\xF6chstens 8 Std. am Tag', 'JArbSchG \xA7 8', ma, i);
             }
-            var tmp_2;
+            var tmp_4;
             var tmp4_elvis_lhs = item.m26();
             if ((tmp4_elvis_lhs == null ? 0 : tmp4_elvis_lhs) > 1200) {
-              tmp_2 = true;
+              tmp_4 = true;
             } else {
               var tmp5_elvis_lhs = item.l26();
-              tmp_2 = (tmp5_elvis_lhs == null ? 0 : tmp5_elvis_lhs) < 360;
+              tmp_4 = (tmp5_elvis_lhs == null ? 0 : tmp5_elvis_lhs) < 360;
             }
-            if (tmp_2) {
+            if (tmp_4) {
               pruefe$add$default(woche, v, Stufe_ROT_getInstance(), n + ' ' + tg + ': Minderj\xE4hrige nur 6\u201320 Uhr', 'JArbSchG \xA7 14', ma, i);
             }
             if (i === 6) {
@@ -50678,41 +50771,41 @@ if (typeof String.prototype.startsWith === 'undefined') {
             if (item.e21_1.r(Code_S_getInstance()) && ma.e1w()) {
               pruefe$add$default(woche, v, Stufe_ROT_getInstance(), n + ' ' + tg + ': kein Dienst am Seminartag (z\xE4hlt wie ein Berufsschultag)', 'BBiG \xA7 15', ma, i);
             }
-            var tmp_3;
-            var tmp_4;
+            var tmp_5;
+            var tmp_6;
             if (i < 6) {
               // Inline function 'kotlin.collections.isNotEmpty' call
-              tmp_4 = !item.i26().l();
+              tmp_6 = !item.i26().l();
             } else {
-              tmp_4 = false;
+              tmp_6 = false;
             }
-            if (tmp_4) {
-              tmp_3 = Rechnung_getInstance().y2c(daten, woche, ma);
+            if (tmp_6) {
+              tmp_5 = Rechnung_getInstance().y2c(daten, woche, ma);
             } else {
-              tmp_3 = false;
+              tmp_5 = false;
             }
-            if (tmp_3) {
+            if (tmp_5) {
               pruefe$add$default(woche, v, Stufe_ROT_getInstance(), n + ' ' + tg + ': kein Dienst in der Blockwoche (Samstag frei)', 'BBiG \xA7 15', ma, i);
             }
-            var tmp$ret$11;
-            $l$block_2: {
+            var tmp$ret$19;
+            $l$block_4: {
               // Inline function 'kotlin.collections.minOfOrNull' call
               // Inline function 'kotlin.collections.filter' call
               // Inline function 'kotlin.collections.filterTo' call
-              var this_1 = item.d21_1;
-              var destination_0 = ArrayList_init_$Create$();
-              var tmp0_iterator_2 = this_1.g();
-              while (tmp0_iterator_2.h()) {
-                var element_1 = tmp0_iterator_2.i();
+              var this_3 = item.d21_1;
+              var destination_2 = ArrayList_init_$Create$();
+              var tmp0_iterator_5 = this_3.g();
+              while (tmp0_iterator_5.h()) {
+                var element_3 = tmp0_iterator_5.i();
                 // Inline function 'de.micha.dienstplan.core.Pruefung.pruefe.<anonymous>.<anonymous>' call
-                if (element_1.i1z_1.equals(Art_BS_getInstance())) {
-                  destination_0.e(element_1);
+                if (element_3.i1z_1.equals(Art_BS_getInstance())) {
+                  destination_2.e(element_3);
                 }
               }
-              var iterator = destination_0.g();
+              var iterator = destination_2.g();
               if (!iterator.h()) {
-                tmp$ret$11 = null;
-                break $l$block_2;
+                tmp$ret$19 = null;
+                break $l$block_4;
               }
               // Inline function 'de.micha.dienstplan.core.Pruefung.pruefe.<anonymous>.<anonymous>' call
               var minValue = iterator.i().g1z_1;
@@ -50723,41 +50816,41 @@ if (typeof String.prototype.startsWith === 'undefined') {
                   minValue = v_0;
                 }
               }
-              tmp$ret$11 = minValue;
+              tmp$ret$19 = minValue;
             }
-            var bsBeginn = tmp$ret$11;
-            var tmp_5;
+            var bsBeginn = tmp$ret$19;
+            var tmp_7;
             if (!(bsBeginn == null) && bsBeginn < 540) {
-              var tmp$ret$14;
-              $l$block_4: {
+              var tmp$ret$22;
+              $l$block_6: {
                 // Inline function 'kotlin.collections.any' call
-                var this_2 = item.i26();
-                var tmp_6;
-                if (isInterface(this_2, Collection)) {
-                  tmp_6 = this_2.l();
+                var this_4 = item.i26();
+                var tmp_8;
+                if (isInterface(this_4, Collection)) {
+                  tmp_8 = this_4.l();
                 } else {
-                  tmp_6 = false;
+                  tmp_8 = false;
                 }
-                if (tmp_6) {
-                  tmp$ret$14 = false;
-                  break $l$block_4;
+                if (tmp_8) {
+                  tmp$ret$22 = false;
+                  break $l$block_6;
                 }
-                var tmp0_iterator_3 = this_2.g();
-                while (tmp0_iterator_3.h()) {
-                  var element_2 = tmp0_iterator_3.i();
+                var tmp0_iterator_6 = this_4.g();
+                while (tmp0_iterator_6.h()) {
+                  var element_4 = tmp0_iterator_6.i();
                   // Inline function 'de.micha.dienstplan.core.Pruefung.pruefe.<anonymous>.<anonymous>' call
-                  if (element_2.g1z_1 < bsBeginn) {
-                    tmp$ret$14 = true;
-                    break $l$block_4;
+                  if (element_4.g1z_1 < bsBeginn) {
+                    tmp$ret$22 = true;
+                    break $l$block_6;
                   }
                 }
-                tmp$ret$14 = false;
+                tmp$ret$22 = false;
               }
-              tmp_5 = tmp$ret$14;
+              tmp_7 = tmp$ret$22;
             } else {
-              tmp_5 = false;
+              tmp_7 = false;
             }
-            if (tmp_5) {
+            if (tmp_7) {
               pruefe$add$default(woche, v, Stufe_ROT_getInstance(), n + ' ' + tg + ': kein Dienst vor Unterricht, der vor 9 Uhr beginnt', 'BBiG \xA7 15', ma, i);
             }
           }
@@ -50765,32 +50858,32 @@ if (typeof String.prototype.startsWith === 'undefined') {
           var auf = Laden_instance.e26(f, item.c21_1);
           // Inline function 'kotlin.collections.filter' call
           // Inline function 'kotlin.collections.filterTo' call
-          var this_3 = item.i26();
-          var destination_1 = ArrayList_init_$Create$();
-          var tmp0_iterator_4 = this_3.g();
-          while (tmp0_iterator_4.h()) {
-            var element_3 = tmp0_iterator_4.i();
+          var this_5 = item.i26();
+          var destination_3 = ArrayList_init_$Create$();
+          var tmp0_iterator_7 = this_5.g();
+          while (tmp0_iterator_7.h()) {
+            var element_5 = tmp0_iterator_7.i();
             // Inline function 'de.micha.dienstplan.core.Pruefung.pruefe.<anonymous>.<anonymous>' call
-            if (element_3.i1z_1.equals(Art_ARBEIT_getInstance()) || element_3.i1z_1.equals(Art_IV_getInstance()) || element_3.i1z_1.equals(Art_FG_getInstance())) {
-              destination_1.e(element_3);
+            if (element_5.i1z_1.equals(Art_ARBEIT_getInstance()) || element_5.i1z_1.equals(Art_IV_getInstance()) || element_5.i1z_1.equals(Art_FG_getInstance())) {
+              destination_3.e(element_5);
             }
           }
-          var segs = destination_1;
-          var tmp_7;
+          var segs = destination_3;
+          var tmp_9;
           if (!(f == null) && !(auf == null)) {
             // Inline function 'kotlin.collections.isNotEmpty' call
-            tmp_7 = !segs.l();
+            tmp_9 = !segs.l();
           } else {
-            tmp_7 = false;
+            tmp_9 = false;
           }
-          if (tmp_7) {
-            var tmp$ret$20;
-            $l$block_5: {
+          if (tmp_9) {
+            var tmp$ret$28;
+            $l$block_7: {
               // Inline function 'kotlin.collections.minOfOrNull' call
               var iterator_0 = segs.g();
               if (!iterator_0.h()) {
-                tmp$ret$20 = null;
-                break $l$block_5;
+                tmp$ret$28 = null;
+                break $l$block_7;
               }
               // Inline function 'de.micha.dienstplan.core.Pruefung.pruefe.<anonymous>.<anonymous>' call
               var minValue_0 = iterator_0.i().g1z_1;
@@ -50801,16 +50894,16 @@ if (typeof String.prototype.startsWith === 'undefined') {
                   minValue_0 = v_1;
                 }
               }
-              tmp$ret$20 = minValue_0;
+              tmp$ret$28 = minValue_0;
             }
-            var b0 = tmp$ret$20;
-            var tmp$ret$23;
-            $l$block_6: {
+            var b0 = tmp$ret$28;
+            var tmp$ret$31;
+            $l$block_8: {
               // Inline function 'kotlin.collections.maxOfOrNull' call
               var iterator_1 = segs.g();
               if (!iterator_1.h()) {
-                tmp$ret$23 = null;
-                break $l$block_6;
+                tmp$ret$31 = null;
+                break $l$block_8;
               }
               // Inline function 'de.micha.dienstplan.core.Pruefung.pruefe.<anonymous>.<anonymous>' call
               var maxValue = iterator_1.i().h1z_1;
@@ -50821,9 +50914,9 @@ if (typeof String.prototype.startsWith === 'undefined') {
                   maxValue = v_2;
                 }
               }
-              tmp$ret$23 = maxValue;
+              tmp$ret$31 = maxValue;
             }
-            var e0 = tmp$ret$23;
+            var e0 = tmp$ret$31;
             if (!(b0 == null) && b0 < (auf.ud_1 - f.o1l_1 | 0)) {
               pruefe$add(woche, v, Stufe_ORANGE_getInstance(), n + ' ' + tg + ': Beginn ' + Zeit_getInstance().y1i(b0) + ' \u2013 mehr als ' + f.o1l_1 + ' Min. vor \xD6ffnung (' + Zeit_getInstance().y1i(auf.ud_1) + ')', '\xD6ffnungszeiten Filiale', ma, i, 'OEB|' + ma.a1o_1 + '|' + i, 'so gewollt (z. B. Lieferung)');
             }
@@ -50846,58 +50939,58 @@ if (typeof String.prototype.startsWith === 'undefined') {
           var gestern = i_0 === 0 ? Rechnung_getInstance().b21(daten, daten.k26(woche.i1g().t23(new Long(1, 0))), ma, 6) : tage.k(i_0 - 1 | 0);
           var vorher = i_0 === 0 && gestern.m26() == null ? Rechnung_getInstance().b21(daten, daten.k26(woche.i1g().t23(new Long(2, 0))), ma, 5) : null;
           var tmp2_elvis_lhs_0 = heute.l26();
-          var tmp_8;
+          var tmp_10;
           if (tmp2_elvis_lhs_0 == null) {
             continue $l$loop_0;
           } else {
-            tmp_8 = tmp2_elvis_lhs_0;
+            tmp_10 = tmp2_elvis_lhs_0;
           }
-          var b_0 = tmp_8;
-          var tmp_9;
+          var b_1 = tmp_10;
+          var tmp_11;
           if (!(gestern.m26() == null)) {
-            tmp_9 = to(ensureNotNull(gestern.m26()), 1);
+            tmp_11 = to(ensureNotNull(gestern.m26()), 1);
           } else {
             if (!((vorher == null ? null : vorher.m26()) == null)) {
-              tmp_9 = to(ensureNotNull(ensureNotNull(vorher).m26()), 2);
+              tmp_11 = to(ensureNotNull(ensureNotNull(vorher).m26()), 2);
             } else {
               continue $l$loop_0;
             }
           }
-          var _destruct__k2r9zo = tmp_9;
+          var _destruct__k2r9zo = tmp_11;
           var endeMin = _destruct__k2r9zo.od();
           var abstandTage = _destruct__k2r9zo.pd();
-          var pauseH = ((b_0 + imul(abstandTage, 1440) | 0) - endeMin | 0) / 60.0;
+          var pauseH = ((b_1 + imul(abstandTage, 1440) | 0) - endeMin | 0) / 60.0;
           if (pauseH < ruhe) {
             pruefe$add$default(woche, v, Stufe_ROT_getInstance(), n + ' ' + this.b1i_1.k(i_0) + ': nur ' + Zeit_getInstance().m1n(pauseH) + ' Std. Ruhezeit (mindestens ' + ruhe + ')', minder ? 'JArbSchG \xA7 13' : 'ArbZG \xA7 5', ma, i_0);
           }
         }
          while (inductionVariable <= 6);
-      var tmp$ret$26;
-      $l$block_7: {
+      var tmp$ret$34;
+      $l$block_9: {
         // Inline function 'kotlin.collections.count' call
-        var tmp_10;
+        var tmp_12;
         if (isInterface(tage, Collection)) {
-          tmp_10 = tage.l();
+          tmp_12 = tage.l();
         } else {
-          tmp_10 = false;
+          tmp_12 = false;
         }
-        if (tmp_10) {
-          tmp$ret$26 = 0;
-          break $l$block_7;
+        if (tmp_12) {
+          tmp$ret$34 = 0;
+          break $l$block_9;
         }
         var count = 0;
-        var tmp0_iterator_5 = tage.g();
-        while (tmp0_iterator_5.h()) {
-          var element_4 = tmp0_iterator_5.i();
+        var tmp0_iterator_8 = tage.g();
+        while (tmp0_iterator_8.h()) {
+          var element_6 = tmp0_iterator_8.i();
           // Inline function 'de.micha.dienstplan.core.Pruefung.pruefe.<anonymous>' call
-          if (element_4.k27()) {
+          if (element_6.k27()) {
             count = count + 1 | 0;
             checkCountOverflow(count);
           }
         }
-        tmp$ret$26 = count;
+        tmp$ret$34 = count;
       }
-      var arbeitstage = tmp$ret$26;
+      var arbeitstage = tmp$ret$34;
       if (ma.e1w() || minder) {
         if (arbeitstage > 5) {
           pruefe$add$default(woche, v, Stufe_ROT_getInstance(), n + ': ' + arbeitstage + ' Tage \u2013 Azubis und Minderj\xE4hrige h\xF6chstens 5 Tage (Berufsschule z\xE4hlt mit)', 'BBiG, JArbSchG \xA7 15', ma);
@@ -50908,12 +51001,12 @@ if (typeof String.prototype.startsWith === 'undefined') {
       var woSumme = Rechnung_getInstance().j27(daten, woche, ma);
       // Inline function 'kotlin.collections.sumOf' call
       var sum = 0;
-      var tmp0_iterator_6 = tage.g();
-      while (tmp0_iterator_6.h()) {
-        var element_5 = tmp0_iterator_6.i();
-        var tmp_11 = sum;
+      var tmp0_iterator_9 = tage.g();
+      while (tmp0_iterator_9.h()) {
+        var element_7 = tmp0_iterator_9.i();
+        var tmp_13 = sum;
         // Inline function 'de.micha.dienstplan.core.Pruefung.pruefe.<anonymous>' call
-        sum = tmp_11 + element_5.i21_1;
+        sum = tmp_13 + element_7.i21_1;
       }
       var netto = sum;
       if (minder && netto > 40.0) {
@@ -50942,32 +51035,32 @@ if (typeof String.prototype.startsWith === 'undefined') {
       // Inline function 'kotlin.collections.isNotEmpty' call
       if (!tage.k(5).i26().l()) {
         var samstage = this.b2d(sa);
-        var tmp$ret$31;
-        $l$block_8: {
+        var tmp$ret$39;
+        $l$block_10: {
           // Inline function 'kotlin.collections.count' call
-          var tmp_12;
+          var tmp_14;
           if (isInterface(samstage, Collection)) {
-            tmp_12 = samstage.l();
+            tmp_14 = samstage.l();
           } else {
-            tmp_12 = false;
+            tmp_14 = false;
           }
-          if (tmp_12) {
-            tmp$ret$31 = 0;
-            break $l$block_8;
+          if (tmp_14) {
+            tmp$ret$39 = 0;
+            break $l$block_10;
           }
           var count_0 = 0;
-          var tmp0_iterator_7 = samstage.g();
-          while (tmp0_iterator_7.h()) {
-            var element_6 = tmp0_iterator_7.i();
+          var tmp0_iterator_10 = samstage.g();
+          while (tmp0_iterator_10.h()) {
+            var element_8 = tmp0_iterator_10.i();
             // Inline function 'de.micha.dienstplan.core.Pruefung.pruefe.<anonymous>' call
-            if (element_6.equals(sa) || Rechnung_getInstance().c2d(daten, ma, element_6, woche)) {
+            if (element_8.equals(sa) || Rechnung_getInstance().c2d(daten, ma, element_8, woche)) {
               count_0 = count_0 + 1 | 0;
               checkCountOverflow(count_0);
             }
           }
-          tmp$ret$31 = count_0;
+          tmp$ret$39 = count_0;
         }
-        var gearbeitet = tmp$ret$31;
+        var gearbeitet = tmp$ret$39;
         var grenze_1 = sa.k1g_1 === 12 && samstage.j() === 5 ? 4 : 3;
         var monat = sa.q23().i23(TextStyle_FULL_getInstance(), Companion_getInstance_36().p24_1);
         if (gearbeitet > grenze_1) {
@@ -50988,80 +51081,80 @@ if (typeof String.prototype.startsWith === 'undefined') {
         } else if (!woche.a28('FW|' + ma.a1o_1)) {
           pruefe$add(woche, v, Stufe_ROT_getInstance(), n + ': Freiwilligkeitserkl\xE4rung f\xFCr Sonntag fehlt', 'MTV', ma, 6, 'FW|' + ma.a1o_1, 'Freiwilligkeitserkl\xE4rung liegt vor');
         }
-        var tmp$ret$34;
-        $l$block_10: {
+        var tmp$ret$42;
+        $l$block_12: {
           // Inline function 'kotlin.collections.all' call
-          var this_4 = take(tage, 6);
-          var tmp_13;
-          if (isInterface(this_4, Collection)) {
-            tmp_13 = this_4.l();
+          var this_6 = take(tage, 6);
+          var tmp_15;
+          if (isInterface(this_6, Collection)) {
+            tmp_15 = this_6.l();
           } else {
-            tmp_13 = false;
+            tmp_15 = false;
           }
-          if (tmp_13) {
-            tmp$ret$34 = true;
-            break $l$block_10;
+          if (tmp_15) {
+            tmp$ret$42 = true;
+            break $l$block_12;
           }
-          var tmp0_iterator_8 = this_4.g();
-          while (tmp0_iterator_8.h()) {
-            var element_7 = tmp0_iterator_8.i();
+          var tmp0_iterator_11 = this_6.g();
+          while (tmp0_iterator_11.h()) {
+            var element_9 = tmp0_iterator_11.i();
             // Inline function 'de.micha.dienstplan.core.Pruefung.pruefe.<anonymous>' call
-            if (!element_7.k27()) {
-              tmp$ret$34 = false;
-              break $l$block_10;
+            if (!element_9.k27()) {
+              tmp$ret$42 = false;
+              break $l$block_12;
             }
           }
-          tmp$ret$34 = true;
+          tmp$ret$42 = true;
         }
-        if (tmp$ret$34) {
+        if (tmp$ret$42) {
           pruefe$add(woche, v, Stufe_ORANGE_getInstance(), n + ': Ersatzruhetag innerhalb von 2 Wochen einplanen', 'ArbZG \xA7 11', ma, 6, 'ERS|' + ma.a1o_1, 'Ersatzruhetag geplant');
         }
       }
       // Inline function 'kotlin.collections.filter' call
       // Inline function 'kotlin.collections.filterTo' call
-      var destination_2 = ArrayList_init_$Create$();
-      var tmp0_iterator_9 = tage.g();
-      while (tmp0_iterator_9.h()) {
-        var element_8 = tmp0_iterator_9.i();
+      var destination_4 = ArrayList_init_$Create$();
+      var tmp0_iterator_12 = tage.g();
+      while (tmp0_iterator_12.h()) {
+        var element_10 = tmp0_iterator_12.i();
         // Inline function 'de.micha.dienstplan.core.Pruefung.pruefe.<anonymous>' call
-        if (element_8.e21_1.r(Code_SU_getInstance())) {
-          destination_2.e(element_8);
+        if (element_10.e21_1.r(Code_SU_getInstance())) {
+          destination_4.e(element_10);
         }
       }
-      var su = destination_2;
+      var su = destination_4;
       // Inline function 'kotlin.collections.forEach' call
       // Inline function 'kotlin.collections.groupBy' call
       // Inline function 'kotlin.collections.groupByTo' call
-      var destination_3 = LinkedHashMap_init_$Create$();
-      var tmp0_iterator_10 = su.g();
-      while (tmp0_iterator_10.h()) {
-        var element_9 = tmp0_iterator_10.i();
+      var destination_5 = LinkedHashMap_init_$Create$();
+      var tmp0_iterator_13 = su.g();
+      while (tmp0_iterator_13.h()) {
+        var element_11 = tmp0_iterator_13.i();
         // Inline function 'de.micha.dienstplan.core.Pruefung.pruefe.<anonymous>' call
-        var tmp0_elvis_lhs_0 = woche.z1x(ma.a1o_1, element_9.c21_1.s1p().y1() - 1 | 0).f1y_1;
+        var tmp0_elvis_lhs_0 = woche.z1x(ma.a1o_1, element_11.c21_1.s1p().y1() - 1 | 0).f1y_1;
         var key_0 = tmp0_elvis_lhs_0 == null ? '' : tmp0_elvis_lhs_0;
         // Inline function 'kotlin.collections.getOrPut' call
-        var value = destination_3.b2(key_0);
-        var tmp_14;
+        var value = destination_5.b2(key_0);
+        var tmp_16;
         if (value == null) {
           // Inline function 'kotlin.collections.groupByTo.<anonymous>' call
           var answer = ArrayList_init_$Create$();
-          destination_3.f2(key_0, answer);
-          tmp_14 = answer;
+          destination_5.f2(key_0, answer);
+          tmp_16 = answer;
         } else {
-          tmp_14 = value;
+          tmp_16 = value;
         }
-        var list = tmp_14;
-        list.e(element_9);
+        var list = tmp_16;
+        list.e(element_11);
       }
       // Inline function 'kotlin.collections.iterator' call
-      var tmp0_iterator_11 = destination_3.e2().g();
-      while (tmp0_iterator_11.h()) {
-        var element_10 = tmp0_iterator_11.i();
+      var tmp0_iterator_14 = destination_5.e2().g();
+      while (tmp0_iterator_14.h()) {
+        var element_12 = tmp0_iterator_14.i();
         // Inline function 'de.micha.dienstplan.core.Pruefung.pruefe.<anonymous>' call
         // Inline function 'kotlin.collections.component1' call
-        var anlass = element_10.x1();
+        var anlass = element_12.x1();
         // Inline function 'kotlin.collections.component2' call
-        var l = element_10.y1();
+        var l = element_12.y1();
         var erlaubt = Vorgaben_getInstance().g22(land, anlass);
         if (isBlank(anlass)) {
           pruefe$add(woche, v, Stufe_ORANGE_getInstance(), n + ': Sonderurlaub ohne Anlass', 'MTV \xA7 14', ma, null, 'SU0|' + ma.a1o_1, 'Anlass gekl\xE4rt');
@@ -51094,40 +51187,40 @@ if (typeof String.prototype.startsWith === 'undefined') {
         var _iterator__ex2g4s_1 = Rechnung_getInstance().z26(daten, woche, i_1).g();
         while (_iterator__ex2g4s_1.h()) {
           var _destruct__k2r9zo_0 = _iterator__ex2g4s_1.i();
-          var a = _destruct__k2r9zo_0.od();
-          var b_1 = _destruct__k2r9zo_0.pd();
-          pruefe$add$default(woche, v, Stufe_ROT_getInstance(), this.b1i_1.k(i_1) + ' ' + d_0.l1g_1 + '.' + d_0.k1g_1 + '.: ' + Zeit_getInstance().y1i(a) + '\u2013' + Zeit_getInstance().y1i(b_1) + ' kein ML und keine Vertretung im Dienst', 'Vorgabe Filiale', null, i_1);
+          var a_0 = _destruct__k2r9zo_0.od();
+          var b_2 = _destruct__k2r9zo_0.pd();
+          pruefe$add$default(woche, v, Stufe_ROT_getInstance(), this.b1i_1.k(i_1) + ' ' + d_0.l1g_1 + '.' + d_0.k1g_1 + '.: ' + Zeit_getInstance().y1i(a_0) + '\u2013' + Zeit_getInstance().y1i(b_2) + ' kein ML und keine Vertretung im Dienst', 'Vorgabe Filiale', null, i_1);
         }
         var _iterator__ex2g4s_2 = Rechnung_getInstance().d2d(daten, woche, i_1).g();
         while (_iterator__ex2g4s_2.h()) {
           var u_0 = _iterator__ex2g4s_2.i();
           var tmp5_safe_receiver = u_0.v27_1;
-          var tmp_15;
+          var tmp_17;
           if (tmp5_safe_receiver == null) {
-            tmp_15 = null;
+            tmp_17 = null;
           } else {
             // Inline function 'kotlin.let' call
             // Inline function 'kotlin.contracts.contract' call
             // Inline function 'de.micha.dienstplan.core.Pruefung.pruefe.<anonymous>' call
-            tmp_15 = pruefe$n(tmp5_safe_receiver) + ' \u2192 ';
+            tmp_17 = pruefe$n(tmp5_safe_receiver) + ' \u2192 ';
           }
-          var tmp6_elvis_lhs = tmp_15;
+          var tmp6_elvis_lhs = tmp_17;
           var wer = (tmp6_elvis_lhs == null ? '' : tmp6_elvis_lhs) + pruefe$n(u_0.u27_1);
           var was = u_0.s27_1 ? '\xDCbergabe Vertretung' : '\xDCbergabe Kasse';
-          var tmp_16 = Stufe_ROT_getInstance();
-          var tmp_17 = this.b1i_1.k(i_1) + ' ' + d_0.l1g_1 + '.' + d_0.k1g_1 + '.: ' + was + ' ' + Zeit_getInstance().y1i(u_0.t27_1) + ' (' + wer + ') ohne 15 Min. \xDCberschneidung';
+          var tmp_18 = Stufe_ROT_getInstance();
+          var tmp_19 = this.b1i_1.k(i_1) + ' ' + d_0.l1g_1 + '.' + d_0.k1g_1 + '.: ' + was + ' ' + Zeit_getInstance().y1i(u_0.t27_1) + ' (' + wer + ') ohne 15 Min. \xDCberschneidung';
           var tmp7_safe_receiver = u_0.x27_1;
-          var tmp_18;
+          var tmp_20;
           if (tmp7_safe_receiver == null) {
-            tmp_18 = null;
+            tmp_20 = null;
           } else {
             // Inline function 'kotlin.let' call
             // Inline function 'kotlin.contracts.contract' call
             // Inline function 'de.micha.dienstplan.core.Pruefung.pruefe.<anonymous>' call
-            tmp_18 = ' \u2013 ' + pruefe$n(u_0.u27_1) + ' muss sp\xE4testens ' + Zeit_getInstance().y1i(tmp7_safe_receiver) + ' anfangen';
+            tmp_20 = ' \u2013 ' + pruefe$n(u_0.u27_1) + ' muss sp\xE4testens ' + Zeit_getInstance().y1i(tmp7_safe_receiver) + ' anfangen';
           }
-          var tmp8_elvis_lhs = tmp_18;
-          pruefe$add$default(woche, v, tmp_16, tmp_17 + (tmp8_elvis_lhs == null ? '' : tmp8_elvis_lhs), 'Vorgabe Filiale', u_0.u27_1, i_1);
+          var tmp8_elvis_lhs = tmp_20;
+          pruefe$add$default(woche, v, tmp_18, tmp_19 + (tmp8_elvis_lhs == null ? '' : tmp8_elvis_lhs), 'Vorgabe Filiale', u_0.u27_1, i_1);
         }
         var ivSumme = Rechnung_getInstance().j22(daten, woche, i_1);
         if (ivSumme > 0.0) {
@@ -51142,86 +51235,86 @@ if (typeof String.prototype.startsWith === 'undefined') {
           var f_0 = daten.b22(d_0);
           // Inline function 'kotlin.collections.sumOf' call
           var sum_0 = 0;
-          var tmp0_iterator_12 = alle.g();
-          while (tmp0_iterator_12.h()) {
-            var element_11 = tmp0_iterator_12.i();
-            var tmp_19 = sum_0;
+          var tmp0_iterator_15 = alle.g();
+          while (tmp0_iterator_15.h()) {
+            var element_13 = tmp0_iterator_15.i();
+            var tmp_21 = sum_0;
             // Inline function 'de.micha.dienstplan.core.Pruefung.pruefe.<anonymous>' call
-            sum_0 = tmp_19 + Rechnung_getInstance().b21(daten, woche, element_11, i_1).p21_1;
+            sum_0 = tmp_21 + Rechnung_getInstance().b21(daten, woche, element_13, i_1).p21_1;
           }
           var gedeckt = sum_0;
           if (f_0 == null) {
             pruefe$add(woche, v, Stufe_ORANGE_getInstance(), this.b1i_1.k(i_1) + ' ' + d_0.l1g_1 + '.' + d_0.k1g_1 + '.: ' + Zeit_getInstance().m1n(fgSumme) + ' Std. FG ohne Freigabe \u2013 z\xE4hlen normal in die Leistung', 'Freigabe VL/Zentrale', null, i_1, 'FGT|' + i_1, 'so gewollt');
           } else if (fgSumme > gedeckt + 1.0E-9) {
-            var tmp_20 = Stufe_ORANGE_getInstance();
-            var tmp_21 = this.b1i_1.k(i_1);
+            var tmp_22 = Stufe_ORANGE_getInstance();
+            var tmp_23 = this.b1i_1.k(i_1);
             // Inline function 'kotlin.text.ifBlank' call
-            var this_5 = f_0.a1z_1;
+            var this_7 = f_0.a1z_1;
             // Inline function 'kotlin.contracts.contract' call
-            var tmp_22;
-            if (isBlank(this_5)) {
+            var tmp_24;
+            if (isBlank(this_7)) {
               // Inline function 'de.micha.dienstplan.core.Pruefung.pruefe.<anonymous>' call
-              tmp_22 = f_0.z1y_1.e22_1;
+              tmp_24 = f_0.z1y_1.e22_1;
             } else {
-              tmp_22 = this_5;
+              tmp_24 = this_7;
             }
-            var tmp$ret$54 = tmp_22;
-            pruefe$add(woche, v, tmp_20, tmp_21 + ' ' + d_0.l1g_1 + '.' + d_0.k1g_1 + '.: Freigabe \u201E' + tmp$ret$54 + '\u201C aufgebraucht \u2013 ' + Zeit_getInstance().m1n(fgSumme - gedeckt) + ' Std. FG z\xE4hlen in die Leistung', 'Freigabe ' + f_0.z1y_1.e22_1, null, i_1, 'FGV|' + i_1, 'so gewollt');
+            var tmp$ret$62 = tmp_24;
+            pruefe$add(woche, v, tmp_22, tmp_23 + ' ' + d_0.l1g_1 + '.' + d_0.k1g_1 + '.: Freigabe \u201E' + tmp$ret$62 + '\u201C aufgebraucht \u2013 ' + Zeit_getInstance().m1n(fgSumme - gedeckt) + ' Std. FG z\xE4hlen in die Leistung', 'Freigabe ' + f_0.z1y_1.e22_1, null, i_1, 'FGV|' + i_1, 'so gewollt');
           }
         }
-        var tmp_23;
+        var tmp_25;
         var tmp9_safe_receiver = daten.f1h_1;
         if ((tmp9_safe_receiver == null ? null : tmp9_safe_receiver.t1w()) === false) {
-          tmp_23 = emptyList();
+          tmp_25 = emptyList();
         } else {
-          tmp_23 = Rechnung_getInstance().f2d(daten, woche, i_1);
+          tmp_25 = Rechnung_getInstance().f2d(daten, woche, i_1);
         }
-        var allein = tmp_23;
+        var allein = tmp_25;
         // Inline function 'kotlin.collections.isNotEmpty' call
         if (!allein.l()) {
-          var tmp_24 = Stufe_ROT_getInstance();
-          var tmp_25 = this.b1i_1.k(i_1) + ' ' + d_0.l1g_1 + '.' + d_0.k1g_1 + '.: nur 1 Mitarbeiter ';
-          pruefe$add$default(woche, v, tmp_24, tmp_25 + joinToString_0(allein, VOID, VOID, VOID, VOID, VOID, Pruefung$pruefe$lambda) + ' \u2013 im LBM-Markt immer mindestens 2', 'BV Ziff. 3.5', null, i_1);
+          var tmp_26 = Stufe_ROT_getInstance();
+          var tmp_27 = this.b1i_1.k(i_1) + ' ' + d_0.l1g_1 + '.' + d_0.k1g_1 + '.: nur 1 Mitarbeiter ';
+          pruefe$add$default(woche, v, tmp_26, tmp_27 + joinToString_0(allein, VOID, VOID, VOID, VOID, VOID, Pruefung$pruefe$lambda) + ' \u2013 im LBM-Markt immer mindestens 2', 'BV Ziff. 3.5', null, i_1);
         }
       }
        while (inductionVariable_0 <= 6);
-    var tmp_26;
-    var tmp$ret$56;
-    $l$block_12: {
+    var tmp_28;
+    var tmp$ret$64;
+    $l$block_14: {
       // Inline function 'kotlin.collections.any' call
-      var this_6 = woche.q1f_1.d2();
-      var tmp_27;
-      if (isInterface(this_6, Collection)) {
-        tmp_27 = this_6.l();
+      var this_8 = woche.q1f_1.d2();
+      var tmp_29;
+      if (isInterface(this_8, Collection)) {
+        tmp_29 = this_8.l();
       } else {
-        tmp_27 = false;
+        tmp_29 = false;
       }
-      if (tmp_27) {
-        tmp$ret$56 = false;
-        break $l$block_12;
+      if (tmp_29) {
+        tmp$ret$64 = false;
+        break $l$block_14;
       }
-      var tmp0_iterator_13 = this_6.g();
-      while (tmp0_iterator_13.h()) {
-        var element_12 = tmp0_iterator_13.i();
+      var tmp0_iterator_16 = this_8.g();
+      while (tmp0_iterator_16.h()) {
+        var element_14 = tmp0_iterator_16.i();
         // Inline function 'de.micha.dienstplan.core.Pruefung.pruefe.<anonymous>' call
-        if (!(element_12.b2(6) == null) && !ensureNotNull(element_12.b2(6)).a26()) {
-          tmp$ret$56 = true;
-          break $l$block_12;
+        if (!(element_14.b2(6) == null) && !ensureNotNull(element_14.b2(6)).a26()) {
+          tmp$ret$64 = true;
+          break $l$block_14;
         }
       }
-      tmp$ret$56 = false;
+      tmp$ret$64 = false;
     }
-    if (tmp$ret$56) {
-      tmp_26 = !woche.t1f_1;
+    if (tmp$ret$64) {
+      tmp_28 = !woche.t1f_1;
     } else {
-      tmp_26 = false;
+      tmp_28 = false;
     }
-    if (tmp_26) {
+    if (tmp_28) {
       pruefe$add$default(woche, v, Stufe_HINWEIS_getInstance(), 'Sonntag ist nicht ge\xF6ffnet \u2013 Eintr\xE4ge am Sonntag werden nicht gedruckt', 'Plan');
     }
-    var tmp_28 = Pruefung$pruefe$lambda_0;
-    var tmp_29 = Pruefung$pruefe$lambda_1;
-    return sortedWith(v, compareBy([tmp_28, tmp_29, Pruefung$pruefe$lambda_2]));
+    var tmp_30 = Pruefung$pruefe$lambda_0;
+    var tmp_31 = Pruefung$pruefe$lambda_1;
+    return sortedWith(v, compareBy([tmp_30, tmp_31, Pruefung$pruefe$lambda_2]));
   };
   protoOf(Pruefung).c1i = function (daten, wocheEingetragen, mitUrlaub, $super) {
     mitUrlaub = mitUrlaub === VOID ? true : mitUrlaub;
@@ -51682,6 +51775,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
       z1 = 'BS';
     var block = $this.y2c(daten, woche, ma);
     var zeilen = Zeit_getInstance().b1z(z1, e.b1y_1);
+    var tmp = Zeit_getInstance();
     // Inline function 'kotlin.collections.mapNotNull' call
     // Inline function 'kotlin.collections.mapNotNullTo' call
     var destination = ArrayList_init_$Create$();
@@ -51700,7 +51794,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
         destination.e(tmp0_safe_receiver_0);
       }
     }
-    var segs = destination;
+    var segs = tmp.l2d(destination);
     // Inline function 'kotlin.collections.mapNotNull' call
     // Inline function 'kotlin.collections.mapNotNullTo' call
     var destination_0 = ArrayList_init_$Create$();
@@ -51723,13 +51817,13 @@ if (typeof String.prototype.startsWith === 'undefined') {
     var tmp$ret$8;
     $l$block_0: {
       // Inline function 'kotlin.collections.any' call
-      var tmp;
+      var tmp_0;
       if (isInterface(zeilen, Collection)) {
-        tmp = zeilen.l();
+        tmp_0 = zeilen.l();
       } else {
-        tmp = false;
+        tmp_0 = false;
       }
-      if (tmp) {
+      if (tmp_0) {
         tmp$ret$8 = false;
         break $l$block_0;
       }
@@ -51764,12 +51858,12 @@ if (typeof String.prototype.startsWith === 'undefined') {
     var tmp0_iterator_3 = arbeitSegs.g();
     while (tmp0_iterator_3.h()) {
       var element_3 = tmp0_iterator_3.i();
-      var tmp_0 = sum;
+      var tmp_1 = sum;
       // Inline function 'de.micha.dienstplan.core.Rechnung.tagRoh.<anonymous>' call
-      sum = tmp_0 + element_3.x2c() | 0;
+      sum = tmp_1 + element_3.m2d() | 0;
     }
     var brutto = sum / 60.0;
-    var pMin = brutto > 0 ? $this.l2d(brutto, minder) : 0.0;
+    var pMin = brutto > 0 ? $this.n2d(brutto, minder) : 0.0;
     var pause = pMin;
     if (pMin === 0.25 && !minder)
       pause = e.d1y_1 ? 0.0 : e.c1y_1 === 0.25 ? 0.25 : 0.5;
@@ -51793,7 +51887,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
       // Inline function 'kotlin.collections.set' call
       var key = s.i1z_1;
       var tmp3_elvis_lhs = anteile.b2(s.i1z_1);
-      var value = (tmp3_elvis_lhs == null ? 0.0 : tmp3_elvis_lhs) + s.x2c() / 60.0;
+      var value = (tmp3_elvis_lhs == null ? 0.0 : tmp3_elvis_lhs) + s.m2d() / 60.0;
       anteile.f2(key, value);
     }
     var rest = pause;
@@ -51801,13 +51895,13 @@ if (typeof String.prototype.startsWith === 'undefined') {
     $l$loop: while (_iterator__ex2g4s_0.h()) {
       var a = _iterator__ex2g4s_0.i();
       var tmp4_elvis_lhs = anteile.b2(a);
-      var tmp_1;
+      var tmp_2;
       if (tmp4_elvis_lhs == null) {
         continue $l$loop;
       } else {
-        tmp_1 = tmp4_elvis_lhs;
+        tmp_2 = tmp4_elvis_lhs;
       }
-      var v = tmp_1;
+      var v = tmp_2;
       // Inline function 'kotlin.math.min' call
       var b_0 = rest;
       var ab = Math.min(v, b_0);
@@ -51847,61 +51941,61 @@ if (typeof String.prototype.startsWith === 'undefined') {
     var tmp0_iterator_5 = destination_2.g();
     while (tmp0_iterator_5.h()) {
       var element_5 = tmp0_iterator_5.i();
-      var tmp_2 = sum_0;
+      var tmp_3 = sum_0;
       // Inline function 'de.micha.dienstplan.core.Rechnung.tagRoh.<anonymous>' call
-      sum_0 = tmp_2 + element_5.x2c() | 0;
+      sum_0 = tmp_3 + element_5.m2d() | 0;
     }
     var bsSeg = sum_0 / 60.0;
     var tagesBasis = ma.v25() / 6.0;
     var gutschrift;
     var abzug;
     var code = firstOrNull(codes);
-    var tmp_3;
+    var tmp_4;
     // Inline function 'kotlin.collections.isNotEmpty' call
     if (!segs.l()) {
-      tmp_3 = true;
+      tmp_4 = true;
     } else {
-      tmp_3 = (code == null && ft == null);
+      tmp_4 = (code == null && ft == null);
     }
-    if (tmp_3) {
+    if (tmp_4) {
       var bsTeil = codes.r(Code_BS_getInstance()) && (e.e1y_1 || block) ? ma.f1o_1 / 5.0 : block && bsSeg > 0 ? ma.f1o_1 / 5.0 : bsSeg;
       gutschrift = netto + bsTeil;
       abzug = 0.0;
     } else {
       var c = code == null ? Code_FT_getInstance() : code;
-      var tmp_4;
+      var tmp_5;
       switch (c.j2_1) {
         case 0:
         case 2:
         case 8:
-          tmp_4 = tagesBasis;
+          tmp_5 = tagesBasis;
           break;
         case 1:
           var tmp14_safe_receiver = e.h1y_1;
-          var tmp_5;
+          var tmp_6;
           if (tmp14_safe_receiver == null) {
-            tmp_5 = null;
+            tmp_6 = null;
           } else {
             // Inline function 'kotlin.let' call
             // Inline function 'kotlin.contracts.contract' call
             // Inline function 'de.micha.dienstplan.core.Rechnung.tagRoh.<anonymous>' call
-            tmp_5 = woche.r1f_1.equals(Status_VERBINDLICH_getInstance()) || !(woche.s1f_1 == null) ? tagRoh(Rechnung_getInstance(), daten, woche.q1y(ma.a1o_1, tagIdx, tmp14_safe_receiver.k1z()), ma, tagIdx).i21_1 : null;
+            tmp_6 = woche.r1f_1.equals(Status_VERBINDLICH_getInstance()) || !(woche.s1f_1 == null) ? tagRoh(Rechnung_getInstance(), daten, woche.q1y(ma.a1o_1, tagIdx, tmp14_safe_receiver.k1z()), ma, tagIdx).i21_1 : null;
           }
 
-          var geplant = tmp_5;
-          tmp_4 = !(geplant == null) && geplant > 0 ? geplant : tagesBasis;
+          var geplant = tmp_6;
+          tmp_5 = !(geplant == null) && geplant > 0 ? geplant : tagesBasis;
           break;
         case 5:
-          tmp_4 = e.e1y_1 || block ? ma.f1o_1 / 5.0 : 0.0;
+          tmp_5 = e.e1y_1 || block ? ma.f1o_1 / 5.0 : 0.0;
           break;
         case 6:
-          tmp_4 = ma.e1w() ? ma.f1o_1 / 5.0 : tagesBasis;
+          tmp_5 = ma.e1w() ? ma.f1o_1 / 5.0 : tagesBasis;
           break;
         default:
-          tmp_4 = 0.0;
+          tmp_5 = 0.0;
           break;
       }
-      gutschrift = tmp_4;
+      gutschrift = tmp_5;
       switch (c.j2_1) {
         case 0:
         case 1:
@@ -51918,7 +52012,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     var tmp16_safe_receiver = daten.u1w(d.j1g_1);
     var ferien = (tmp16_safe_receiver == null ? null : tmp16_safe_receiver.k22(d)) === true;
     var fil = ma.e1w() && arbeit > 0 && !ferien ? ma.d1w(d) >= 2 ? 4.0 : 3.0 : arbeit;
-    fil = fil * $this.m2d(ma, d);
+    fil = fil * $this.o2d(ma, d);
     var umkreist = (ma.e1w() && !ferien ? arbeit : 0.0) + putz + br;
     var spaet = 0.0;
     var nacht = 0.0;
@@ -51932,30 +52026,30 @@ if (typeof String.prototype.startsWith === 'undefined') {
         nacht = nacht + ueberlappung($this, s_0.g1z_1, s_0.h1z_1, 1200, 1800) / 60.0;
       }
     }
-    var tmp_6 = pause;
-    var tmp_7 = fil;
-    var tmp_8 = spaet;
-    var tmp_9 = nacht;
+    var tmp_7 = pause;
+    var tmp_8 = fil;
+    var tmp_9 = spaet;
+    var tmp_10 = nacht;
     // Inline function 'kotlin.collections.isNotEmpty' call
     var tmp$ret$27 = !arbeitSegs.l();
-    return new Tag(d, segs, codes, fehler, tmp_6, pMin, netto, arbeit, putz, br, iv, 0.0, fg, 0.0, x, bsSeg, gutschrift, tmp_7, umkreist, tmp_8, tmp_9, abzug, ft, tmp$ret$27);
+    return new Tag(d, segs, codes, fehler, tmp_7, pMin, netto, arbeit, putz, br, iv, 0.0, fg, 0.0, x, bsSeg, gutschrift, tmp_8, umkreist, tmp_9, tmp_10, abzug, ft, tmp$ret$27);
   }
   function Soll(stunden, stufen, feiertage, regel, text) {
-    this.n2d_1 = stunden;
-    this.o2d_1 = stufen;
-    this.p2d_1 = feiertage;
-    this.q2d_1 = regel;
-    this.r2d_1 = text;
+    this.p2d_1 = stunden;
+    this.q2d_1 = stufen;
+    this.r2d_1 = feiertage;
+    this.s2d_1 = regel;
+    this.t2d_1 = text;
   }
   protoOf(Soll).toString = function () {
-    return 'Soll(stunden=' + this.n2d_1 + ', stufen=' + this.o2d_1 + ', feiertage=' + this.p2d_1 + ', regel=' + this.q2d_1.toString() + ', text=' + this.r2d_1 + ')';
+    return 'Soll(stunden=' + this.p2d_1 + ', stufen=' + this.q2d_1 + ', feiertage=' + this.r2d_1 + ', regel=' + this.s2d_1.toString() + ', text=' + this.t2d_1 + ')';
   };
   protoOf(Soll).hashCode = function () {
-    var result = getNumberHashCode(this.n2d_1);
-    result = imul(result, 31) + this.o2d_1 | 0;
-    result = imul(result, 31) + this.p2d_1 | 0;
-    result = imul(result, 31) + this.q2d_1.hashCode() | 0;
-    result = imul(result, 31) + getStringHashCode(this.r2d_1) | 0;
+    var result = getNumberHashCode(this.p2d_1);
+    result = imul(result, 31) + this.q2d_1 | 0;
+    result = imul(result, 31) + this.r2d_1 | 0;
+    result = imul(result, 31) + this.s2d_1.hashCode() | 0;
+    result = imul(result, 31) + getStringHashCode(this.t2d_1) | 0;
     return result;
   };
   protoOf(Soll).equals = function (other) {
@@ -51964,15 +52058,15 @@ if (typeof String.prototype.startsWith === 'undefined') {
     if (!(other instanceof Soll))
       return false;
     var tmp0_other_with_cast = other instanceof Soll ? other : THROW_CCE();
-    if (!equals(this.n2d_1, tmp0_other_with_cast.n2d_1))
+    if (!equals(this.p2d_1, tmp0_other_with_cast.p2d_1))
       return false;
-    if (!(this.o2d_1 === tmp0_other_with_cast.o2d_1))
-      return false;
-    if (!(this.p2d_1 === tmp0_other_with_cast.p2d_1))
-      return false;
-    if (!this.q2d_1.equals(tmp0_other_with_cast.q2d_1))
+    if (!(this.q2d_1 === tmp0_other_with_cast.q2d_1))
       return false;
     if (!(this.r2d_1 === tmp0_other_with_cast.r2d_1))
+      return false;
+    if (!this.s2d_1.equals(tmp0_other_with_cast.s2d_1))
+      return false;
+    if (!(this.t2d_1 === tmp0_other_with_cast.t2d_1))
       return false;
     return true;
   };
@@ -52058,16 +52152,16 @@ if (typeof String.prototype.startsWith === 'undefined') {
     return true;
   };
   function sam$kotlin_Comparator$0_22(function_0) {
-    this.s2d_1 = function_0;
+    this.u2d_1 = function_0;
   }
   protoOf(sam$kotlin_Comparator$0_22).ec = function (a, b) {
-    return this.s2d_1(a, b);
+    return this.u2d_1(a, b);
   };
   protoOf(sam$kotlin_Comparator$0_22).compare = function (a, b) {
     return this.ec(a, b);
   };
   protoOf(sam$kotlin_Comparator$0_22).f3 = function () {
-    return this.s2d_1;
+    return this.u2d_1;
   };
   protoOf(sam$kotlin_Comparator$0_22).equals = function (other) {
     var tmp;
@@ -52088,16 +52182,16 @@ if (typeof String.prototype.startsWith === 'undefined') {
     return hashCode(this.f3());
   };
   function sam$kotlin_Comparator$0_23(function_0) {
-    this.t2d_1 = function_0;
+    this.v2d_1 = function_0;
   }
   protoOf(sam$kotlin_Comparator$0_23).ec = function (a, b) {
-    return this.t2d_1(a, b);
+    return this.v2d_1(a, b);
   };
   protoOf(sam$kotlin_Comparator$0_23).compare = function (a, b) {
     return this.ec(a, b);
   };
   protoOf(sam$kotlin_Comparator$0_23).f3 = function () {
-    return this.t2d_1;
+    return this.v2d_1;
   };
   protoOf(sam$kotlin_Comparator$0_23).equals = function (other) {
     var tmp;
@@ -52118,16 +52212,16 @@ if (typeof String.prototype.startsWith === 'undefined') {
     return hashCode(this.f3());
   };
   function sam$kotlin_Comparator$0_24(function_0) {
-    this.u2d_1 = function_0;
+    this.w2d_1 = function_0;
   }
   protoOf(sam$kotlin_Comparator$0_24).ec = function (a, b) {
-    return this.u2d_1(a, b);
+    return this.w2d_1(a, b);
   };
   protoOf(sam$kotlin_Comparator$0_24).compare = function (a, b) {
     return this.ec(a, b);
   };
   protoOf(sam$kotlin_Comparator$0_24).f3 = function () {
-    return this.u2d_1;
+    return this.w2d_1;
   };
   protoOf(sam$kotlin_Comparator$0_24).equals = function (other) {
     var tmp;
@@ -52148,16 +52242,16 @@ if (typeof String.prototype.startsWith === 'undefined') {
     return hashCode(this.f3());
   };
   function sam$kotlin_Comparator$0_25(function_0) {
-    this.v2d_1 = function_0;
+    this.x2d_1 = function_0;
   }
   protoOf(sam$kotlin_Comparator$0_25).ec = function (a, b) {
-    return this.v2d_1(a, b);
+    return this.x2d_1(a, b);
   };
   protoOf(sam$kotlin_Comparator$0_25).compare = function (a, b) {
     return this.ec(a, b);
   };
   protoOf(sam$kotlin_Comparator$0_25).f3 = function () {
-    return this.v2d_1;
+    return this.x2d_1;
   };
   protoOf(sam$kotlin_Comparator$0_25).equals = function (other) {
     var tmp;
@@ -52266,7 +52360,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     this.o20_1 = setOf_0([Art_ARBEIT_getInstance(), Art_PUTZ_getInstance(), Art_S_getInstance(), Art_IV_getInstance(), Art_FG_getInstance()]);
     this.p20_1 = 15;
   }
-  protoOf(Rechnung).l2d = function (brutto, minderjaehrig) {
+  protoOf(Rechnung).n2d = function (brutto, minderjaehrig) {
     var stufen = minderjaehrig ? listOf_0([0.0, 0.5, 1.0]) : listOf_0([0.0, 0.25, 0.5, 0.75]);
     var _iterator__ex2g4s = stufen.g();
     while (_iterator__ex2g4s.h()) {
@@ -52279,7 +52373,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     return last(stufen);
   };
   protoOf(Rechnung).w25 = function (brutto, minderjaehrig) {
-    var p = this.l2d(brutto, minderjaehrig);
+    var p = this.n2d(brutto, minderjaehrig);
     return p === 0.25 && !minderjaehrig ? 0.5 : p;
   };
   protoOf(Rechnung).a22 = function (netto) {
@@ -52287,19 +52381,19 @@ if (typeof String.prototype.startsWith === 'undefined') {
   };
   protoOf(Rechnung).b21 = function (daten, woche, ma, tagIdx) {
     var t = tagRoh(this, daten, woche, ma, tagIdx);
-    var faktor = this.m2d(ma, t.c21_1);
+    var faktor = this.o2d(ma, t.c21_1);
     if (t.m21_1 > 0.0) {
-      var tmp0_elvis_lhs = this.w2d(daten, woche, tagIdx).b2(ma.a1o_1);
+      var tmp0_elvis_lhs = this.y2d(daten, woche, tagIdx).b2(ma.a1o_1);
       var frei = tmp0_elvis_lhs == null ? 0.0 : tmp0_elvis_lhs;
       t = t.h2d(VOID, VOID, VOID, VOID, VOID, VOID, VOID, VOID, VOID, VOID, VOID, frei, VOID, VOID, VOID, VOID, VOID, t.t21_1 + (t.m21_1 - frei) * faktor, t.u21_1 + frei);
     }
     if (t.o21_1 > 0.0) {
-      var frei_0 = this.x2d(daten, woche, ma.a1o_1, t.c21_1);
+      var frei_0 = this.z2d(daten, woche, ma.a1o_1, t.c21_1);
       t = t.h2d(VOID, VOID, VOID, VOID, VOID, VOID, VOID, VOID, VOID, VOID, VOID, VOID, VOID, frei_0, VOID, VOID, VOID, t.t21_1 + (t.o21_1 - frei_0) * faktor, t.u21_1 + frei_0);
     }
     return t;
   };
-  protoOf(Rechnung).x2d = function (daten, woche, maId, d) {
+  protoOf(Rechnung).z2d = function (daten, woche, maId, d) {
     var tmp0_elvis_lhs = daten.b22(d);
     var tmp;
     if (tmp0_elvis_lhs == null) {
@@ -52311,12 +52405,12 @@ if (typeof String.prototype.startsWith === 'undefined') {
     var tmp1_elvis_lhs = fgVerteilung(this, daten, woche, f).b2(to(maId, d.f1u()));
     return tmp1_elvis_lhs == null ? 0.0 : tmp1_elvis_lhs;
   };
-  protoOf(Rechnung).y2d = function (daten, f, woche) {
+  protoOf(Rechnung).a2e = function (daten, f, woche) {
     return sum_1(fgVerteilung(this, daten, woche, f).d2());
   };
   protoOf(Rechnung).l22 = function (daten, f, woche, $super) {
     woche = woche === VOID ? null : woche;
-    return $super === VOID ? this.y2d(daten, f, woche) : $super.y2d.call(this, daten, f, woche);
+    return $super === VOID ? this.a2e(daten, f, woche) : $super.a2e.call(this, daten, f, woche);
   };
   protoOf(Rechnung).e2d = function (daten, woche, tagIdx) {
     // Inline function 'kotlin.collections.sumOf' call
@@ -52330,7 +52424,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     }
     return sum;
   };
-  protoOf(Rechnung).w2d = function (daten, woche, tagIdx) {
+  protoOf(Rechnung).y2d = function (daten, woche, tagIdx) {
     if (!woche.s1y(tagIdx).u1y_1)
       return emptyMap();
     var rest = 10.0;
@@ -52364,7 +52458,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     }
     return sum;
   };
-  protoOf(Rechnung).m2d = function (ma, d) {
+  protoOf(Rechnung).o2d = function (ma, d) {
     var tmp0_elvis_lhs = ma.m1o_1;
     var tmp;
     if (tmp0_elvis_lhs == null) {
@@ -52578,11 +52672,11 @@ if (typeof String.prototype.startsWith === 'undefined') {
     woche = woche === VOID ? null : woche;
     return $super === VOID ? this.c2d(daten, ma, sa, woche) : $super.c2d.call(this, daten, ma, sa, woche);
   };
-  protoOf(Rechnung).z2d = function (ma, d) {
+  protoOf(Rechnung).b2e = function (ma, d) {
     return !ma.g1p() && (ma.e1w() || ma.c1w(d));
   };
   protoOf(Rechnung).b26 = function (daten, ma, sa, woche) {
-    if (!sa.s1p().equals(DayOfWeek_SATURDAY_getInstance()) || !this.z2d(ma, sa) || !ma.x1t(sa))
+    if (!sa.s1p().equals(DayOfWeek_SATURDAY_getInstance()) || !this.b2e(ma, sa) || !ma.x1t(sa))
       return false;
     if (this.c2d(daten, ma, sa, woche))
       return false;
@@ -52790,7 +52884,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     }
     return destination;
   };
-  protoOf(Rechnung).a2e = function (daten, kopf) {
+  protoOf(Rechnung).c2e = function (daten, kopf) {
     var tmp;
     var tmp0_safe_receiver = daten.f1h_1;
     if ((tmp0_safe_receiver == null ? null : tmp0_safe_receiver.g1l_1) === true) {
@@ -52801,7 +52895,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     var getrennt = tmp;
     return kopf.j2_1 === 1 ? getrennt ? listOf(Blatt_ME_getInstance()) : emptyList() : getrennt ? listOf_0([Blatt_LM_getInstance(), Blatt_GFB_getInstance()]) : listOf_0([Blatt_LM_getInstance(), Blatt_ME_getInstance(), Blatt_GFB_getInstance()]);
   };
-  protoOf(Rechnung).b2e = function (daten, woche) {
+  protoOf(Rechnung).d2e = function (daten, woche) {
     var tmp0_safe_receiver = daten.f1h_1;
     var tmp1_elvis_lhs = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.f1l_1;
     var land = tmp1_elvis_lhs == null ? Land_ST_getInstance() : tmp1_elvis_lhs;
@@ -52838,7 +52932,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     }
     return tmp$ret$0;
   };
-  protoOf(Rechnung).c2e = function (umsatz, basis) {
+  protoOf(Rechnung).e2e = function (umsatz, basis) {
     var x = (umsatz - basis) / 1000.0;
     var tmp;
     if (x >= 0) {
@@ -52854,7 +52948,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     }
     return tmp;
   };
-  protoOf(Rechnung).d2e = function (daten, woche, kopf) {
+  protoOf(Rechnung).f2e = function (daten, woche, kopf) {
     var tmp0_elvis_lhs = daten.h2c(woche);
     var tmp;
     if (tmp0_elvis_lhs == null) {
@@ -52872,8 +52966,8 @@ if (typeof String.prototype.startsWith === 'undefined') {
       tmp_0 = tmp2_elvis_lhs;
     }
     var umsatz = tmp_0;
-    var st = this.c2e(umsatz, regel.x2a_1);
-    var ft = this.b2e(daten, woche);
+    var st = this.e2e(umsatz, regel.x2a_1);
+    var ft = this.d2e(daten, woche);
     var plusMinus = regel.z2a_1 * st;
     var stunden = regel.y2a_1 + plusMinus - regel.a2b_1 * ft;
     // Inline function 'kotlin.text.buildString' call
@@ -52900,7 +52994,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     return new Soll(stunden, st, ft, regel, text);
   };
   protoOf(Rechnung).q20 = function (daten, woche, kopf) {
-    var bl = this.a2e(daten, kopf);
+    var bl = this.c2e(daten, kopf);
     var abzug = 0.0;
     var verplant = 0.0;
     // Inline function 'kotlin.collections.mutableListOf' call
@@ -52932,7 +53026,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
             abzug = abzug + tg.x21_1;
             // Inline function 'kotlin.collections.plusAssign' call
             var tmp0_safe_receiver = firstOrNull(tg.e21_1);
-            var tmp1_elvis_lhs = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.g2e_1;
+            var tmp1_elvis_lhs = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.i2e_1;
             var element_0 = ma.b1o_1 + ': ' + (tmp1_elvis_lhs == null ? 'FT' : tmp1_elvis_lhs) + ' ' + tg.c21_1.l1g_1 + '.' + tg.c21_1.k1g_1 + '. \u2212' + Zeit_getInstance().m1n(tg.x21_1);
             liste.e(element_0);
           }
@@ -52941,10 +53035,10 @@ if (typeof String.prototype.startsWith === 'undefined') {
     }
     var tmp2_safe_receiver = woche.p1f_1.b2(kopf);
     var manuell = tmp2_safe_receiver == null ? null : tmp2_safe_receiver.y1x_1;
-    var ausUmsatz = manuell == null ? this.d2e(daten, woche, kopf) : null;
+    var ausUmsatz = manuell == null ? this.f2e(daten, woche, kopf) : null;
     var tmp_1;
     if (manuell == null) {
-      tmp_1 = ausUmsatz == null ? null : ausUmsatz.n2d_1;
+      tmp_1 = ausUmsatz == null ? null : ausUmsatz.p2d_1;
     } else {
       tmp_1 = manuell;
     }
@@ -52952,7 +53046,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     var tmp_2 = abzug;
     return new Vorgabe(v, tmp_2, v == null ? null : v - abzug, verplant, liste, ausUmsatz);
   };
-  protoOf(Rechnung).i2e = function (daten, woche, tagIdx) {
+  protoOf(Rechnung).k2e = function (daten, woche, tagIdx) {
     // Inline function 'kotlin.collections.filter' call
     // Inline function 'kotlin.collections.filterTo' call
     var this_0 = this.y25(daten, woche);
@@ -53043,7 +53137,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
           var _destruct__k2r9zo = _iterator__ex2g4s_1.i();
           var a = _destruct__k2r9zo.od();
           var b = _destruct__k2r9zo.pd();
-          verantwortung = verantwortung + this.j2e(a, b, hoeher) | 0;
+          verantwortung = verantwortung + this.l2e(a, b, hoeher) | 0;
         }
         var t = ensureNotNull(tage.b2(m));
         if (t.g21_1 > 0) {
@@ -53079,7 +53173,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
           var p = numberToInt(t.g21_1 * 60);
           var pa = mitte - (p / 2 | 0) | 0;
           var pb = pa + p | 0;
-          verantwortung = verantwortung - this.j2e(pa, pb, hoeher) | 0;
+          verantwortung = verantwortung - this.l2e(pa, pb, hoeher) | 0;
         }
         if (verantwortung > 0) {
           // Inline function 'kotlin.collections.set' call
@@ -53185,7 +53279,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     }
     return ergebnis;
   };
-  protoOf(Rechnung).j2e = function (a, b, abdeckung) {
+  protoOf(Rechnung).l2e = function (a, b, abdeckung) {
     var frei = 0;
     var t = a;
     // Inline function 'kotlin.collections.sortedBy' call
@@ -53400,7 +53494,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
         l.e(element_3);
       }
     }
-    return this.k2e(l);
+    return this.x2c(l);
   };
   protoOf(Rechnung).z26 = function (daten, woche, tagIdx, tagVon, $super) {
     var tmp;
@@ -53412,7 +53506,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     tagVon = tmp;
     return $super === VOID ? this.p27(daten, woche, tagIdx, tagVon) : $super.p27.call(this, daten, woche, tagIdx, tagVon);
   };
-  protoOf(Rechnung).k2e = function (l) {
+  protoOf(Rechnung).x2c = function (l) {
     // Inline function 'kotlin.collections.sortedBy' call
     // Inline function 'kotlin.comparisons.compareBy' call
     var tmp = Rechnung$zusammenfassen$lambda;
@@ -53615,7 +53709,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
         }
       }
        while (inductionVariable < last);
-    return this.k2e(r);
+    return this.x2c(r);
   };
   protoOf(Rechnung).f2d = function (daten, woche, tagIdx, tagVon, $super) {
     var tmp;
@@ -53658,7 +53752,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
           var tmp$ret$5 = to(item.g1z_1, item.h1z_1);
           destination_0.e(tmp$ret$5);
         }
-        var _iterator__ex2g4s_0 = this.k2e(destination_0).g();
+        var _iterator__ex2g4s_0 = this.x2c(destination_0).g();
         while (_iterator__ex2g4s_0.h()) {
           var x = _iterator__ex2g4s_0.i();
           // Inline function 'kotlin.collections.plusAssign' call
@@ -53688,7 +53782,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
           var tmp$ret$11 = to(item_0.g1z_1, item_0.h1z_1);
           destination_2.e(tmp$ret$11);
         }
-        var _iterator__ex2g4s_1 = this.k2e(destination_2).g();
+        var _iterator__ex2g4s_1 = this.x2c(destination_2).g();
         while (_iterator__ex2g4s_1.h()) {
           var x_0 = _iterator__ex2g4s_1.i();
           // Inline function 'kotlin.collections.plusAssign' call
@@ -53920,29 +54014,48 @@ if (typeof String.prototype.startsWith === 'undefined') {
     tagVon = tmp;
     return $super === VOID ? this.r27(daten, woche, tagIdx, tagVon) : $super.r27.call(this, daten, woche, tagIdx, tagVon);
   };
-  protoOf(Rechnung).l2e = function (tg, e) {
+  protoOf(Rechnung).m2e = function (tg, e) {
     var z = Zeit_getInstance().b1z(e.a1y_1, e.b1y_1);
-    // Inline function 'kotlin.collections.map' call
-    // Inline function 'kotlin.collections.mapTo' call
-    var destination = ArrayList_init_$Create$_0(collectionSizeOrDefault(z, 10));
+    // Inline function 'kotlin.collections.mapNotNull' call
+    // Inline function 'kotlin.collections.mapNotNullTo' call
+    var destination = ArrayList_init_$Create$();
+    // Inline function 'kotlin.collections.forEach' call
     var tmp0_iterator = z.g();
     while (tmp0_iterator.h()) {
-      var item = tmp0_iterator.i();
+      var element = tmp0_iterator.i();
+      // Inline function 'kotlin.collections.mapNotNullTo.<anonymous>' call
       // Inline function 'de.micha.dienstplan.core.Rechnung.zeilenStd.<anonymous>' call
-      var tmp0_safe_receiver = item.c1z_1;
+      var tmp0_safe_receiver = element.c1z_1;
+      if (tmp0_safe_receiver == null)
+        null;
+      else {
+        // Inline function 'kotlin.let' call
+        // Inline function 'kotlin.contracts.contract' call
+        destination.e(tmp0_safe_receiver);
+      }
+    }
+    var alleSegs = destination;
+    // Inline function 'kotlin.collections.map' call
+    // Inline function 'kotlin.collections.mapTo' call
+    var destination_0 = ArrayList_init_$Create$_0(collectionSizeOrDefault(z, 10));
+    var tmp0_iterator_0 = z.g();
+    while (tmp0_iterator_0.h()) {
+      var item = tmp0_iterator_0.i();
+      // Inline function 'de.micha.dienstplan.core.Rechnung.zeilenStd.<anonymous>' call
+      var tmp0_safe_receiver_0 = item.c1z_1;
       var tmp;
-      if (tmp0_safe_receiver == null) {
+      if (tmp0_safe_receiver_0 == null) {
         tmp = null;
       } else {
         // Inline function 'kotlin.let' call
         // Inline function 'kotlin.contracts.contract' call
         // Inline function 'de.micha.dienstplan.core.Rechnung.zeilenStd.<anonymous>.<anonymous>' call
-        tmp = tmp0_safe_receiver.x2c() / 60.0;
+        tmp = (tmp0_safe_receiver_0.m2d() - Zeit_getInstance().n2e(tmp0_safe_receiver_0, minus(alleSegs, tmp0_safe_receiver_0)) | 0) / 60.0;
       }
-      var tmp$ret$2 = tmp;
-      destination.e(tmp$ret$2);
+      var tmp$ret$6 = tmp;
+      destination_0.e(tmp$ret$6);
     }
-    var h = toMutableList_0(destination);
+    var h = toMutableList_0(destination_0);
     var rest = tg.g21_1;
     var _iterator__ex2g4s = this.m20_1.g();
     while (_iterator__ex2g4s.h()) {
@@ -53974,29 +54087,29 @@ if (typeof String.prototype.startsWith === 'undefined') {
     }
     // Inline function 'kotlin.collections.mapIndexed' call
     // Inline function 'kotlin.collections.mapIndexedTo' call
-    var destination_0 = ArrayList_init_$Create$_0(collectionSizeOrDefault(z, 10));
+    var destination_1 = ArrayList_init_$Create$_0(collectionSizeOrDefault(z, 10));
     var index = 0;
-    var tmp0_iterator_0 = z.g();
-    while (tmp0_iterator_0.h()) {
-      var item_0 = tmp0_iterator_0.i();
+    var tmp0_iterator_1 = z.g();
+    while (tmp0_iterator_1.h()) {
+      var item_0 = tmp0_iterator_1.i();
       // Inline function 'de.micha.dienstplan.core.Rechnung.zeilenStd.<anonymous>' call
       var tmp1 = index;
       index = tmp1 + 1 | 0;
       var i_0 = checkIndexOverflow(tmp1);
-      var tmp0_safe_receiver_0 = item_0.c1z_1;
+      var tmp0_safe_receiver_1 = item_0.c1z_1;
       var tmp_1;
-      if (tmp0_safe_receiver_0 == null) {
+      if (tmp0_safe_receiver_1 == null) {
         tmp_1 = null;
       } else {
         // Inline function 'kotlin.let' call
         // Inline function 'kotlin.contracts.contract' call
         // Inline function 'de.micha.dienstplan.core.Rechnung.zeilenStd.<anonymous>.<anonymous>' call
-        tmp_1 = to(tmp0_safe_receiver_0, ensureNotNull(h.k(i_0)));
+        tmp_1 = to(tmp0_safe_receiver_1, ensureNotNull(h.k(i_0)));
       }
-      var tmp$ret$8 = tmp_1;
-      destination_0.e(tmp$ret$8);
+      var tmp$ret$12 = tmp_1;
+      destination_1.e(tmp$ret$12);
     }
-    return destination_0;
+    return destination_1;
   };
   var Rechnung_instance;
   function Rechnung_getInstance() {
@@ -54032,16 +54145,16 @@ if (typeof String.prototype.startsWith === 'undefined') {
     this.c1h_1 = label;
   }
   function sam$kotlin_Comparator$0_26(function_0) {
-    this.m2e_1 = function_0;
+    this.o2e_1 = function_0;
   }
   protoOf(sam$kotlin_Comparator$0_26).ec = function (a, b) {
-    return this.m2e_1(a, b);
+    return this.o2e_1(a, b);
   };
   protoOf(sam$kotlin_Comparator$0_26).compare = function (a, b) {
     return this.ec(a, b);
   };
   protoOf(sam$kotlin_Comparator$0_26).f3 = function () {
-    return this.m2e_1;
+    return this.o2e_1;
   };
   protoOf(sam$kotlin_Comparator$0_26).equals = function (other) {
     var tmp;
@@ -54062,16 +54175,16 @@ if (typeof String.prototype.startsWith === 'undefined') {
     return hashCode(this.f3());
   };
   function sam$kotlin_Comparator$0_27(function_0) {
-    this.n2e_1 = function_0;
+    this.p2e_1 = function_0;
   }
   protoOf(sam$kotlin_Comparator$0_27).ec = function (a, b) {
-    return this.n2e_1(a, b);
+    return this.p2e_1(a, b);
   };
   protoOf(sam$kotlin_Comparator$0_27).compare = function (a, b) {
     return this.ec(a, b);
   };
   protoOf(sam$kotlin_Comparator$0_27).f3 = function () {
-    return this.n2e_1;
+    return this.p2e_1;
   };
   protoOf(sam$kotlin_Comparator$0_27).equals = function (other) {
     var tmp;
@@ -54092,16 +54205,16 @@ if (typeof String.prototype.startsWith === 'undefined') {
     return hashCode(this.f3());
   };
   function sam$kotlin_Comparator$0_28(function_0) {
-    this.o2e_1 = function_0;
+    this.q2e_1 = function_0;
   }
   protoOf(sam$kotlin_Comparator$0_28).ec = function (a, b) {
-    return this.o2e_1(a, b);
+    return this.q2e_1(a, b);
   };
   protoOf(sam$kotlin_Comparator$0_28).compare = function (a, b) {
     return this.ec(a, b);
   };
   protoOf(sam$kotlin_Comparator$0_28).f3 = function () {
-    return this.o2e_1;
+    return this.q2e_1;
   };
   protoOf(sam$kotlin_Comparator$0_28).equals = function (other) {
     var tmp;
@@ -54159,14 +54272,14 @@ if (typeof String.prototype.startsWith === 'undefined') {
     this.j1f_1 = Regex_init_$Create$_0('^(\\d{1,2})\\.(\\d{1,2})\\.?(\\d{2}|\\d{4})?$');
     this.k1f_1 = listOf_0(['Januar', 'Februar', 'M\xE4rz', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']);
   }
-  protoOf(Uebersicht).p2e = function (heute) {
+  protoOf(Uebersicht).r2e = function (heute) {
     var wt = heute.s1p().y1();
     return wt === 7 ? heute.m1g(new Long(1, 0)) : heute.t23(toLong(wt - 1 | 0));
   };
   protoOf(Uebersicht).q1v = function (heute) {
     return heute.s1p().y1() === 7;
   };
-  protoOf(Uebersicht).q2e = function (heute) {
+  protoOf(Uebersicht).s2e = function (heute) {
     // Inline function 'kotlin.let' call
     // Inline function 'kotlin.contracts.contract' call
     // Inline function 'de.micha.dienstplan.core.Uebersicht.vorwocheSichtbar.<anonymous>' call
@@ -54174,7 +54287,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     return it === 7 || it <= 2;
   };
   protoOf(Uebersicht).o1v = function (daten, heute) {
-    return this.q2e(heute) ? daten.k26(this.p2e(heute).u23(new Long(1, 0))) : null;
+    return this.s2e(heute) ? daten.k26(this.r2e(heute).u23(new Long(1, 0))) : null;
   };
   protoOf(Uebersicht).p1v = function (daten, heute) {
     // Inline function 'kotlin.collections.map' call
@@ -54189,13 +54302,13 @@ if (typeof String.prototype.startsWith === 'undefined') {
         inductionVariable = inductionVariable + 1 | 0;
         // Inline function 'de.micha.dienstplan.core.Uebersicht.haupt.<anonymous>' call
         var it = item;
-        var tmp$ret$0 = daten.k26(Uebersicht_getInstance().p2e(heute).s1s(toLong(it)));
+        var tmp$ret$0 = daten.k26(Uebersicht_getInstance().r2e(heute).s1s(toLong(it)));
         destination.e(tmp$ret$0);
       }
        while (!(item === last));
     return destination;
   };
-  protoOf(Uebersicht).r2e = function (w) {
+  protoOf(Uebersicht).t2e = function (w) {
     var tmp;
     var tmp_0;
     if (!w.n1i()) {
@@ -54237,7 +54350,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     return tmp;
   };
   protoOf(Uebersicht).r1v = function (daten, heute) {
-    var grenze = this.p2e(heute).s1s(new Long(3, 0));
+    var grenze = this.r2e(heute).s1s(new Long(3, 0));
     // Inline function 'kotlin.collections.sortedBy' call
     // Inline function 'kotlin.collections.filter' call
     // Inline function 'kotlin.collections.filterTo' call
@@ -54247,7 +54360,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     while (tmp0_iterator.h()) {
       var element = tmp0_iterator.i();
       // Inline function 'de.micha.dienstplan.core.Uebersicht.voraus.<anonymous>' call
-      if (!element.i1g().r1q(grenze) && Uebersicht_getInstance().r2e(element)) {
+      if (!element.i1g().r1q(grenze) && Uebersicht_getInstance().t2e(element)) {
         destination.e(element);
       }
     }
@@ -54256,7 +54369,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     var tmp$ret$3 = new sam$kotlin_Comparator$0_26(tmp);
     return sortedWith(destination, tmp$ret$3);
   };
-  protoOf(Uebersicht).s2e = function (daten, heute) {
+  protoOf(Uebersicht).u2e = function (daten, heute) {
     // Inline function 'kotlin.collections.map' call
     var this_0 = plus_0(plus_0(listOfNotNull_0(this.o1v(daten, heute)), this.p1v(daten, heute)), this.r1v(daten, heute));
     // Inline function 'kotlin.collections.mapTo' call
@@ -54271,7 +54384,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     return toSet_0(destination);
   };
   protoOf(Uebersicht).s1v = function (daten, heute) {
-    var start = this.s2e(daten, heute);
+    var start = this.u2e(daten, heute);
     // Inline function 'kotlin.collections.sortedByDescending' call
     // Inline function 'kotlin.collections.filter' call
     // Inline function 'kotlin.collections.filterTo' call
@@ -54291,7 +54404,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     return sortedWith(destination, tmp$ret$3);
   };
   protoOf(Uebersicht).o1g = function (w, heute) {
-    return !w.r1f_1.equals(Status_VERBINDLICH_getInstance()) && !w.n1i() && w.i1g().r1q(this.p2e(heute));
+    return !w.r1f_1.equals(Status_VERBINDLICH_getInstance()) && !w.n1i() && w.i1g().r1q(this.r2e(heute));
   };
   protoOf(Uebersicht).n1v = function (daten, heute) {
     // Inline function 'kotlin.collections.filter' call
@@ -54308,7 +54421,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     }
     return destination;
   };
-  protoOf(Uebersicht).t2e = function (w) {
+  protoOf(Uebersicht).v2e = function (w) {
     var tmp$ret$0;
     $l$block_0: {
       // Inline function 'kotlin.collections.any' call
@@ -54337,9 +54450,9 @@ if (typeof String.prototype.startsWith === 'undefined') {
     return tmp$ret$0;
   };
   protoOf(Uebersicht).n1g = function (w, heute) {
-    return listOfNotNull([this.o1g(w, heute) ? '\uD83D\uDFE0 nicht abgeschlossen' : null, w.d1g_1 ? '\uD83D\uDCF7 digitalisiert' : null, w.e1g_1 ? '\u2714 beantragt' : null, this.t2e(w) ? '\u24C7 beim BR angemeldet' : null, w.n1i() ? 'leer' : null]);
+    return listOfNotNull([this.o1g(w, heute) ? '\uD83D\uDFE0 nicht abgeschlossen' : null, w.d1g_1 ? '\uD83D\uDCF7 digitalisiert' : null, w.e1g_1 ? '\u2714 beantragt' : null, this.v2e(w) ? '\u24C7 beim BR angemeldet' : null, w.n1i() ? 'leer' : null]);
   };
-  protoOf(Uebersicht).u2e = function (w, f, heute) {
+  protoOf(Uebersicht).w2e = function (w, f, heute) {
     var tmp;
     switch (f.j2_1) {
       case 0:
@@ -54360,7 +54473,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     }
     return tmp;
   };
-  protoOf(Uebersicht).v2e = function (daten, w, suche) {
+  protoOf(Uebersicht).x2e = function (daten, w, suche) {
     // Inline function 'kotlin.text.trim' call
     var t = toString_1(trim(isCharSequence(suche) ? suche : THROW_CCE()));
     // Inline function 'kotlin.text.isEmpty' call
@@ -54540,13 +54653,13 @@ if (typeof String.prototype.startsWith === 'undefined') {
     while (tmp0_iterator.h()) {
       var element = tmp0_iterator.i();
       // Inline function 'de.micha.dienstplan.core.Uebersicht.filtern.<anonymous>' call
-      if (Uebersicht_getInstance().u2e(element, filter, heute) && Uebersicht_getInstance().v2e(daten, element, suche)) {
+      if (Uebersicht_getInstance().w2e(element, filter, heute) && Uebersicht_getInstance().x2e(daten, element, suche)) {
         destination.e(element);
       }
     }
     return destination;
   };
-  protoOf(Uebersicht).w2e = function (w) {
+  protoOf(Uebersicht).y2e = function (w) {
     // Inline function 'kotlin.let' call
     // Inline function 'kotlin.contracts.contract' call
     // Inline function 'de.micha.dienstplan.core.Uebersicht.monatText.<anonymous>' call
@@ -54606,7 +54719,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
       while (tmp0_iterator_1.h()) {
         var element_0 = tmp0_iterator_1.i();
         // Inline function 'de.micha.dienstplan.core.Uebersicht.gruppiert.<anonymous>.<anonymous>' call
-        var key_0 = Uebersicht_getInstance().w2e(element_0);
+        var key_0 = Uebersicht_getInstance().y2e(element_0);
         // Inline function 'kotlin.collections.getOrPut' call
         var value_0 = destination_1.b2(key_0);
         var tmp_2;
@@ -54650,7 +54763,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
         inductionVariable = inductionVariable + 1 | 0;
         // Inline function 'de.micha.dienstplan.core.Uebersicht.vorlageZiele.<anonymous>' call
         var it = item;
-        var tmp$ret$0 = daten.k26(Uebersicht_getInstance().p2e(heute).s1s(toLong(it)));
+        var tmp$ret$0 = daten.k26(Uebersicht_getInstance().r2e(heute).s1s(toLong(it)));
         destination.e(tmp$ret$0);
       }
        while (!(item === last));
@@ -54737,11 +54850,11 @@ if (typeof String.prototype.startsWith === 'undefined') {
   function Urlaub() {
     this.y1n_1 = 36.0;
   }
-  protoOf(Urlaub).x2e = function (daten, ma, jahr) {
+  protoOf(Urlaub).z2e = function (daten, ma, jahr) {
     var tmp0_safe_receiver = daten.f1h_1;
     var tmp1_elvis_lhs = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.f1l_1;
     var land = tmp1_elvis_lhs == null ? Land_ST_getInstance() : tmp1_elvis_lhs;
-    var ft = Vorgaben_getInstance().y2e(jahr, land).c2();
+    var ft = Vorgaben_getInstance().a2f(jahr, land).c2();
     var set = sortedSetOf([]);
     // Inline function 'kotlin.collections.filter' call
     // Inline function 'kotlin.collections.filterTo' call
@@ -54813,7 +54926,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     }
     return toList_0(set);
   };
-  protoOf(Urlaub).z2e = function (ma, jahr) {
+  protoOf(Urlaub).b2f = function (ma, jahr) {
     var tmp0_safe_receiver = ma.s1o_1.b2(jahr);
     if (tmp0_safe_receiver == null)
       null;
@@ -54854,21 +54967,21 @@ if (typeof String.prototype.startsWith === 'undefined') {
     }
     return a;
   };
-  protoOf(Urlaub).a2f = function (daten, ma, jahr, heute) {
-    var t = this.x2e(daten, ma, jahr);
+  protoOf(Urlaub).c2f = function (daten, ma, jahr, heute) {
+    var t = this.z2e(daten, ma, jahr);
     var tmp0_elvis_lhs = ma.r1o_1.b2(jahr);
     var tmp;
     if (tmp0_elvis_lhs == null) {
       // Inline function 'kotlin.run' call
       // Inline function 'kotlin.contracts.contract' call
       // Inline function 'de.micha.dienstplan.core.Urlaub.konto.<anonymous>' call
-      var vorjahr = this.x2e(daten, ma, jahr - 1 | 0);
+      var vorjahr = this.z2e(daten, ma, jahr - 1 | 0);
       var tmp_0;
       if (vorjahr.l()) {
         tmp_0 = 0.0;
       } else {
         // Inline function 'kotlin.comparisons.maxOf' call
-        var tmp_1 = this.z2e(ma, jahr - 1 | 0);
+        var tmp_1 = this.b2f(ma, jahr - 1 | 0);
         var tmp0_elvis_lhs_0 = ma.r1o_1.b2(jahr - 1 | 0);
         var b = tmp_1 + (tmp0_elvis_lhs_0 == null ? 0.0 : tmp0_elvis_lhs_0) - vorjahr.j();
         tmp_0 = Math.max(0.0, b);
@@ -54878,7 +54991,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
       tmp = tmp0_elvis_lhs;
     }
     var uebertrag = tmp;
-    var tmp_2 = this.z2e(ma, jahr);
+    var tmp_2 = this.b2f(ma, jahr);
     var tmp_3 = t.j();
     var tmp$ret$3;
     $l$block: {
@@ -54909,7 +55022,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
   };
   protoOf(Urlaub).z1n = function (daten, ma, jahr, heute, $super) {
     heute = heute === VOID ? Companion_getInstance_32().h1f() : heute;
-    return $super === VOID ? this.a2f(daten, ma, jahr, heute) : $super.a2f.call(this, daten, ma, jahr, heute);
+    return $super === VOID ? this.c2f(daten, ma, jahr, heute) : $super.c2f.call(this, daten, ma, jahr, heute);
   };
   protoOf(Urlaub).k1w = function (daten, ma, jahr) {
     var k = this.z1n(daten, ma, jahr);
@@ -54955,16 +55068,16 @@ if (typeof String.prototype.startsWith === 'undefined') {
     return Companion_instance_34.n24(d, Companion_instance_33.l24(14, 0));
   }
   function sam$kotlin_Comparator$0_29(function_0) {
-    this.b2f_1 = function_0;
+    this.d2f_1 = function_0;
   }
   protoOf(sam$kotlin_Comparator$0_29).ec = function (a, b) {
-    return this.b2f_1(a, b);
+    return this.d2f_1(a, b);
   };
   protoOf(sam$kotlin_Comparator$0_29).compare = function (a, b) {
     return this.ec(a, b);
   };
   protoOf(sam$kotlin_Comparator$0_29).f3 = function () {
-    return this.b2f_1;
+    return this.d2f_1;
   };
   protoOf(sam$kotlin_Comparator$0_29).equals = function (other) {
     var tmp;
@@ -55036,7 +55149,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     this.r1i_1 = 'Ausgleich f\xFCr 6 Tage';
   }
   protoOf(Planung).a1u = function (daten, woche) {
-    var w = Wunschkalender_getInstance().c2f(daten, woche);
+    var w = Wunschkalender_getInstance().e2f(daten, woche);
     var tmp0_safe_receiver = daten.f1h_1;
     var tmp1_elvis_lhs = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.f1l_1;
     var land = tmp1_elvis_lhs == null ? Land_ST_getInstance() : tmp1_elvis_lhs;
@@ -55115,8 +55228,8 @@ if (typeof String.prototype.startsWith === 'undefined') {
     return w;
   };
   protoOf(Planung).s1i = function (daten, quelle, ziel) {
-    var w = this.d2f(ziel).n1z(VOID, VOID, VOID, VOID, Status_ENTWURF_getInstance(), null, VOID, VOID, VOID, VOID, VOID, VOID, VOID, VOID, VOID, VOID, false, false);
-    w = Wunschkalender_getInstance().c2f(daten, w);
+    var w = this.f2f(ziel).n1z(VOID, VOID, VOID, VOID, Status_ENTWURF_getInstance(), null, VOID, VOID, VOID, VOID, VOID, VOID, VOID, VOID, VOID, VOID, false, false);
+    w = Wunschkalender_getInstance().e2f(daten, w);
     var tmp0_safe_receiver = daten.f1h_1;
     var tmp1_elvis_lhs = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.f1l_1;
     var land = tmp1_elvis_lhs == null ? Land_ST_getInstance() : tmp1_elvis_lhs;
@@ -55185,7 +55298,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     }
     return w;
   };
-  protoOf(Planung).e2f = function (daten, maId, von, bis, heute) {
+  protoOf(Planung).g2f = function (daten, maId, von, bis, heute) {
     var tmp0_safe_receiver = daten.f1h_1;
     var tmp1_elvis_lhs = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.f1l_1;
     var land = tmp1_elvis_lhs == null ? Land_ST_getInstance() : tmp1_elvis_lhs;
@@ -55221,9 +55334,9 @@ if (typeof String.prototype.startsWith === 'undefined') {
   };
   protoOf(Planung).e1u = function (daten, maId, von, bis, heute, $super) {
     heute = heute === VOID ? Companion_getInstance_32().h1f() : heute;
-    return $super === VOID ? this.e2f(daten, maId, von, bis, heute) : $super.e2f.call(this, daten, maId, von, bis, heute);
+    return $super === VOID ? this.g2f(daten, maId, von, bis, heute) : $super.g2f.call(this, daten, maId, von, bis, heute);
   };
-  protoOf(Planung).d2f = function (woche) {
+  protoOf(Planung).f2f = function (woche) {
     var tmp0_eintraege = emptyMap();
     var tmp1_zweiteVertretung = emptyMap();
     var tmp2_meVertretung = emptyMap();
@@ -55513,16 +55626,16 @@ if (typeof String.prototype.startsWith === 'undefined') {
     return Planung_instance;
   }
   function sam$kotlin_Comparator$0_30(function_0) {
-    this.f2f_1 = function_0;
+    this.h2f_1 = function_0;
   }
   protoOf(sam$kotlin_Comparator$0_30).ec = function (a, b) {
-    return this.f2f_1(a, b);
+    return this.h2f_1(a, b);
   };
   protoOf(sam$kotlin_Comparator$0_30).compare = function (a, b) {
     return this.ec(a, b);
   };
   protoOf(sam$kotlin_Comparator$0_30).f3 = function () {
-    return this.f2f_1;
+    return this.h2f_1;
   };
   protoOf(sam$kotlin_Comparator$0_30).equals = function (other) {
     var tmp;
@@ -55769,7 +55882,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     this.f1q_1 = listOf_0([new Schicht('Fr\xFCh', '6:00', '13:30'), new Schicht('Mitte kurz', '10:00', '14:00'), new Schicht('Mitte', '10:00', '18:00'), new Schicht('Sp\xE4t', '13:15', '21:15'), new Schicht('Sp\xE4t kurz', '17:15', '21:15')]);
     this.g1q_1 = mapOf_0([to('Fr\xFCh', 'Sp\xE4t'), to('Sp\xE4t', 'Fr\xFCh'), to('Mitte kurz', 'Sp\xE4t kurz'), to('Sp\xE4t kurz', 'Mitte kurz')]);
   }
-  protoOf(Vorgaben).g2f = function (jahr) {
+  protoOf(Vorgaben).i2f = function (jahr) {
     var a = jahr % 19 | 0;
     var b = jahr / 100 | 0;
     var c = jahr % 100 | 0;
@@ -55786,8 +55899,8 @@ if (typeof String.prototype.startsWith === 'undefined') {
     var tag = ((((h + l | 0) - imul(7, m) | 0) + 114 | 0) % 31 | 0) + 1 | 0;
     return Companion_getInstance_32().i1w(jahr, monat, tag);
   };
-  protoOf(Vorgaben).y2e = function (jahr, land) {
-    var o = this.g2f(jahr);
+  protoOf(Vorgaben).a2f = function (jahr, land) {
+    var o = this.i2f(jahr);
     var m = sortedMapOf([]);
     // Inline function 'kotlin.collections.set' call
     var key = Companion_getInstance_32().i1w(jahr, 1, 1);
@@ -55895,7 +56008,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     return m;
   };
   protoOf(Vorgaben).h1q = function (d, land) {
-    return this.y2e(d.j1g_1, land).b2(d);
+    return this.a2f(d.j1g_1, land).b2(d);
   };
   protoOf(Vorgaben).g2c = function (land, jahr) {
     var tmp;
@@ -55960,7 +56073,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     return Vorgaben_instance;
   }
   function _get_$cachedSerializer__te6jhj_8($this) {
-    return $this.h2f_1.y1();
+    return $this.j2f_1.y1();
   }
   function WunschArt$Companion$_anonymous__zb71bg() {
     return createSimpleEnumSerializer('de.micha.dienstplan.core.WunschArt', values_14());
@@ -55985,7 +56098,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     Companion_instance_63 = this;
     var tmp = this;
     var tmp_0 = LazyThreadSafetyMode_PUBLICATION_getInstance();
-    tmp.h2f_1 = lazy(tmp_0, WunschArt$Companion$_anonymous__zb71bg);
+    tmp.j2f_1 = lazy(tmp_0, WunschArt$Companion$_anonymous__zb71bg);
   }
   protoOf(Companion_63).q1s = function () {
     return _get_$cachedSerializer__te6jhj_8(this);
@@ -56025,7 +56138,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     // Inline function 'kotlin.arrayOf' call
     // Inline function 'kotlin.js.unsafeCast' call
     // Inline function 'kotlin.js.asDynamic' call
-    tmp.i2f_1 = [null, null, Companion_getInstance_63().q1s()];
+    tmp.k2f_1 = [null, null, Companion_getInstance_63().q1s()];
   }
   var Companion_instance_64;
   function Companion_getInstance_64() {
@@ -56039,22 +56152,22 @@ if (typeof String.prototype.startsWith === 'undefined') {
     tmp0_serialDesc.kt('maId', false);
     tmp0_serialDesc.kt('datum', false);
     tmp0_serialDesc.kt('art', false);
-    this.j2f_1 = tmp0_serialDesc;
+    this.l2f_1 = tmp0_serialDesc;
   }
-  protoOf($serializer_15).k2f = function (encoder, value) {
-    var tmp0_desc = this.j2f_1;
+  protoOf($serializer_15).m2f = function (encoder, value) {
+    var tmp0_desc = this.l2f_1;
     var tmp1_output = encoder.wm(tmp0_desc);
-    var tmp2_cached = Companion_getInstance_64().i2f_1;
+    var tmp2_cached = Companion_getInstance_64().k2f_1;
     tmp1_output.lo(tmp0_desc, 0, value.h1r_1);
     tmp1_output.no(tmp0_desc, 1, LocalDateSer_getInstance(), value.i1r_1);
     tmp1_output.no(tmp0_desc, 2, tmp2_cached[2], value.j1r_1);
     tmp1_output.xm(tmp0_desc);
   };
   protoOf($serializer_15).ik = function (encoder, value) {
-    return this.k2f(encoder, value instanceof KalenderWunsch ? value : THROW_CCE());
+    return this.m2f(encoder, value instanceof KalenderWunsch ? value : THROW_CCE());
   };
   protoOf($serializer_15).jk = function (decoder) {
-    var tmp0_desc = this.j2f_1;
+    var tmp0_desc = this.l2f_1;
     var tmp1_flag = true;
     var tmp2_index = 0;
     var tmp3_bitMask0 = 0;
@@ -56062,7 +56175,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     var tmp5_local1 = null;
     var tmp6_local2 = null;
     var tmp7_input = decoder.wm(tmp0_desc);
-    var tmp8_cached = Companion_getInstance_64().i2f_1;
+    var tmp8_cached = Companion_getInstance_64().k2f_1;
     if (tmp7_input.mn()) {
       tmp4_local0 = tmp7_input.gn(tmp0_desc, 0);
       tmp3_bitMask0 = tmp3_bitMask0 | 1;
@@ -56097,10 +56210,10 @@ if (typeof String.prototype.startsWith === 'undefined') {
     return KalenderWunsch_init_$Create$(tmp3_bitMask0, tmp4_local0, tmp5_local1, tmp6_local2, null);
   };
   protoOf($serializer_15).hk = function () {
-    return this.j2f_1;
+    return this.l2f_1;
   };
   protoOf($serializer_15).zt = function () {
-    var tmp0_cached = Companion_getInstance_64().i2f_1;
+    var tmp0_cached = Companion_getInstance_64().k2f_1;
     // Inline function 'kotlin.arrayOf' call
     // Inline function 'kotlin.js.unsafeCast' call
     // Inline function 'kotlin.js.asDynamic' call
@@ -56114,7 +56227,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
   }
   function KalenderWunsch_init_$Init$(seen0, maId, datum, art, serializationConstructorMarker, $this) {
     if (!(7 === (7 & seen0))) {
-      throwMissingFieldException(seen0, 7, $serializer_getInstance_15().j2f_1);
+      throwMissingFieldException(seen0, 7, $serializer_getInstance_15().l2f_1);
     }
     $this.h1r_1 = maId;
     $this.i1r_1 = datum;
@@ -56254,7 +56367,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     this.a1n_1 = unleserlich;
     this.b1n_1 = jahrGeschaetzt;
   }
-  protoOf(WunschFoto).l2f = function () {
+  protoOf(WunschFoto).n2f = function () {
     // Inline function 'kotlin.collections.mutableListOf' call
     var r = ArrayList_init_$Create$();
     var m = this.w1m_1.x23(1);
@@ -56348,12 +56461,12 @@ if (typeof String.prototype.startsWith === 'undefined') {
     return vorher[b.length];
   }
   function Sym(art, sicher) {
-    this.m2f_1 = art;
-    this.n2f_1 = sicher;
+    this.o2f_1 = art;
+    this.p2f_1 = sicher;
   }
   function Gelesen(syms, unlesbar) {
-    this.o2f_1 = syms;
-    this.p2f_1 = unlesbar;
+    this.q2f_1 = syms;
+    this.r2f_1 = unlesbar;
   }
   function lesenText($this, roh) {
     // Inline function 'kotlin.text.trim' call
@@ -56527,7 +56640,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
       var element_16 = tmp0_iterator.i();
       var tmp_4 = sum;
       // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesenText.<anonymous>' call
-      sum = tmp_4 + (element_16.m2f_1.equals(WunschArt_BS_getInstance()) || element_16.m2f_1.equals(WunschArt_BR_getInstance()) || element_16.m2f_1.equals(WunschArt_SEMINAR_getInstance()) ? 2 : 1) | 0;
+      sum = tmp_4 + (element_16.o2f_1.equals(WunschArt_BS_getInstance()) || element_16.o2f_1.equals(WunschArt_BR_getInstance()) || element_16.o2f_1.equals(WunschArt_SEMINAR_getInstance()) ? 2 : 1) | 0;
     }
     var fremd = tmp_3 - sum | 0;
     if (r.l())
@@ -56543,7 +56656,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
       while (tmp0_iterator_0.h()) {
         var item = tmp0_iterator_0.i();
         // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesenText.<anonymous>' call
-        var tmp$ret$17 = new Sym(item.m2f_1, false);
+        var tmp$ret$17 = new Sym(item.o2f_1, false);
         destination_0.e(tmp$ret$17);
       }
       tmp_5 = destination_0;
@@ -56553,13 +56666,13 @@ if (typeof String.prototype.startsWith === 'undefined') {
     return new Gelesen(tmp_5, false);
   }
   function Pkt_0(t, cx, cy) {
-    this.q2f_1 = t;
-    this.r2f_1 = cx;
-    this.s2f_1 = cy;
+    this.s2f_1 = t;
+    this.t2f_1 = cx;
+    this.u2f_1 = cy;
   }
   function Kette(werte, teile) {
-    this.t2f_1 = werte;
-    this.u2f_1 = teile;
+    this.v2f_1 = werte;
+    this.w2f_1 = teile;
   }
   function zahlenTeilen($this, t) {
     // Inline function 'kotlin.text.trim' call
@@ -56754,7 +56867,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
       // Inline function 'kotlin.collections.plusAssign' call
       r.e(k);
       // Inline function 'kotlin.collections.map' call
-      var this_0 = k.u2f_1;
+      var this_0 = k.w2f_1;
       // Inline function 'kotlin.collections.mapTo' call
       var destination_2 = ArrayList_init_$Create$_0(collectionSizeOrDefault(this_0, 10));
       var tmp0_iterator_2 = this_0.g();
@@ -56766,7 +56879,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
       }
       var y = average(destination_2);
       // Inline function 'kotlin.collections.map' call
-      var this_1 = k.u2f_1;
+      var this_1 = k.w2f_1;
       // Inline function 'kotlin.collections.mapTo' call
       var destination_3 = ArrayList_init_$Create$_0(collectionSizeOrDefault(this_1, 10));
       var tmp0_iterator_3 = this_1.g();
@@ -56777,11 +56890,11 @@ if (typeof String.prototype.startsWith === 'undefined') {
         destination_3.e(tmp$ret$23);
       }
       var h_0 = average(destination_3);
-      var x0 = first(k.u2f_1).v1l_1 - 2 * h_0;
+      var x0 = first(k.w2f_1).v1l_1 - 2 * h_0;
       // Inline function 'kotlin.let' call
       // Inline function 'kotlin.contracts.contract' call
       // Inline function 'de.micha.dienstplan.core.Wunschkalender.ketten.<anonymous>' call
-      var it = last(k.u2f_1);
+      var it = last(k.w2f_1);
       var x1 = it.v1l_1 + it.y1l_1 + 2 * h_0;
       // Inline function 'kotlin.collections.filterIndexed' call
       // Inline function 'kotlin.collections.filterIndexedTo' call
@@ -56829,37 +56942,37 @@ if (typeof String.prototype.startsWith === 'undefined') {
     monat = monat === VOID ? 0 : monat;
     jahr = jahr === VOID ? 0 : jahr;
     punkte = punkte === VOID ? 0 : punkte;
-    this.v2f_1 = kette;
-    this.w2f_1 = a;
-    this.x2f_1 = b;
-    this.y2f_1 = y;
-    this.z2f_1 = h;
-    this.a2g_1 = cs;
-    this.b2g_1 = sn;
-    this.c2g_1 = monat;
-    this.d2g_1 = jahr;
-    this.e2g_1 = punkte;
+    this.x2f_1 = kette;
+    this.y2f_1 = a;
+    this.z2f_1 = b;
+    this.a2g_1 = y;
+    this.b2g_1 = h;
+    this.c2g_1 = cs;
+    this.d2g_1 = sn;
+    this.e2g_1 = monat;
+    this.f2g_1 = jahr;
+    this.g2g_1 = punkte;
   }
-  protoOf(Block).f2g = function (t) {
-    return new Pkt_0(t, t.c25() * this.a2g_1 + t.w1l_1 * this.b2g_1, -t.c25() * this.b2g_1 + t.w1l_1 * this.a2g_1);
+  protoOf(Block).h2g = function (t) {
+    return new Pkt_0(t, t.c25() * this.c2g_1 + t.w1l_1 * this.d2g_1, -t.c25() * this.d2g_1 + t.w1l_1 * this.c2g_1);
   };
-  protoOf(Block).g2g = function (tag) {
-    return this.w2f_1 + this.x2f_1 * tag;
+  protoOf(Block).i2g = function (tag) {
+    return this.y2f_1 + this.z2f_1 * tag;
   };
-  protoOf(Block).h2g = function () {
-    return Companion_getInstance_32().i1w(this.d2g_1, this.c2g_1, 1).s23();
+  protoOf(Block).j2g = function () {
+    return Companion_getInstance_32().i1w(this.f2g_1, this.e2g_1, 1).s23();
   };
   function sam$kotlin_Comparator$0_31(function_0) {
-    this.i2g_1 = function_0;
+    this.k2g_1 = function_0;
   }
   protoOf(sam$kotlin_Comparator$0_31).ec = function (a, b) {
-    return this.i2g_1(a, b);
+    return this.k2g_1(a, b);
   };
   protoOf(sam$kotlin_Comparator$0_31).compare = function (a, b) {
     return this.ec(a, b);
   };
   protoOf(sam$kotlin_Comparator$0_31).f3 = function () {
-    return this.i2g_1;
+    return this.k2g_1;
   };
   protoOf(sam$kotlin_Comparator$0_31).equals = function (other) {
     var tmp;
@@ -56880,16 +56993,16 @@ if (typeof String.prototype.startsWith === 'undefined') {
     return hashCode(this.f3());
   };
   function sam$kotlin_Comparator$0_32(function_0) {
-    this.j2g_1 = function_0;
+    this.l2g_1 = function_0;
   }
   protoOf(sam$kotlin_Comparator$0_32).ec = function (a, b) {
-    return this.j2g_1(a, b);
+    return this.l2g_1(a, b);
   };
   protoOf(sam$kotlin_Comparator$0_32).compare = function (a, b) {
     return this.ec(a, b);
   };
   protoOf(sam$kotlin_Comparator$0_32).f3 = function () {
-    return this.j2g_1;
+    return this.l2g_1;
   };
   protoOf(sam$kotlin_Comparator$0_32).equals = function (other) {
     var tmp;
@@ -56942,7 +57055,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     // Inline function 'kotlin.comparisons.compareValuesBy' call
     // Inline function 'de.micha.dienstplan.core.Wunschkalender.ketten.<anonymous>' call
     // Inline function 'kotlin.collections.map' call
-    var this_0 = a.u2f_1;
+    var this_0 = a.w2f_1;
     // Inline function 'kotlin.collections.mapTo' call
     var destination = ArrayList_init_$Create$_0(collectionSizeOrDefault(this_0, 10));
     var tmp0_iterator = this_0.g();
@@ -56955,7 +57068,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     var tmp = average(destination);
     // Inline function 'de.micha.dienstplan.core.Wunschkalender.ketten.<anonymous>' call
     // Inline function 'kotlin.collections.map' call
-    var this_1 = b.u2f_1;
+    var this_1 = b.w2f_1;
     // Inline function 'kotlin.collections.mapTo' call
     var destination_0 = ArrayList_init_$Create$_0(collectionSizeOrDefault(this_1, 10));
     var tmp0_iterator_0 = this_1.g();
@@ -56971,31 +57084,31 @@ if (typeof String.prototype.startsWith === 'undefined') {
   function Wunschkalender$lesen$lambda(a, b) {
     // Inline function 'kotlin.comparisons.compareValuesBy' call
     // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesen.<anonymous>' call
-    var tmp = a.y2f_1;
+    var tmp = a.a2g_1;
     // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesen.<anonymous>' call
-    var tmp$ret$1 = b.y2f_1;
+    var tmp$ret$1 = b.a2g_1;
     return compareValues(tmp, tmp$ret$1);
   }
   function Wunschkalender$lesen$Roh(reihe, tag, block, g, text) {
-    this.k2g_1 = reihe;
-    this.l2g_1 = tag;
-    this.m2g_1 = block;
-    this.n2g_1 = g;
-    this.o2g_1 = text;
+    this.m2g_1 = reihe;
+    this.n2g_1 = tag;
+    this.o2g_1 = block;
+    this.p2g_1 = g;
+    this.q2g_1 = text;
   }
   function Wunschkalender$lesen$lambda_0(a, b) {
     // Inline function 'kotlin.comparisons.compareValuesBy' call
     // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesen.<anonymous>' call
-    var tmp = a.s2f_1;
+    var tmp = a.u2f_1;
     // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesen.<anonymous>' call
-    var tmp$ret$1 = b.s2f_1;
+    var tmp$ret$1 = b.u2f_1;
     return compareValues(tmp, tmp$ret$1);
   }
   function Wunschkalender$lesen$lambda_1(it) {
-    return it.n2g_1.o2f_1.k(0).n2f_1;
+    return it.p2g_1.q2f_1.k(0).p2f_1;
   }
   function Wunschkalender$lesen$lambda_2(it) {
-    return it.n2g_1.o2f_1.k(0).m2f_1.a1r_1;
+    return it.p2g_1.q2f_1.k(0).o2f_1.a1r_1;
   }
   function Wunschkalender$lesen$lambda_3(it) {
     return it.v1p_1;
@@ -57070,7 +57183,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     var tmp0_safe_receiver = tmp$ret$1;
     return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.j1r_1;
   };
-  protoOf(Wunschkalender).p2g = function (art, d, heute) {
+  protoOf(Wunschkalender).r2g = function (art, d, heute) {
     switch (art.j2_1) {
       case 4:
         return new Eintrag('K', VOID, VOID, VOID, VOID, VOID, d.d1q(heute) ? 'geplant krank' : null);
@@ -57209,7 +57322,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
             tmp_3 = tmp2_elvis_lhs;
           }
           var art = tmp_3;
-          var tmp3_elvis_lhs = art.equals(WunschArt_URLAUB_getInstance()) ? daten.c26(ma.a1o_1, d) ? null : new Eintrag('U') : art.a1r_1 ? this.p2g(art, d, heute) : art.equals(WunschArt_FREI_getInstance()) && mitFrei ? new Eintrag('/', VOID, VOID, VOID, VOID, VOID, VOID, VOID, VOID, VOID, VOID, VOID, 'Wunsch') : null;
+          var tmp3_elvis_lhs = art.equals(WunschArt_URLAUB_getInstance()) ? daten.c26(ma.a1o_1, d) ? null : new Eintrag('U') : art.a1r_1 ? this.r2g(art, d, heute) : art.equals(WunschArt_FREI_getInstance()) && mitFrei ? new Eintrag('/', VOID, VOID, VOID, VOID, VOID, VOID, VOID, VOID, VOID, VOID, VOID, 'Wunsch') : null;
           var tmp_4;
           if (tmp3_elvis_lhs == null) {
             continue $l$loop_2;
@@ -57223,12 +57336,12 @@ if (typeof String.prototype.startsWith === 'undefined') {
     }
     return w;
   };
-  protoOf(Wunschkalender).c2f = function (daten, woche, heute, mitFrei, $super) {
+  protoOf(Wunschkalender).e2f = function (daten, woche, heute, mitFrei, $super) {
     heute = heute === VOID ? Companion_getInstance_32().h1f() : heute;
     mitFrei = mitFrei === VOID ? true : mitFrei;
     return $super === VOID ? this.x25(daten, woche, heute, mitFrei) : $super.x25.call(this, daten, woche, heute, mitFrei);
   };
-  protoOf(Wunschkalender).q2g = function (art) {
+  protoOf(Wunschkalender).s2g = function (art) {
     var tmp;
     switch (art.j2_1) {
       case 0:
@@ -57383,7 +57496,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
         destination_1.e(element_1);
       }
     }
-    d = tmp_1.x1h(VOID, VOID, VOID, VOID, VOID, plus_0(tmp_2, this.r2g(tmp_3, destination_1, idPrefix)));
+    d = tmp_1.x1h(VOID, VOID, VOID, VOID, VOID, plus_0(tmp_2, this.t2g(tmp_3, destination_1, idPrefix)));
     var _iterator__ex2g4s = toList_0(d.h1h_1.d2()).g();
     $l$loop_0: while (_iterator__ex2g4s.h()) {
       var w = _iterator__ex2g4s.i();
@@ -57397,7 +57510,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     }
     return d;
   };
-  protoOf(Wunschkalender).r2g = function (daten, tage, idPrefix) {
+  protoOf(Wunschkalender).t2g = function (daten, tage, idPrefix) {
     var tmp0_safe_receiver = daten.f1h_1;
     var tmp1_elvis_lhs = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.f1l_1;
     var land = tmp1_elvis_lhs == null ? Land_ST_getInstance() : tmp1_elvis_lhs;
@@ -57509,7 +57622,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     }
     return r;
   };
-  protoOf(Wunschkalender).s2g = function (text) {
+  protoOf(Wunschkalender).u2g = function (text) {
     var w = replace_0(wort_0(this, text), 'ae', '\xE4');
     if (w.length < 3)
       return null;
@@ -57537,8 +57650,8 @@ if (typeof String.prototype.startsWith === 'undefined') {
         var index = inductionVariable;
         inductionVariable = inductionVariable + 1 | 0;
         // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesenAlle.<anonymous>' call
-        var r = Wunschkalender_getInstance().t2g(t, mitarbeiter, zuordnung, heute);
-        if (!(r == null) && (bestes == null || (r.z1m_1.j() + imul(3, r.l2f().j()) | 0) > (ensureNotNull(bestes).z1m_1.j() + imul(3, ensureNotNull(bestes).l2f().j()) | 0)))
+        var r = Wunschkalender_getInstance().v2g(t, mitarbeiter, zuordnung, heute);
+        if (!(r == null) && (bestes == null || (r.z1m_1.j() + imul(3, r.n2f().j()) | 0) > (ensureNotNull(bestes).z1m_1.j() + imul(3, ensureNotNull(bestes).n2f().j()) | 0)))
           bestes = r;
         t = FotoLesen_getInstance().f29(t);
       }
@@ -57568,7 +57681,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
        while (inductionVariable < last);
     return destination.toString();
   };
-  protoOf(Wunschkalender).t2g = function (teile, mitarbeiter, zuordnung, heute) {
+  protoOf(Wunschkalender).v2g = function (teile, mitarbeiter, zuordnung, heute) {
     var ks = ketten(this, teile);
     if (ks.l())
       return null;
@@ -57585,7 +57698,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
       $l$block_0: {
         // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesen.<anonymous>' call
         // Inline function 'kotlin.collections.map' call
-        var this_0 = element.u2f_1;
+        var this_0 = element.w2f_1;
         // Inline function 'kotlin.collections.mapTo' call
         var destination_0 = ArrayList_init_$Create$_0(collectionSizeOrDefault(this_0, 10));
         var tmp0_iterator_0 = this_0.g();
@@ -57597,7 +57710,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
         }
         var xs = destination_0;
         // Inline function 'kotlin.collections.map' call
-        var this_1 = element.u2f_1;
+        var this_1 = element.w2f_1;
         // Inline function 'kotlin.collections.mapTo' call
         var destination_1 = ArrayList_init_$Create$_0(collectionSizeOrDefault(this_1, 10));
         var tmp0_iterator_1 = this_1.g();
@@ -57649,7 +57762,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
         // Inline function 'kotlin.math.sin' call
         var sn = Math.sin(w);
         // Inline function 'kotlin.collections.map' call
-        var this_2 = element.u2f_1;
+        var this_2 = element.w2f_1;
         // Inline function 'kotlin.collections.mapTo' call
         var destination_2 = ArrayList_init_$Create$_0(collectionSizeOrDefault(this_2, 10));
         var tmp0_iterator_3 = this_2.g();
@@ -57661,7 +57774,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
         }
         var gx = destination_2;
         // Inline function 'kotlin.collections.map' call
-        var this_3 = element.u2f_1;
+        var this_3 = element.w2f_1;
         // Inline function 'kotlin.collections.mapTo' call
         var destination_3 = ArrayList_init_$Create$_0(collectionSizeOrDefault(this_3, 10));
         var tmp0_iterator_4 = this_3.g();
@@ -57673,7 +57786,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
         }
         var gy = destination_3;
         // Inline function 'kotlin.collections.map' call
-        var this_4 = element.t2f_1;
+        var this_4 = element.v2f_1;
         // Inline function 'kotlin.collections.mapTo' call
         var destination_4 = ArrayList_init_$Create$_0(collectionSizeOrDefault(this_4, 10));
         var tmp0_iterator_5 = this_4.g();
@@ -57733,7 +57846,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
         var tmp_5 = b;
         var tmp_6 = average(gy);
         // Inline function 'kotlin.collections.map' call
-        var this_5 = element.u2f_1;
+        var this_5 = element.w2f_1;
         // Inline function 'kotlin.collections.mapTo' call
         var destination_6 = ArrayList_init_$Create$_0(collectionSizeOrDefault(this_5, 10));
         var tmp0_iterator_8 = this_5.g();
@@ -57766,7 +57879,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
       var bi = index;
       index = index + 1 | 0;
       var bl = iterator.i();
-      var oben = bi > 0 ? bloecke.k(bi - 1 | 0).y2f_1 : -Infinity;
+      var oben = bi > 0 ? bloecke.k(bi - 1 | 0).a2g_1 : -Infinity;
       // Inline function 'kotlin.collections.map' call
       // Inline function 'kotlin.collections.mapTo' call
       var destination_7 = ArrayList_init_$Create$_0(collectionSizeOrDefault(teile, 10));
@@ -57774,12 +57887,12 @@ if (typeof String.prototype.startsWith === 'undefined') {
       while (tmp0_iterator_9.h()) {
         var item_6 = tmp0_iterator_9.i();
         // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesen.<anonymous>' call
-        var tmp$ret$38 = bl.f2g(item_6);
+        var tmp$ret$38 = bl.h2g(item_6);
         destination_7.e(tmp$ret$38);
       }
       var pk = destination_7;
-      var links = bl.g2g(1) - bl.x2f_1;
-      var rechts = bl.g2g(31) + bl.x2f_1;
+      var links = bl.i2g(1) - bl.z2f_1;
+      var rechts = bl.i2g(31) + bl.z2f_1;
       // Inline function 'kotlin.collections.mapNotNull' call
       // Inline function 'kotlin.collections.filter' call
       // Inline function 'kotlin.collections.filterTo' call
@@ -57791,22 +57904,22 @@ if (typeof String.prototype.startsWith === 'undefined') {
         var tmp_8;
         var tmp_9;
         var tmp_10;
-        if (element_4.s2f_1 < bl.y2f_1) {
+        if (element_4.u2f_1 < bl.a2g_1) {
           // Inline function 'kotlin.math.max' call
-          var a_0 = oben + 2 * bl.z2f_1;
-          var b_0 = bl.y2f_1 - 8 * bl.x2f_1;
+          var a_0 = oben + 2 * bl.b2g_1;
+          var b_0 = bl.a2g_1 - 8 * bl.z2f_1;
           var tmp$ret$41 = Math.max(a_0, b_0);
-          tmp_10 = element_4.s2f_1 > tmp$ret$41;
+          tmp_10 = element_4.u2f_1 > tmp$ret$41;
         } else {
           tmp_10 = false;
         }
         if (tmp_10) {
-          tmp_9 = element_4.r2f_1 > links - 6 * bl.x2f_1;
+          tmp_9 = element_4.t2f_1 > links - 6 * bl.z2f_1;
         } else {
           tmp_9 = false;
         }
         if (tmp_9) {
-          tmp_8 = element_4.r2f_1 < rechts;
+          tmp_8 = element_4.t2f_1 < rechts;
         } else {
           tmp_8 = false;
         }
@@ -57822,7 +57935,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
         var element_5 = tmp0_iterator_11.i();
         // Inline function 'kotlin.collections.mapNotNullTo.<anonymous>' call
         // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesen.<anonymous>' call
-        var tmp0_safe_receiver_0 = Wunschkalender_getInstance().s2g(element_5.q2f_1.u1l_1);
+        var tmp0_safe_receiver_0 = Wunschkalender_getInstance().u2g(element_5.s2f_1.u1l_1);
         if (tmp0_safe_receiver_0 == null)
           null;
         else {
@@ -57837,7 +57950,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
       var _iterator__ex2g4s = pk.g();
       $l$loop_1: while (_iterator__ex2g4s.h()) {
         var p = _iterator__ex2g4s.i();
-        var tmp0_elvis_lhs = this.t1m_1.b2(wort_0(this, p.q2f_1.u1l_1));
+        var tmp0_elvis_lhs = this.t1m_1.b2(wort_0(this, p.s2f_1.u1l_1));
         var tmp_11;
         if (tmp0_elvis_lhs == null) {
           continue $l$loop_1;
@@ -57845,25 +57958,25 @@ if (typeof String.prototype.startsWith === 'undefined') {
           tmp_11 = tmp0_elvis_lhs;
         }
         var tw = tmp_11;
-        if (p.s2f_1 >= bl.y2f_1 - 0.3 * bl.z2f_1 || p.s2f_1 < bl.y2f_1 - 3.5 * bl.z2f_1)
+        if (p.u2f_1 >= bl.a2g_1 - 0.3 * bl.b2g_1 || p.u2f_1 < bl.a2g_1 - 3.5 * bl.b2g_1)
           continue $l$loop_1;
         // Inline function 'kotlin.math.roundToInt' call
-        var this_6 = (p.r2f_1 - bl.w2f_1) / bl.x2f_1;
+        var this_6 = (p.t2f_1 - bl.y2f_1) / bl.z2f_1;
         var tag = roundToInt(this_6);
         var tmp_12;
         if (!(1 <= tag ? tag <= 31 : false)) {
           tmp_12 = true;
         } else {
           // Inline function 'kotlin.math.abs' call
-          var x = bl.g2g(tag) - p.r2f_1;
-          tmp_12 = Math.abs(x) > 0.45 * bl.x2f_1;
+          var x = bl.i2g(tag) - p.t2f_1;
+          tmp_12 = Math.abs(x) > 0.45 * bl.z2f_1;
         }
         if (tmp_12)
           continue $l$loop_1;
         // Inline function 'kotlin.collections.set' call
         wt.f2(tag, tw);
       }
-      var maxTag = max(bl.v2f_1.t2f_1);
+      var maxTag = max(bl.x2f_1.v2f_1);
       var best = null;
       var bestAbstand = 2147483647;
       var inductionVariable_1 = heute.j1g_1 - 1 | 0;
@@ -57914,9 +58027,9 @@ if (typeof String.prototype.startsWith === 'undefined') {
         tmp_13 = tmp1_elvis_lhs;
       }
       var b_1 = tmp_13;
-      bl.d2g_1 = b_1.yh_1;
-      bl.c2g_1 = b_1.zh_1;
-      bl.e2g_1 = b_1.ai_1;
+      bl.f2g_1 = b_1.yh_1;
+      bl.e2g_1 = b_1.zh_1;
+      bl.g2g_1 = b_1.ai_1;
     }
     var tmp$ret$59;
     $l$block_2: {
@@ -57929,7 +58042,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
       while (tmp0_iterator_12.h()) {
         var element_6 = tmp0_iterator_12.i();
         // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesen.<anonymous>' call
-        if (element_6.nd_1.e2g_1 >= 4) {
+        if (element_6.nd_1.g2g_1 >= 4) {
           destination_10.e(element_6);
         }
       }
@@ -57944,11 +58057,11 @@ if (typeof String.prototype.startsWith === 'undefined') {
         break $l$block_2;
       }
       // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesen.<anonymous>' call
-      var maxValue = maxElem.nd_1.e2g_1;
+      var maxValue = maxElem.nd_1.g2g_1;
       do {
         var e = iterator_0.i();
         // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesen.<anonymous>' call
-        var v = e.nd_1.e2g_1;
+        var v = e.nd_1.g2g_1;
         if (compareTo_0(maxValue, v) < 0) {
           maxElem = e;
           maxValue = v;
@@ -57966,13 +58079,13 @@ if (typeof String.prototype.startsWith === 'undefined') {
         var i = index_0;
         index_0 = index_0 + 1 | 0;
         var bl_0 = iterator_1.i();
-        if (bl_0.e2g_1 >= 4)
+        if (bl_0.g2g_1 >= 4)
           continue $l$loop_4;
-        var d = Companion_getInstance_32().i1w(sicherer.nd_1.d2g_1, sicherer.nd_1.c2g_1, 1).v23(toLong(i - sicherer.md_1 | 0));
-        if (max(bl_0.v2f_1.t2f_1) <= d.s23()) {
-          bl_0.d2g_1 = d.j1g_1;
-          bl_0.c2g_1 = d.k1g_1;
-          geschaetzt = geschaetzt || bl_0.e2g_1 < 2;
+        var d = Companion_getInstance_32().i1w(sicherer.nd_1.f2g_1, sicherer.nd_1.e2g_1, 1).v23(toLong(i - sicherer.md_1 | 0));
+        if (max(bl_0.x2f_1.v2f_1) <= d.s23()) {
+          bl_0.f2g_1 = d.j1g_1;
+          bl_0.e2g_1 = d.k1g_1;
+          geschaetzt = geschaetzt || bl_0.g2g_1 < 2;
         }
       }
     } else
@@ -57984,7 +58097,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     while (tmp0_iterator_13.h()) {
       var element_7 = tmp0_iterator_13.i();
       // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesen.<anonymous>' call
-      var containsArg = element_7.c2g_1;
+      var containsArg = element_7.e2g_1;
       if (1 <= containsArg ? containsArg <= 12 : false) {
         destination_11.e(element_7);
       }
@@ -58011,7 +58124,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
         var next = iterator_2.i();
         // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesen.<anonymous>' call
         var p_1 = current;
-        var tmp$ret$69 = next.y2f_1 - p_1.y2f_1;
+        var tmp$ret$69 = next.a2g_1 - p_1.a2g_1;
         result.e(tmp$ret$69);
         current = next;
       }
@@ -58033,7 +58146,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
       index_1 = index_1 + 1 | 0;
       var bl_1 = iterator_3.i();
       var tmp2_safe_receiver = getOrNull_0(gueltig, bi_0 + 1 | 0);
-      var naechster = tmp2_safe_receiver == null ? null : tmp2_safe_receiver.y2f_1;
+      var naechster = tmp2_safe_receiver == null ? null : tmp2_safe_receiver.a2g_1;
       // Inline function 'kotlin.collections.map' call
       // Inline function 'kotlin.collections.mapTo' call
       var destination_12 = ArrayList_init_$Create$_0(collectionSizeOrDefault(teile, 10));
@@ -58041,13 +58154,13 @@ if (typeof String.prototype.startsWith === 'undefined') {
       while (tmp0_iterator_14.h()) {
         var item_7 = tmp0_iterator_14.i();
         // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesen.<anonymous>' call
-        var tmp$ret$71 = bl_1.f2g(item_7);
+        var tmp$ret$71 = bl_1.h2g(item_7);
         destination_12.e(tmp$ret$71);
       }
       var pk_0 = destination_12;
-      var links_0 = bl_1.g2g(1) - 0.55 * bl_1.x2f_1;
-      var rechts_0 = bl_1.g2g(bl_1.h2g()) + 0.55 * bl_1.x2f_1;
-      var ende = !(naechster == null) ? naechster - 3.2 * bl_1.z2f_1 : !isNaN_1(blockHoehe) ? bl_1.y2f_1 + blockHoehe - 3.2 * bl_1.z2f_1 : bl_1.y2f_1 + 40.0 * bl_1.z2f_1;
+      var links_0 = bl_1.i2g(1) - 0.55 * bl_1.z2f_1;
+      var rechts_0 = bl_1.i2g(bl_1.j2g()) + 0.55 * bl_1.z2f_1;
+      var ende = !(naechster == null) ? naechster - 3.2 * bl_1.b2g_1 : !isNaN_1(blockHoehe) ? bl_1.a2g_1 + blockHoehe - 3.2 * bl_1.b2g_1 : bl_1.a2g_1 + 40.0 * bl_1.b2g_1;
       // Inline function 'kotlin.collections.sortedBy' call
       // Inline function 'kotlin.collections.filter' call
       // Inline function 'kotlin.collections.filter' call
@@ -58057,7 +58170,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
       while (tmp0_iterator_15.h()) {
         var element_8 = tmp0_iterator_15.i();
         // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesen.<anonymous>' call
-        if (element_8.r2f_1 < links_0 - 0.2 * bl_1.x2f_1 && element_8.r2f_1 > links_0 - 14.0 * bl_1.x2f_1 && element_8.s2f_1 > bl_1.y2f_1 + 0.6 * bl_1.z2f_1 && element_8.s2f_1 < ende) {
+        if (element_8.t2f_1 < links_0 - 0.2 * bl_1.z2f_1 && element_8.t2f_1 > links_0 - 14.0 * bl_1.z2f_1 && element_8.u2f_1 > bl_1.a2g_1 + 0.6 * bl_1.b2g_1 && element_8.u2f_1 < ende) {
           destination_13.e(element_8);
         }
       }
@@ -58070,7 +58183,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
         var tmp_15;
         // Inline function 'kotlin.text.count' call
         var count = 0;
-        var indexedObject = wort_0(Wunschkalender_getInstance(), element_9.q2f_1.u1l_1);
+        var indexedObject = wort_0(Wunschkalender_getInstance(), element_9.s2f_1.u1l_1);
         var inductionVariable_3 = 0;
         while (inductionVariable_3 < charSequenceLength(indexedObject)) {
           var element_10 = charSequenceGet(indexedObject, inductionVariable_3);
@@ -58081,7 +58194,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
           }
         }
         if (count >= 3) {
-          tmp_15 = !setOf_0(['name', 'mitarbeiter', 'namemitarbeiter']).r(wort_0(Wunschkalender_getInstance(), element_9.q2f_1.u1l_1));
+          tmp_15 = !setOf_0(['name', 'mitarbeiter', 'namemitarbeiter']).r(wort_0(Wunschkalender_getInstance(), element_9.s2f_1.u1l_1));
         } else {
           tmp_15 = false;
         }
@@ -58100,7 +58213,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
       while (tmp0_iterator_17.h()) {
         var element_11 = tmp0_iterator_17.i();
         // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesen.<anonymous>' call
-        if (element_11.r2f_1 >= links_0 - 0.3 * bl_1.x2f_1 && element_11.r2f_1 <= rechts_0 && element_11.s2f_1 > bl_1.y2f_1 + 0.6 * bl_1.z2f_1 && element_11.s2f_1 < ende) {
+        if (element_11.t2f_1 >= links_0 - 0.3 * bl_1.z2f_1 && element_11.t2f_1 <= rechts_0 && element_11.u2f_1 > bl_1.a2g_1 + 0.6 * bl_1.b2g_1 && element_11.u2f_1 < ende) {
           destination_15.e(element_11);
         }
       }
@@ -58118,7 +58231,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
         while (tmp0_iterator_18.h()) {
           var item_8 = tmp0_iterator_18.i();
           // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesen.<anonymous>' call
-          var tmp$ret$87 = item_8.s2f_1;
+          var tmp$ret$87 = item_8.u2f_1;
           destination_16.e(tmp$ret$87);
         }
         var iterator_4 = destination_16.g();
@@ -58145,7 +58258,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
       while (tmp0_iterator_19.h()) {
         var element_12 = tmp0_iterator_19.i();
         // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesen.<anonymous>' call
-        if (element_12 > 0.7 * bl_1.z2f_1 && element_12 < 4.0 * bl_1.z2f_1) {
+        if (element_12 > 0.7 * bl_1.b2g_1 && element_12 < 4.0 * bl_1.b2g_1) {
           destination_17.e(element_12);
         }
       }
@@ -58155,10 +58268,10 @@ if (typeof String.prototype.startsWith === 'undefined') {
       if (!diffs.l()) {
         tmp_17 = diffs.k(diffs.j() / 2 | 0);
       } else {
-        tmp_17 = 1.6 * bl_1.z2f_1;
+        tmp_17 = 1.6 * bl_1.b2g_1;
       }
       var s = tmp_17;
-      var basis = bl_1.y2f_1 + 0.5 * bl_1.z2f_1;
+      var basis = bl_1.a2g_1 + 0.5 * bl_1.b2g_1;
       var bestOff = 0.0;
       var bestFehler = 3.4028235E38;
       var inductionVariable_4 = -10;
@@ -58174,7 +58287,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
             var element_13 = tmp0_iterator_20.i();
             var tmp_18 = sum_3;
             // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesen.<anonymous>' call
-            var r = (element_13.s2f_1 - basis - off) / s;
+            var r = (element_13.u2f_1 - basis - off) / s;
             // Inline function 'kotlin.math.floor' call
             var m_0 = r - Math.floor(r) - 0.5;
             sum_3 = tmp_18 + m_0 * m_0;
@@ -58190,7 +58303,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
       var _iterator__ex2g4s_1 = namen_0.g();
       while (_iterator__ex2g4s_1.h()) {
         var p_2 = _iterator__ex2g4s_1.i();
-        var r_0 = lesen$reiheVon(basis, s, p_2.s2f_1, bestOff);
+        var r_0 = lesen$reiheVon(basis, s, p_2.u2f_1, bestOff);
         if (0 <= r_0 ? r_0 <= maxReihe : false) {
           // Inline function 'kotlin.collections.plusAssign' call
           // Inline function 'kotlin.collections.getOrPut' call
@@ -58206,17 +58319,17 @@ if (typeof String.prototype.startsWith === 'undefined') {
             tmp_19 = value;
           }
           var this_9 = tmp_19;
-          var element_14 = p_2.q2f_1.u1l_1;
+          var element_14 = p_2.s2f_1.u1l_1;
           this_9.e(element_14);
         }
       }
       var _iterator__ex2g4s_2 = zellen.g();
       $l$loop_8: while (_iterator__ex2g4s_2.h()) {
         var p_3 = _iterator__ex2g4s_2.i();
-        var r_1 = lesen$reiheVon(basis, s, p_3.s2f_1, bestOff);
+        var r_1 = lesen$reiheVon(basis, s, p_3.u2f_1, bestOff);
         if (!(0 <= r_1 ? r_1 <= maxReihe : false))
           continue $l$loop_8;
-        var tmp3_elvis_lhs = lesenText(this, p_3.q2f_1.u1l_1);
+        var tmp3_elvis_lhs = lesenText(this, p_3.s2f_1.u1l_1);
         var tmp_20;
         if (tmp3_elvis_lhs == null) {
           continue $l$loop_8;
@@ -58224,40 +58337,40 @@ if (typeof String.prototype.startsWith === 'undefined') {
           tmp_20 = tmp3_elvis_lhs;
         }
         var g = tmp_20;
-        var x0 = (p_3.q2f_1.c25() - p_3.q2f_1.y1l_1 / 2) * bl_1.a2g_1 + p_3.q2f_1.w1l_1 * bl_1.b2g_1;
-        var x1 = x0 + p_3.q2f_1.y1l_1;
+        var x0 = (p_3.s2f_1.c25() - p_3.s2f_1.y1l_1 / 2) * bl_1.c2g_1 + p_3.s2f_1.w1l_1 * bl_1.d2g_1;
+        var x1 = x0 + p_3.s2f_1.y1l_1;
         // Inline function 'kotlin.math.max' call
         // Inline function 'kotlin.let' call
         // Inline function 'kotlin.contracts.contract' call
         // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesen.<anonymous>' call
         // Inline function 'kotlin.math.ceil' call
-        var x_0 = (x0 - bl_1.w2f_1) / bl_1.x2f_1 + 0.35;
+        var x_0 = (x0 - bl_1.y2f_1) / bl_1.z2f_1 + 0.35;
         var tmp$ret$103 = Math.ceil(x_0);
         var b_2 = numberToInt(tmp$ret$103);
         var von = Math.max(1, b_2);
         // Inline function 'kotlin.math.min' call
-        var a_1 = bl_1.h2g();
+        var a_1 = bl_1.j2g();
         // Inline function 'kotlin.let' call
         // Inline function 'kotlin.contracts.contract' call
         // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesen.<anonymous>' call
         // Inline function 'kotlin.math.floor' call
-        var x_1 = (x1 - bl_1.w2f_1) / bl_1.x2f_1 - 0.35;
+        var x_1 = (x1 - bl_1.y2f_1) / bl_1.z2f_1 - 0.35;
         var tmp$ret$107 = Math.floor(x_1);
         var b_3 = numberToInt(tmp$ret$107);
         var bis = Math.min(a_1, b_3);
         // Inline function 'kotlin.math.roundToInt' call
-        var this_10 = (p_3.r2f_1 - bl_1.w2f_1) / bl_1.x2f_1;
+        var this_10 = (p_3.t2f_1 - bl_1.y2f_1) / bl_1.z2f_1;
         var tmp$ret$111 = roundToInt(this_10);
-        var mitte = coerceIn(tmp$ret$111, 1, bl_1.h2g());
+        var mitte = coerceIn(tmp$ret$111, 1, bl_1.j2g());
         var spalten = bis >= von ? toList_0(numberRangeToNumber(von, bis)) : listOf(mitte);
-        if (g.p2f_1) {
+        if (g.r2f_1) {
           // Inline function 'kotlin.collections.forEach' call
           var tmp0_iterator_21 = spalten.g();
           while (tmp0_iterator_21.h()) {
             var element_15 = tmp0_iterator_21.i();
             // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesen.<anonymous>' call
             // Inline function 'kotlin.collections.plusAssign' call
-            var element_16 = new Wunschkalender$lesen$Roh(r_1, element_15, bl_1, g, p_3.q2f_1.u1l_1);
+            var element_16 = new Wunschkalender$lesen$Roh(r_1, element_15, bl_1, g, p_3.s2f_1.u1l_1);
             roh.e(element_16);
           }
           continue $l$loop_8;
@@ -58265,7 +58378,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
         var tmp$ret$112;
         $l$block_6: {
           // Inline function 'kotlin.collections.all' call
-          var this_11 = g.o2f_1;
+          var this_11 = g.q2f_1;
           var tmp_21;
           if (isInterface(this_11, Collection)) {
             tmp_21 = this_11.l();
@@ -58280,7 +58393,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
           while (tmp0_iterator_22.h()) {
             var element_17 = tmp0_iterator_22.i();
             // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesen.<anonymous>' call
-            if (!element_17.m2f_1.equals(g.o2f_1.k(0).m2f_1)) {
+            if (!element_17.o2f_1.equals(g.q2f_1.k(0).o2f_1)) {
               tmp$ret$112 = false;
               break $l$block_6;
             }
@@ -58293,7 +58406,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
           var tmp$ret$114;
           $l$block_8: {
             // Inline function 'kotlin.collections.all' call
-            var this_12 = g.o2f_1;
+            var this_12 = g.q2f_1;
             var tmp_23;
             if (isInterface(this_12, Collection)) {
               tmp_23 = this_12.l();
@@ -58308,7 +58421,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
             while (tmp0_iterator_23.h()) {
               var element_18 = tmp0_iterator_23.i();
               // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesen.<anonymous>' call
-              if (!element_18.n2f_1) {
+              if (!element_18.p2f_1) {
                 tmp$ret$114 = false;
                 break $l$block_8;
               }
@@ -58316,7 +58429,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
             tmp$ret$114 = true;
           }
           if (tmp$ret$114) {
-            tmp_22 = spalten.j() === g.o2f_1.j() || (g.o2f_1.j() === 1 && spalten.j() === 1);
+            tmp_22 = spalten.j() === g.q2f_1.j() || (g.q2f_1.j() === 1 && spalten.j() === 1);
           } else {
             tmp_22 = false;
           }
@@ -58325,24 +58438,24 @@ if (typeof String.prototype.startsWith === 'undefined') {
           while (_iterator__ex2g4s_3.h()) {
             var tg = _iterator__ex2g4s_3.i();
             // Inline function 'kotlin.collections.plusAssign' call
-            var element_19 = new Wunschkalender$lesen$Roh(r_1, tg, bl_1, new Gelesen(listOf(new Sym(g.o2f_1.k(0).m2f_1, sicher)), false), p_3.q2f_1.u1l_1);
+            var element_19 = new Wunschkalender$lesen$Roh(r_1, tg, bl_1, new Gelesen(listOf(new Sym(g.q2f_1.k(0).o2f_1, sicher)), false), p_3.s2f_1.u1l_1);
             roh.e(element_19);
           }
         } else {
-          var n = g.o2f_1.j();
-          var iterator_5 = g.o2f_1.g();
+          var n = g.q2f_1.j();
+          var iterator_5 = g.q2f_1.g();
           var index_2 = 0;
           while (iterator_5.h()) {
             var i_0 = index_2;
             index_2 = index_2 + 1 | 0;
             var sy = iterator_5.i();
-            var x_2 = x0 + (i_0 + 0.5) * p_3.q2f_1.y1l_1 / n;
+            var x_2 = x0 + (i_0 + 0.5) * p_3.s2f_1.y1l_1 / n;
             // Inline function 'kotlin.math.roundToInt' call
-            var this_13 = (x_2 - bl_1.w2f_1) / bl_1.x2f_1;
+            var this_13 = (x_2 - bl_1.y2f_1) / bl_1.z2f_1;
             var tmp$ret$116 = roundToInt(this_13);
-            var tg_0 = coerceIn(tmp$ret$116, 1, bl_1.h2g());
+            var tg_0 = coerceIn(tmp$ret$116, 1, bl_1.j2g());
             // Inline function 'kotlin.collections.plusAssign' call
-            var element_20 = new Wunschkalender$lesen$Roh(r_1, tg_0, bl_1, new Gelesen(listOf(new Sym(sy.m2f_1, false)), false), p_3.q2f_1.u1l_1);
+            var element_20 = new Wunschkalender$lesen$Roh(r_1, tg_0, bl_1, new Gelesen(listOf(new Sym(sy.o2f_1, false)), false), p_3.s2f_1.u1l_1);
             roh.e(element_20);
           }
         }
@@ -58356,7 +58469,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     while (tmp0_iterator_24.h()) {
       var item_9 = tmp0_iterator_24.i();
       // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesen.<anonymous>' call
-      var tmp$ret$117 = item_9.k2g_1;
+      var tmp$ret$117 = item_9.m2g_1;
       destination_18.e(tmp$ret$117);
     }
     var reihenNr = sorted(toSet_0(plus_2(tmp_24, destination_18)));
@@ -58521,7 +58634,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     while (tmp0_iterator_28.h()) {
       var element_23 = tmp0_iterator_28.i();
       // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesen.<anonymous>' call
-      var key = new Triple(element_23.k2g_1, imul(element_23.m2g_1.c2g_1, 100) + imul(element_23.m2g_1.d2g_1, 10000) | 0, element_23.l2g_1);
+      var key = new Triple(element_23.m2g_1, imul(element_23.o2g_1.e2g_1, 100) + imul(element_23.o2g_1.f2g_1, 10000) | 0, element_23.n2g_1);
       // Inline function 'kotlin.collections.getOrPut' call
       var value_0 = destination_20.b2(key);
       var tmp_32;
@@ -58543,10 +58656,10 @@ if (typeof String.prototype.startsWith === 'undefined') {
       var key_0 = _destruct__k2r9zo_0.x1();
       // Inline function 'kotlin.collections.component2' call
       var l = _destruct__k2r9zo_0.y1();
-      var bl_2 = l.k(0).m2g_1;
-      if (key_0.ai_1 > bl_2.h2g())
+      var bl_2 = l.k(0).o2g_1;
+      if (key_0.ai_1 > bl_2.j2g())
         continue $l$loop_12;
-      var d_0 = Companion_getInstance_32().i1w(bl_2.d2g_1, bl_2.c2g_1, key_0.ai_1);
+      var d_0 = Companion_getInstance_32().i1w(bl_2.f2g_1, bl_2.e2g_1, key_0.ai_1);
       if (d_0.s1p().equals(DayOfWeek_SUNDAY_getInstance()))
         continue $l$loop_12;
       // Inline function 'kotlin.collections.filter' call
@@ -58556,20 +58669,20 @@ if (typeof String.prototype.startsWith === 'undefined') {
       while (tmp0_iterator_29.h()) {
         var element_24 = tmp0_iterator_29.i();
         // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesen.<anonymous>' call
-        if (!element_24.n2g_1.p2f_1) {
+        if (!element_24.p2g_1.r2f_1) {
           destination_21.e(element_24);
         }
       }
       var lesbar = destination_21;
       if (lesbar.l()) {
         // Inline function 'kotlin.collections.plusAssign' call
-        var element_25 = new WunschUnleserlich(key_0.yh_1, d_0, l.k(0).o2g_1);
+        var element_25 = new WunschUnleserlich(key_0.yh_1, d_0, l.k(0).q2g_1);
         unleserlich.e(element_25);
         continue $l$loop_12;
       }
       var tmp_33 = Wunschkalender$lesen$lambda_1;
       var w_0 = maxWith(lesbar, compareBy([tmp_33, Wunschkalender$lesen$lambda_2]));
-      var sy_0 = w_0.n2g_1.o2f_1.k(0);
+      var sy_0 = w_0.p2g_1.q2f_1.k(0);
       var tmp_34;
       // Inline function 'kotlin.collections.map' call
       // Inline function 'kotlin.collections.mapTo' call
@@ -58578,7 +58691,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
       while (tmp0_iterator_30.h()) {
         var item_11 = tmp0_iterator_30.i();
         // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesen.<anonymous>' call
-        var tmp$ret$148 = item_11.n2g_1.o2f_1.k(0).m2f_1;
+        var tmp$ret$148 = item_11.p2g_1.q2f_1.k(0).o2f_1;
         destination_22.e(tmp$ret$148);
       }
       if (distinct(destination_22).j() > 1) {
@@ -58588,7 +58701,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
       }
       var zweifel = tmp_34;
       // Inline function 'kotlin.collections.plusAssign' call
-      var element_26 = new WunschZelle(key_0.yh_1, d_0, sy_0.m2f_1, sy_0.n2f_1 && !zweifel, w_0.o2g_1);
+      var element_26 = new WunschZelle(key_0.yh_1, d_0, sy_0.o2f_1, sy_0.p2f_1 && !zweifel, w_0.q2g_1);
       zellen_0.e(element_26);
     }
     // Inline function 'kotlin.let' call
@@ -58598,11 +58711,11 @@ if (typeof String.prototype.startsWith === 'undefined') {
       throw NoSuchElementException_init_$Create$();
     // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesen.<anonymous>' call
     var it_1 = iterator_7.i();
-    var minValue = Companion_getInstance_32().i1w(it_1.d2g_1, it_1.c2g_1, 1).f1u();
+    var minValue = Companion_getInstance_32().i1w(it_1.f2g_1, it_1.e2g_1, 1).f1u();
     while (iterator_7.h()) {
       // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesen.<anonymous>' call
       var it_2 = iterator_7.i();
-      var v_1 = Companion_getInstance_32().i1w(it_2.d2g_1, it_2.c2g_1, 1).f1u();
+      var v_1 = Companion_getInstance_32().i1w(it_2.f2g_1, it_2.e2g_1, 1).f1u();
       if (compareTo_0(minValue, v_1) > 0) {
         minValue = v_1;
       }
@@ -58618,11 +58731,11 @@ if (typeof String.prototype.startsWith === 'undefined') {
       throw NoSuchElementException_init_$Create$();
     // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesen.<anonymous>' call
     var it_4 = iterator_8.i();
-    var maxValue_1 = Companion_getInstance_32().i1w(it_4.d2g_1, it_4.c2g_1, 1).f1u();
+    var maxValue_1 = Companion_getInstance_32().i1w(it_4.f2g_1, it_4.e2g_1, 1).f1u();
     while (iterator_8.h()) {
       // Inline function 'de.micha.dienstplan.core.Wunschkalender.lesen.<anonymous>' call
       var it_5 = iterator_8.i();
-      var v_2 = Companion_getInstance_32().i1w(it_5.d2g_1, it_5.c2g_1, 1).f1u();
+      var v_2 = Companion_getInstance_32().i1w(it_5.f2g_1, it_5.e2g_1, 1).f1u();
       if (compareTo_0(maxValue_1, v_2) < 0) {
         maxValue_1 = v_2;
       }
@@ -58684,7 +58797,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
       var element_1 = tmp0_iterator_1.i();
       // Inline function 'kotlin.collections.mapNotNullTo.<anonymous>' call
       // Inline function 'de.micha.dienstplan.core.Wunschkalender.diagnose.<anonymous>' call
-      var tmp0_safe_receiver = Wunschkalender_getInstance().s2g(element_1.u1l_1);
+      var tmp0_safe_receiver = Wunschkalender_getInstance().u2g(element_1.u1l_1);
       if (tmp0_safe_receiver == null)
         null;
       else {
@@ -58716,10 +58829,10 @@ if (typeof String.prototype.startsWith === 'undefined') {
             break $l$block_0;
           }
           // Inline function 'de.micha.dienstplan.core.Wunschkalender.diagnose.<anonymous>.<anonymous>' call
-          var maxValue = iterator.i().t2f_1.j();
+          var maxValue = iterator.i().v2f_1.j();
           while (iterator.h()) {
             // Inline function 'de.micha.dienstplan.core.Wunschkalender.diagnose.<anonymous>.<anonymous>' call
-            var v = iterator.i().t2f_1.j();
+            var v = iterator.i().v2f_1.j();
             if (compareTo_0(maxValue, v) < 0) {
               maxValue = v;
             }
@@ -58839,8 +58952,8 @@ if (typeof String.prototype.startsWith === 'undefined') {
   }
   function Code(name, ordinal, text, bedeutung) {
     Enum.call(this, name, ordinal);
-    this.g2e_1 = text;
-    this.h2e_1 = bedeutung;
+    this.i2e_1 = text;
+    this.j2e_1 = bedeutung;
   }
   function Segment(von, bis, art, filiale) {
     filiale = filiale === VOID ? null : filiale;
@@ -58849,18 +58962,18 @@ if (typeof String.prototype.startsWith === 'undefined') {
     this.i1z_1 = art;
     this.j1z_1 = filiale;
   }
-  protoOf(Segment).x2c = function () {
+  protoOf(Segment).m2d = function () {
     return this.h1z_1 - this.g1z_1 | 0;
   };
-  protoOf(Segment).u2g = function (von, bis, art, filiale) {
+  protoOf(Segment).w2g = function (von, bis, art, filiale) {
     return new Segment(von, bis, art, filiale);
   };
-  protoOf(Segment).v2g = function (von, bis, art, filiale, $super) {
+  protoOf(Segment).x2g = function (von, bis, art, filiale, $super) {
     von = von === VOID ? this.g1z_1 : von;
     bis = bis === VOID ? this.h1z_1 : bis;
     art = art === VOID ? this.i1z_1 : art;
     filiale = filiale === VOID ? this.j1z_1 : filiale;
-    return $super === VOID ? this.u2g(von, bis, art, filiale) : $super.u2g.call(this, von, bis, art, filiale);
+    return $super === VOID ? this.w2g(von, bis, art, filiale) : $super.w2g.call(this, von, bis, art, filiale);
   };
   protoOf(Segment).toString = function () {
     return 'Segment(von=' + this.g1z_1 + ', bis=' + this.h1z_1 + ', art=' + this.i1z_1.toString() + ', filiale=' + this.j1z_1 + ')';
@@ -58898,15 +59011,15 @@ if (typeof String.prototype.startsWith === 'undefined') {
     this.e1z_1 = fehler;
     this.f1z_1 = markierung;
   }
-  protoOf(Zeile).w2g = function (segment, code, fehler, markierung) {
+  protoOf(Zeile).y2g = function (segment, code, fehler, markierung) {
     return new Zeile(segment, code, fehler, markierung);
   };
-  protoOf(Zeile).x2g = function (segment, code, fehler, markierung, $super) {
+  protoOf(Zeile).z2g = function (segment, code, fehler, markierung, $super) {
     segment = segment === VOID ? this.c1z_1 : segment;
     code = code === VOID ? this.d1z_1 : code;
     fehler = fehler === VOID ? this.e1z_1 : fehler;
     markierung = markierung === VOID ? this.f1z_1 : markierung;
-    return $super === VOID ? this.w2g(segment, code, fehler, markierung) : $super.w2g.call(this, segment, code, fehler, markierung);
+    return $super === VOID ? this.y2g(segment, code, fehler, markierung) : $super.y2g.call(this, segment, code, fehler, markierung);
   };
   protoOf(Zeile).toString = function () {
     return 'Zeile(segment=' + toString_0(this.c1z_1) + ', code=' + toString_0(this.d1z_1) + ', fehler=' + this.e1z_1 + ', markierung=' + toString_0(this.f1z_1) + ')';
@@ -58934,6 +59047,9 @@ if (typeof String.prototype.startsWith === 'undefined') {
       return false;
     return true;
   };
+  function istZusatz($this, a) {
+    return !a.equals(Art_ARBEIT_getInstance()) && !a.equals(Art_BS_getInstance());
+  }
   function zusatz($this, s) {
     var tmp;
     switch (s.i1z_1.j2_1) {
@@ -59020,6 +59136,52 @@ if (typeof String.prototype.startsWith === 'undefined') {
     if (!(zwei == null) && !contains_9(t, _Char___init__impl__6a9atx(45)))
       t = zwei.cc().k(1) + '-' + zwei.cc().k(2) + zwei.cc().k(3);
     return t;
+  }
+  function sam$kotlin_Comparator$0_33(function_0) {
+    this.a2h_1 = function_0;
+  }
+  protoOf(sam$kotlin_Comparator$0_33).ec = function (a, b) {
+    return this.a2h_1(a, b);
+  };
+  protoOf(sam$kotlin_Comparator$0_33).compare = function (a, b) {
+    return this.ec(a, b);
+  };
+  protoOf(sam$kotlin_Comparator$0_33).f3 = function () {
+    return this.a2h_1;
+  };
+  protoOf(sam$kotlin_Comparator$0_33).equals = function (other) {
+    var tmp;
+    if (!(other == null) ? isInterface(other, Comparator) : false) {
+      var tmp_0;
+      if (!(other == null) ? isInterface(other, FunctionAdapter) : false) {
+        tmp_0 = equals(this.f3(), other.f3());
+      } else {
+        tmp_0 = false;
+      }
+      tmp = tmp_0;
+    } else {
+      tmp = false;
+    }
+    return tmp;
+  };
+  protoOf(sam$kotlin_Comparator$0_33).hashCode = function () {
+    return hashCode(this.f3());
+  };
+  function Zeit$aufteilen$lambda(a, b) {
+    // Inline function 'kotlin.comparisons.compareValuesBy' call
+    // Inline function 'de.micha.dienstplan.core.Zeit.aufteilen.<anonymous>' call
+    var tmp = a.g1z_1;
+    // Inline function 'de.micha.dienstplan.core.Zeit.aufteilen.<anonymous>' call
+    var tmp$ret$1 = b.g1z_1;
+    return compareValues(tmp, tmp$ret$1);
+  }
+  function Zeit$aufteilen$lambda_0(a, b) {
+    // Inline function 'kotlin.comparisons.compareValuesBy' call
+    // Inline function 'de.micha.dienstplan.core.Zeit.aufteilen.<anonymous>' call
+    var tmp = a.g1z_1;
+    // Inline function 'de.micha.dienstplan.core.Zeit.aufteilen.<anonymous>' call
+    var tmp$ret$1 = b.g1z_1;
+    return compareValues(tmp, tmp$ret$1);
   }
   function Zeit$handKorrektur$lambda(it) {
     return it.cc().k(1) + ':' + it.cc().k(2);
@@ -59159,9 +59321,175 @@ if (typeof String.prototype.startsWith === 'undefined') {
     return !(code == null) ? new Zeile(VOID, code) : new Zeile(VOID, VOID, true);
   };
   protoOf(Zeit).b1z = function (z1, z2) {
-    return this.y2g(listOf_0([this.ki(z1), this.ki(z2)]));
+    return this.b2h(listOf_0([this.ki(z1), this.ki(z2)]));
   };
-  protoOf(Zeit).y2g = function (z) {
+  protoOf(Zeit).l2d = function (segs) {
+    // Inline function 'kotlin.collections.filter' call
+    // Inline function 'kotlin.collections.filterTo' call
+    var destination = ArrayList_init_$Create$();
+    var tmp0_iterator = segs.g();
+    while (tmp0_iterator.h()) {
+      var element = tmp0_iterator.i();
+      // Inline function 'de.micha.dienstplan.core.Zeit.aufteilen.<anonymous>' call
+      if (istZusatz(Zeit_getInstance(), element.i1z_1)) {
+        destination.e(element);
+      }
+    }
+    var zusatz = destination;
+    var tmp$ret$3;
+    $l$block_2: {
+      // Inline function 'kotlin.collections.none' call
+      var tmp;
+      if (isInterface(segs, Collection)) {
+        tmp = segs.l();
+      } else {
+        tmp = false;
+      }
+      if (tmp) {
+        tmp$ret$3 = true;
+        break $l$block_2;
+      }
+      var tmp0_iterator_0 = segs.g();
+      while (tmp0_iterator_0.h()) {
+        var element_0 = tmp0_iterator_0.i();
+        // Inline function 'de.micha.dienstplan.core.Zeit.aufteilen.<anonymous>' call
+        var tmp_0;
+        if (element_0.i1z_1.equals(Art_ARBEIT_getInstance())) {
+          var tmp$ret$4;
+          $l$block_1: {
+            // Inline function 'kotlin.collections.any' call
+            var tmp_1;
+            if (isInterface(zusatz, Collection)) {
+              tmp_1 = zusatz.l();
+            } else {
+              tmp_1 = false;
+            }
+            if (tmp_1) {
+              tmp$ret$4 = false;
+              break $l$block_1;
+            }
+            var tmp0_iterator_1 = zusatz.g();
+            while (tmp0_iterator_1.h()) {
+              var element_1 = tmp0_iterator_1.i();
+              // Inline function 'de.micha.dienstplan.core.Zeit.aufteilen.<anonymous>.<anonymous>' call
+              if (element_1.g1z_1 < element_0.h1z_1 && element_1.h1z_1 > element_0.g1z_1) {
+                tmp$ret$4 = true;
+                break $l$block_1;
+              }
+            }
+            tmp$ret$4 = false;
+          }
+          tmp_0 = tmp$ret$4;
+        } else {
+          tmp_0 = false;
+        }
+        if (tmp_0) {
+          tmp$ret$3 = false;
+          break $l$block_2;
+        }
+      }
+      tmp$ret$3 = true;
+    }
+    if (tmp$ret$3)
+      return segs;
+    // Inline function 'kotlin.collections.mutableListOf' call
+    var r = ArrayList_init_$Create$();
+    var _iterator__ex2g4s = segs.g();
+    $l$loop: while (_iterator__ex2g4s.h()) {
+      var s = _iterator__ex2g4s.i();
+      if (!s.i1z_1.equals(Art_ARBEIT_getInstance())) {
+        // Inline function 'kotlin.collections.plusAssign' call
+        r.e(s);
+        continue $l$loop;
+      }
+      var t = s.g1z_1;
+      // Inline function 'kotlin.collections.sortedBy' call
+      // Inline function 'kotlin.collections.filter' call
+      // Inline function 'kotlin.collections.filterTo' call
+      var destination_0 = ArrayList_init_$Create$();
+      var tmp0_iterator_2 = zusatz.g();
+      while (tmp0_iterator_2.h()) {
+        var element_2 = tmp0_iterator_2.i();
+        // Inline function 'de.micha.dienstplan.core.Zeit.aufteilen.<anonymous>' call
+        if (element_2.g1z_1 < s.h1z_1 && element_2.h1z_1 > s.g1z_1) {
+          destination_0.e(element_2);
+        }
+      }
+      // Inline function 'kotlin.comparisons.compareBy' call
+      var tmp_2 = Zeit$aufteilen$lambda;
+      var tmp$ret$11 = new sam$kotlin_Comparator$0_33(tmp_2);
+      var _iterator__ex2g4s_0 = sortedWith(destination_0, tmp$ret$11).g();
+      while (_iterator__ex2g4s_0.h()) {
+        var z = _iterator__ex2g4s_0.i();
+        if (z.g1z_1 > t) {
+          // Inline function 'kotlin.collections.plusAssign' call
+          var element_3 = s.x2g(t, z.g1z_1);
+          r.e(element_3);
+        }
+        // Inline function 'kotlin.comparisons.maxOf' call
+        var a = t;
+        var b = z.h1z_1;
+        t = Math.max(a, b);
+      }
+      if (t < s.h1z_1) {
+        // Inline function 'kotlin.collections.plusAssign' call
+        var element_4 = s.x2g(t, s.h1z_1);
+        r.e(element_4);
+      }
+    }
+    // Inline function 'kotlin.collections.sortedBy' call
+    // Inline function 'kotlin.comparisons.compareBy' call
+    var tmp_3 = Zeit$aufteilen$lambda_0;
+    var tmp$ret$14 = new sam$kotlin_Comparator$0_33(tmp_3);
+    return sortedWith(r, tmp$ret$14);
+  };
+  protoOf(Zeit).n2e = function (arbeit, andere) {
+    var tmp;
+    if (!arbeit.i1z_1.equals(Art_ARBEIT_getInstance())) {
+      tmp = 0;
+    } else {
+      // Inline function 'kotlin.let' call
+      // Inline function 'kotlin.collections.sumOf' call
+      // Inline function 'kotlin.collections.filter' call
+      var tmp_0 = listOf(arbeit);
+      // Inline function 'kotlin.collections.filter' call
+      // Inline function 'kotlin.collections.filterTo' call
+      var destination = ArrayList_init_$Create$();
+      var tmp0_iterator = andere.g();
+      while (tmp0_iterator.h()) {
+        var element = tmp0_iterator.i();
+        // Inline function 'de.micha.dienstplan.core.Zeit.davonMinuten.<anonymous>' call
+        if (istZusatz(Zeit_getInstance(), element.i1z_1)) {
+          destination.e(element);
+        }
+      }
+      // Inline function 'kotlin.collections.filterTo' call
+      var this_0 = this.l2d(plus_0(tmp_0, destination));
+      var destination_0 = ArrayList_init_$Create$();
+      var tmp0_iterator_0 = this_0.g();
+      while (tmp0_iterator_0.h()) {
+        var element_0 = tmp0_iterator_0.i();
+        // Inline function 'de.micha.dienstplan.core.Zeit.davonMinuten.<anonymous>' call
+        if (element_0.i1z_1.equals(Art_ARBEIT_getInstance())) {
+          destination_0.e(element_0);
+        }
+      }
+      var sum = 0;
+      var tmp0_iterator_1 = destination_0.g();
+      while (tmp0_iterator_1.h()) {
+        var element_1 = tmp0_iterator_1.i();
+        var tmp_1 = sum;
+        // Inline function 'de.micha.dienstplan.core.Zeit.davonMinuten.<anonymous>' call
+        sum = tmp_1 + element_1.m2d() | 0;
+      }
+      // Inline function 'kotlin.contracts.contract' call
+      // Inline function 'de.micha.dienstplan.core.Zeit.davonMinuten.<anonymous>' call
+      var it = sum;
+      tmp = arbeit.m2d() - it | 0;
+    }
+    return tmp;
+  };
+  protoOf(Zeit).b2h = function (z) {
     var tmp$ret$1;
     $l$block: {
       // Inline function 'kotlin.collections.firstNotNullOfOrNull' call
@@ -59226,7 +59554,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
       // Inline function 'de.micha.dienstplan.core.Zeit.markierungenAnwenden.<anonymous>' call
       var tmp1 = index_0;
       index_0 = tmp1 + 1 | 0;
-      var tmp$ret$7 = checkIndexOverflow(tmp1) === ziel ? item_1.x2g(ensureNotNull(item_1.c1z_1).v2g(VOID, VOID, m)) : !(item_1.f1z_1 == null) ? new Zeile() : item_1;
+      var tmp$ret$7 = checkIndexOverflow(tmp1) === ziel ? item_1.z2g(ensureNotNull(item_1.c1z_1).x2g(VOID, VOID, m)) : !(item_1.f1z_1 == null) ? new Zeile() : item_1;
       destination_0.e(tmp$ret$7);
     }
     return destination_0;
@@ -59689,10 +60017,10 @@ if (typeof String.prototype.startsWith === 'undefined') {
     this_2.e1d_1 = true;
     tmp_1.v1x_1 = this_2;
   }
-  protoOf(PlanZeichnung).z2g = function (linieY) {
+  protoOf(PlanZeichnung).c2h = function (linieY) {
     return new RectF(18.0 + 120.0, linieY - 27.0, 18.0 + 120.0 + 112.0, linieY + 1.0);
   };
-  protoOf(PlanZeichnung).a2h = function (c, daten, wocheEingetragen, blatt, rahmen, intern) {
+  protoOf(PlanZeichnung).d2h = function (c, daten, wocheEingetragen, blatt, rahmen, intern) {
     // Inline function 'kotlin.collections.mutableListOf' call
     var treffer = ArrayList_init_$Create$();
     var woche = Rechnung_getInstance().v2c(daten, wocheEingetragen);
@@ -59723,7 +60051,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
       // Inline function 'kotlin.collections.sumOf' call
       // Inline function 'kotlin.collections.flatMap' call
       // Inline function 'kotlin.collections.ifEmpty' call
-      var this_0 = Rechnung_getInstance().a2e(daten, blatt);
+      var this_0 = Rechnung_getInstance().c2e(daten, blatt);
       // Inline function 'kotlin.contracts.contract' call
       var tmp;
       if (this_0.l()) {
@@ -59962,7 +60290,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     } else {
       // Inline function 'kotlin.collections.flatMap' call
       // Inline function 'kotlin.collections.ifEmpty' call
-      var this_2 = Rechnung_getInstance().a2e(daten, blatt);
+      var this_2 = Rechnung_getInstance().c2e(daten, blatt);
       // Inline function 'kotlin.contracts.contract' call
       var tmp_9;
       if (this_2.l()) {
@@ -60069,7 +60397,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
           tmp_13 = Vorgaben_getInstance().h1q(d, land);
         }
         var ft = tmp_13;
-        var vert = Rechnung_getInstance().i2e(daten, woche, t_0);
+        var vert = Rechnung_getInstance().k2e(daten, woche, t_0);
         var y0 = y;
         c.b1e(format('%02d.%02d.', [d.l1g_1, d.k1g_1]), links + 2, y0 + rh - 2, p$default(this, 8.5, VOID, this.p1x_1));
         var tmp_14;
@@ -60284,7 +60612,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
                   // Inline function 'kotlin.let' call
                   // Inline function 'kotlin.contracts.contract' call
                   // Inline function 'de.micha.dienstplan.PlanZeichnung.seite.<anonymous>' call
-                  tmp_24 = Wunschkalender_getInstance().q2g(tmp14_safe_receiver);
+                  tmp_24 = Wunschkalender_getInstance().s2g(tmp14_safe_receiver);
                 }
                 tmp_23 = tmp_24;
               } else {
@@ -60431,7 +60759,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
             var sp = p$default(this, 8.0);
             var vm = vert.b2(m_1.a1o_1);
             var ferien = ferienAn(d);
-            var zs = Rechnung_getInstance().l2e(tg, e);
+            var zs = Rechnung_getInstance().m2e(tg, e);
             if (!(vm == null)) {
               c.z1d(sx, y0, x_2 + spB, y0 + rh, fuell(this, this.n1x_1));
               text$default(this, c, vm, sx, y0 + rh - 3, sw, p$default(this, 8.0, true));
@@ -60841,7 +61169,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
     y = y + 30.0;
     c.b1e('Unterschrift ML:', links + 40.0, y, p$default(this, 9.0));
     c.a1e(links + 118.0, y + 1, links + 320.0, y + 1, this.t1x_1);
-    var ub = this.z2g(y);
+    var ub = this.c2h(y);
     var tmp23_safe_receiver = woche.c1g_1.b2(blatt);
     var tmp_53;
     if (tmp23_safe_receiver == null) {
@@ -60944,7 +61272,7 @@ if (typeof String.prototype.startsWith === 'undefined') {
   protoOf(PlanZeichnung).w1x = function (c, daten, wocheEingetragen, blatt, rahmen, intern, $super) {
     rahmen = rahmen === VOID ? emptyMap() : rahmen;
     intern = intern === VOID ? true : intern;
-    return $super === VOID ? this.a2h(c, daten, wocheEingetragen, blatt, rahmen, intern) : $super.a2h.call(this, c, daten, wocheEingetragen, blatt, rahmen, intern);
+    return $super === VOID ? this.d2h(c, daten, wocheEingetragen, blatt, rahmen, intern) : $super.d2h.call(this, c, daten, wocheEingetragen, blatt, rahmen, intern);
   };
   var PlanZeichnung_instance;
   function PlanZeichnung_getInstance() {
